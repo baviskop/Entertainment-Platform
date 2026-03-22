@@ -1,14 +1,17 @@
 package com.long1dep.youtuberef11.entity;
 
+import com.long1dep.youtuberef11.entity.enums.VideoStatus;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.UuidGenerator;
 
 @Entity
 @Table(name = "video")
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class VideoEntity extends AbstractAuditingEntity<String>{
     @Id
     @UuidGenerator
@@ -19,4 +22,8 @@ public class VideoEntity extends AbstractAuditingEntity<String>{
 
     @Column(name = "description", columnDefinition = "TEXT")
     private String description;
+
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    private VideoStatus status = VideoStatus.DRAFT;
 }

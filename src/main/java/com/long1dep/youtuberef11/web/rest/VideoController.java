@@ -2,7 +2,9 @@ package com.long1dep.youtuberef11.web.rest;
 
 import com.long1dep.youtuberef11.service.dto.VideoDto;
 import jakarta.validation.Valid;
+
 import jakarta.validation.constraints.NotNull;
+import lombok.NonNull;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +16,7 @@ import java.util.List;
 public interface VideoController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    ResponseEntity<VideoDto> create(@Valid @RequestBody final VideoDto dto);
+    ResponseEntity<VideoDto> create(@NonNull @RequestBody final VideoDto dto);
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
@@ -22,7 +24,7 @@ public interface VideoController {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    ResponseEntity<VideoDto> getVideoById(@NotNull @PathVariable("id") final String id);
+    ResponseEntity<VideoDto> getVideoById(@NonNull @PathVariable("id") final String id);
 
 //    @PutMapping("/{id}")
 //    @ResponseStatus(HttpStatus.OK)
