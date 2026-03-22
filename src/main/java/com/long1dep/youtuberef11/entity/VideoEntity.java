@@ -12,12 +12,12 @@ import org.hibernate.annotations.UuidGenerator;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class VideoEntity extends AbstractAuditingEntity<String>{
+public class VideoEntity extends AbstractAuditingEntity<String> {
     @Id
     @UuidGenerator
     private String id;
 
-    @Column(name = "url",  nullable = false)
+    @Column(name = "url", nullable = false)
     private String url;
 
     @Column(name = "description", columnDefinition = "TEXT")
@@ -25,5 +25,6 @@ public class VideoEntity extends AbstractAuditingEntity<String>{
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
+    @Builder.Default
     private VideoStatus status = VideoStatus.DRAFT;
 }

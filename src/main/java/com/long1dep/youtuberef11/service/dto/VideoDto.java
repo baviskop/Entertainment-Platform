@@ -12,6 +12,7 @@ public class VideoDto {
     private String id;
     private String url;
     private String description;
+    @Builder.Default
     private VideoStatus status = VideoStatus.DRAFT;
 
     public static VideoDto from(@NonNull final VideoEntity entity) {
