@@ -16,4 +16,7 @@ public class VideoEntity extends AbstractAuditingEntity<String>{
 
     @Column(name = "url",  nullable = false)
     private String url;
+
+    @Column(name = "description", columnDefinition = "TEXT")
+    private String description;
 }
