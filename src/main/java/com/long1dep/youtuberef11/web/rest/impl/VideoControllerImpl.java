@@ -2,6 +2,10 @@ package com.long1dep.youtuberef11.web.rest.impl;
 
 import com.long1dep.youtuberef11.service.VideoService;
 import com.long1dep.youtuberef11.service.dto.VideoDto;
+import com.long1dep.youtuberef11.service.dto.request.PagingRequest;
+import com.long1dep.youtuberef11.service.dto.request.VideoSearchRequest;
+import com.long1dep.youtuberef11.service.dto.response.PageableData;
+import com.long1dep.youtuberef11.service.dto.response.PagingResponse;
 import com.long1dep.youtuberef11.service.dto.response.Response;
 import com.long1dep.youtuberef11.web.rest.VideoController;
 import lombok.NonNull;
@@ -9,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URI;
@@ -31,11 +36,22 @@ public class VideoControllerImpl implements VideoController {
     }
 
     @Override
-    public Response<Page<VideoDto>> getVideos() {
+    public Response<PagingResponse<VideoDto>> getVideos(@RequestBody final VideoSearchRequest request) {
         log.info("========= Get List Video =========");
-        final Page<VideoDto> videos = videoService.getVideos();
+        final Page<VideoDto> videos = videoService.getVideos(request);
+        final PagingRequest paging = request.getPaging();
         return Response
-                .ok(videos);
+                .ok(
+                        new PagingResponse<VideoDto>()
+                                .setContents(videos.getContent())
+                                .setPaging(
+                                        new PageableData()
+                                                .setPageNumber(paging.getPage() - 1)
+                                                .setPageSize(paging.getSize())
+                                                .setTotalPages(videos.getTotalPages())
+                                                .setTotalRecord(videos.getTotalElements())
+                                )
+                );
     }
 
     @Override

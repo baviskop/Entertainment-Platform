@@ -1,8 +1,12 @@
 package com.long1dep.youtuberef11.service.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.long1dep.youtuberef11.entity.VideoEntity;
 import com.long1dep.youtuberef11.entity.enums.VideoStatus;
 import lombok.*;
+
+import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -14,6 +18,7 @@ public class VideoDto {
     private String description;
     @Builder.Default
     private VideoStatus status = VideoStatus.DRAFT;
+    private Instant updatedAt;
 
     public static VideoDto from(@NonNull final VideoEntity entity) {
         return VideoDto.builder()
@@ -21,6 +26,7 @@ public class VideoDto {
                 .url(entity.getUrl())
                 .description(entity.getDescription())
                 .status(entity.getStatus())
+                .updatedAt(entity.getLastModifiedDate())
                 .build();
     }
 

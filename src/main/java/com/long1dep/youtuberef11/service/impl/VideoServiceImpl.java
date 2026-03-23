@@ -5,6 +5,7 @@ import com.long1dep.youtuberef11.entity.enums.VideoStatus;
 import com.long1dep.youtuberef11.repository.VideoRepository;
 import com.long1dep.youtuberef11.service.VideoService;
 import com.long1dep.youtuberef11.service.dto.VideoDto;
+import com.long1dep.youtuberef11.service.dto.request.VideoSearchRequest;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,8 +30,8 @@ public class VideoServiceImpl implements VideoService {
     }
 
     @Override
-    public Page<VideoDto> getVideos() {
-        return null;
+    public Page<VideoDto> getVideos(@NonNull final VideoSearchRequest request) {
+        return videoRepo.findAll(request.specification(), request.getPaging().pageable()).map(VideoDto::from);
     }
 
     @Override

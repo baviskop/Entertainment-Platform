@@ -1,6 +1,8 @@
 package com.long1dep.youtuberef11.web.rest;
 
 import com.long1dep.youtuberef11.service.dto.VideoDto;
+import com.long1dep.youtuberef11.service.dto.request.VideoSearchRequest;
+import com.long1dep.youtuberef11.service.dto.response.PagingResponse;
 import com.long1dep.youtuberef11.service.dto.response.Response;
 import jakarta.validation.Valid;
 
@@ -19,9 +21,9 @@ public interface VideoController {
     @ResponseStatus(HttpStatus.CREATED)
     Response<VideoDto> create(@NonNull @RequestBody final VideoDto dto);
 
-    @GetMapping
+    @PostMapping("/search")
     @ResponseStatus(HttpStatus.OK)
-    Response<Page<VideoDto>> getVideos();
+    Response<PagingResponse<VideoDto>> getVideos(@RequestBody final VideoSearchRequest request);
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
