@@ -1,6 +1,7 @@
 package com.long1dep.youtuberef11.web.rest;
 
 import com.long1dep.youtuberef11.service.dto.VideoDto;
+import com.long1dep.youtuberef11.service.dto.response.Response;
 import jakarta.validation.Valid;
 
 import jakarta.validation.constraints.NotNull;
@@ -16,15 +17,15 @@ import java.util.List;
 public interface VideoController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    ResponseEntity<VideoDto> create(@NonNull @RequestBody final VideoDto dto);
+    Response<VideoDto> create(@NonNull @RequestBody final VideoDto dto);
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    ResponseEntity<Page<VideoDto>> getVideos();
+    Response<Page<VideoDto>> getVideos();
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    ResponseEntity<VideoDto> getVideoById(@NonNull @PathVariable("id") final String id);
+    Response<VideoDto> getVideoById(@NonNull @PathVariable("id") final String id);
 
 //    @PutMapping("/{id}")
 //    @ResponseStatus(HttpStatus.OK)
@@ -36,9 +37,9 @@ public interface VideoController {
 
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
-    ResponseEntity<VideoDto> update(@RequestBody final VideoDto dto);
+    Response<VideoDto> update(@RequestBody final VideoDto dto);
 
     @DeleteMapping
     @ResponseStatus(HttpStatus.OK)
-    ResponseEntity<Void> delete(@RequestBody final List<String> ids);
+    Response<Void> delete(@RequestBody final List<String> ids);
 }
