@@ -46,7 +46,7 @@ public final class VideoSpecification {
     public VideoSpecification withStatuses(final List<VideoStatus> statuses) {
         if(!ObjectUtils.isEmpty(statuses)) {
             specifications.add(
-                    (root, query, criteriaBuilder) -> criteriaBuilder.upper(root.get(FIELD_STATUSES)).in(statuses)
+                    (root, query, criteriaBuilder) -> root.get(FIELD_STATUSES).in(statuses)
             );
         }
         return this;
