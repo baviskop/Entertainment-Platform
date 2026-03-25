@@ -6,6 +6,7 @@ import com.long1dep.youtuberef11.repository.VideoRepository;
 import com.long1dep.youtuberef11.service.VideoService;
 import com.long1dep.youtuberef11.service.dto.VideoDto;
 import com.long1dep.youtuberef11.service.dto.request.VideoSearchRequest;
+import com.long1dep.youtuberef11.service.mapper.VideoMapper;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,39 +14,38 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class VideoServiceImpl implements VideoService {
-
     private final VideoRepository videoRepo;
+    private final VideoMapper videoMapper;
     @Override
     public VideoDto getVideoById(@NonNull final String id) {
 
         return videoRepo.findById(id)
-                .map(VideoDto::from) // (entity -> VideoDto.from(entity)) Gọi là method references
+                .map(videoMapper::toDto) // (entity -> VideoDto.from(entity)) Gọi là method references
                 .orElseThrow(() -> new RuntimeException("Video không tồn tại với id là: " + id));
     }
 
     @Override
     public Page<VideoDto> getVideos(@NonNull final VideoSearchRequest request) {
-        return videoRepo.findAll(request.specification(), request.getPaging().pageable()).map(VideoDto::from);
+        return videoRepo.findAll(request.specification(), request.getPaging().pageable()).map(videoMapper::toDto);
     }
 
     @Override
     public VideoDto create(@NonNull final VideoDto dto) {
-        final VideoEntity entity = dto.toEntity();
-        return VideoDto.from(videoRepo.save(entity));
+        final VideoEntity entity = videoMapper.toEntity(dto);
+        return videoMapper.toDto(videoRepo.save(entity));
     }
 
     @Override
     public VideoDto update(@NonNull final VideoDto dto) {
         final String id = dto.getId();
         if (videoRepo.existsById(id)) {
-            final VideoEntity entity = dto.toEntity();
-            return VideoDto.from(videoRepo.save(entity));
+            final VideoEntity entity = videoMapper.toEntity(dto);
+            return videoMapper.toDto(videoRepo.save(entity));
         }
         throw new RuntimeException("Không tìm thấy video với id là: " + id);
     }

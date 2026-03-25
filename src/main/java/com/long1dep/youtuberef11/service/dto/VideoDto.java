@@ -20,22 +20,22 @@ public class VideoDto {
     private VideoStatus status = VideoStatus.DRAFT;
     private Instant updatedAt;
 
-    public static VideoDto from(@NonNull final VideoEntity entity) {
-        return VideoDto.builder()
-                .id(entity.getId())
-                .url(entity.getUrl())
-                .description(entity.getDescription())
-                .status(entity.getStatus())
-                .updatedAt(entity.getLastModifiedDate())
-                .build();
-    }
-
-    public VideoEntity toEntity() {
-        return VideoEntity.builder()
-                .id(this.getId())
-                .url(this.getUrl())
-                .description((this.getDescription()))
-                .status(this.getStatus())
-                .build();
-    }
+//    public static VideoDto from(@NonNull final VideoEntity entity) {
+//        return VideoDto.builder()
+//                .id(entity.getId())
+//                .url(entity.getUrl())
+//                .description(entity.getDescription())
+//                .status(entity.getStatus())
+//                .updatedAt(entity.getLastModifiedDate())
+//                .build();
+//    }
+//
+//    public VideoEntity toEntity() {
+//        return VideoEntity.builder()
+//                .id(this.getId())
+//                .url(this.getUrl())
+//                .description((this.getDescription()))
+//                .status(this.getStatus())
+//                .build();
+//    }
 }
