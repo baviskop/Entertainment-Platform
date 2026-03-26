@@ -1,19 +1,30 @@
 package com.long1dep.youtuberef11.service.mapper;
 
-import org.mapstruct.BeanMapping;
-import org.mapstruct.NullValueCheckStrategy;
-import org.mapstruct.ReportingPolicy;
+import org.mapstruct.*;
 
 import java.util.List;
 
 public interface EntityMapper<D, E> {
     @BeanMapping(nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS)
     E toEntity(D dto);
-    @BeanMapping(unmappedSourcePolicy = ReportingPolicy.IGNORE)
+
+    //    @Named("toDto")
+    @BeanMapping(unmappedTargetPolicy = ReportingPolicy.IGNORE)
     D toDto(E entity);
+
+    List<D> toDto(List<E> entities);
 
     @BeanMapping(nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS)
     List<E> toEntity(List<D> dtos);
 
-    List<D> toDto(List<E> entities);
+    @Named(value = "update")
+    @BeanMapping(
+            nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE,
+            nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS)
+    void update(D dto, @MappingTarget E entity);
+
+    @BeanMapping(
+            nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE,
+            nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS)
+    void updateDto(@MappingTarget D dto, E entity);
 }
