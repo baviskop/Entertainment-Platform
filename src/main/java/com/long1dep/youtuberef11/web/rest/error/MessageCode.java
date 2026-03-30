@@ -19,4 +19,5 @@ public class MessageCode implements Serializable {
         this.code = code;
         this.message = message;
     }
+
 }

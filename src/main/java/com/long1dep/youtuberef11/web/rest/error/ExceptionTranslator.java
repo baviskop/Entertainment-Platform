@@ -1,7 +1,7 @@
 package com.long1dep.youtuberef11.web.rest.error;
 
 
-import com.long1dep.youtuberef11.common.AppConstants;
+import com.long1dep.youtuberef11.common.constants.AppConstants;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -2,7 +2,6 @@ package com.long1dep.youtuberef11.entity;
 
 import com.long1dep.youtuberef11.entity.enums.VideoStatus;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import org.hibernate.annotations.UuidGenerator;
 
