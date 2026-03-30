@@ -3,6 +3,7 @@ package com.long1dep.youtuberef11.service.dto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.long1dep.youtuberef11.entity.VideoEntity;
 import com.long1dep.youtuberef11.entity.enums.VideoStatus;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 import java.time.Instant;
@@ -14,6 +15,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class VideoDto {
     private String id;
+    @NotBlank(message = "Khong duoc de trong")
     private String url;
     private String description;
     @Builder.Default

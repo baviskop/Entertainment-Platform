@@ -17,9 +17,10 @@ import java.util.List;
 
 @RequestMapping("/video")
 public interface VideoController {
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    Response<VideoDto> create(@NonNull @RequestBody final VideoDto dto);
+    Response<VideoDto> create(@Valid @RequestBody final VideoDto dto);
 
     @PostMapping("/search")
     @ResponseStatus(HttpStatus.OK)

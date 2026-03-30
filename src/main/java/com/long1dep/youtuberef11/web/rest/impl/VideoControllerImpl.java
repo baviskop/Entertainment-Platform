@@ -8,16 +8,19 @@ import com.long1dep.youtuberef11.service.dto.response.PageableData;
 import com.long1dep.youtuberef11.service.dto.response.PagingResponse;
 import com.long1dep.youtuberef11.service.dto.response.Response;
 import com.long1dep.youtuberef11.web.rest.VideoController;
+import com.long1dep.youtuberef11.web.rest.error.BusinessException;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.net.URI;
 import java.util.List;
+
 
 @Slf4j
 @RestController
@@ -28,6 +31,9 @@ public class VideoControllerImpl implements VideoController {
 
     @Override
     public Response<VideoDto> create(@NonNull final VideoDto dto) {
+        if (!ObjectUtils.isEmpty(dto.getId())) {
+            throw new BusinessException(HttpStatus.BAD_REQUEST.getReasonPhrase(), "Id không được để trống");
+        }
         log.info("========= Create Video Request: {}", dto);
         final VideoDto video = videoService.create(dto);
         log.info("========= Create Video Response: {}", dto);
