@@ -14,7 +14,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import lombok.var;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -23,6 +22,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
@@ -31,6 +31,8 @@ import tools.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
+
 //TODO:3
 @Configuration
 @RequiredArgsConstructor
@@ -50,14 +52,17 @@ public class AuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         final var authentication = getAuthentication(request, response);
         if (ObjectUtils.isEmpty(authentication)) {
-
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+            filterChain.doFilter(request, response);
+        }else {
+            responseFailCredential(response, HttpStatus.UNAUTHORIZED);
         }
         filterChain.doFilter(request, response);
     }
 
     public Authentication getAuthentication(HttpServletRequest request, HttpServletResponse response) throws IOException {
         final var authorization = request.getHeader("Authorization");
-        final UsernamePasswordAuthenticationToken authentication = null;
+        UsernamePasswordAuthenticationToken authentication = null;
         if (StringUtils.hasText(authorization) && authorization.startsWith("Bearer ")) {
             final var token = authorization.substring(7);
             try {

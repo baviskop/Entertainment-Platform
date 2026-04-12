@@ -36,18 +36,27 @@ public class VideoServiceImpl implements VideoService {
 
     @Override
     public VideoDto create(@NonNull final VideoDto dto) {
+        if (dto.getStatus() == null) {
+            dto.setStatus(VideoStatus.DRAFT);
+        }
         final VideoEntity entity = videoMapper.toEntity(dto);
+        if (entity.getStatus() == null) {
+            entity.setStatus(VideoStatus.DRAFT);
+        }
         return videoMapper.toDto(videoRepo.save(entity));
     }
 
     @Override
     public VideoDto update(@NonNull final VideoDto dto) {
         final String id = dto.getId();
-        if (videoRepo.existsById(id)) {
-            final VideoEntity entity = videoMapper.toEntity(dto);
-            return videoMapper.toDto(videoRepo.save(entity));
+        final VideoEntity entity = videoRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Không tìm thấy video với id là: " + id));
+
+        videoMapper.update(dto, entity);
+        if (entity.getStatus() == null) {
+            entity.setStatus(VideoStatus.DRAFT);
         }
-        throw new RuntimeException("Không tìm thấy video với id là: " + id);
+        return videoMapper.toDto(videoRepo.save(entity));
     }
 
     @Override

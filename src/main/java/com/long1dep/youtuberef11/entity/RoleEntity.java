@@ -1,5 +1,6 @@
 package com.long1dep.youtuberef11.entity;
 
+import com.long1dep.youtuberef11.entity.enums.ERole;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;

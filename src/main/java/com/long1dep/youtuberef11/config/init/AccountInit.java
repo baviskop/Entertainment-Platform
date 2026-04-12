@@ -2,6 +2,7 @@ package com.long1dep.youtuberef11.config.init;
 
 import com.long1dep.youtuberef11.entity.AccountEntity;
 import com.long1dep.youtuberef11.entity.RoleEntity;
+import com.long1dep.youtuberef11.entity.enums.ERole;
 import com.long1dep.youtuberef11.repository.AccountRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
