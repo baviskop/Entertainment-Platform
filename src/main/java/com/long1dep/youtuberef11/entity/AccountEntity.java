@@ -4,10 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.UuidGenerator;
-
-import javax.management.relation.Role;
 import java.util.ArrayList;
 import java.util.List;
+
 @Setter
 @Getter
 @Entity
@@ -37,7 +36,7 @@ public class AccountEntity extends AbstractAuditingEntity<String> {
 
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(name = "user_roles",
-            joinColumns = @JoinColumn(name = "role_id"),
+            joinColumns = @JoinColumn(name = "account_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     List<RoleEntity> roles = new ArrayList<>();
 
