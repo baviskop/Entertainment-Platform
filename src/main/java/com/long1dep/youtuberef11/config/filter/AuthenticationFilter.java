@@ -51,13 +51,12 @@ public class AuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         final var authentication = getAuthentication(request, response);
-        if (ObjectUtils.isEmpty(authentication)) {
+        if (!ObjectUtils.isEmpty(authentication)) {
             SecurityContextHolder.getContext().setAuthentication(authentication);
             filterChain.doFilter(request, response);
         }else {
             responseFailCredential(response, HttpStatus.UNAUTHORIZED);
         }
-        filterChain.doFilter(request, response);
     }
 
     public Authentication getAuthentication(HttpServletRequest request, HttpServletResponse response) throws IOException {
