@@ -22,6 +22,14 @@ spring:
     hibernate:
       ddl-auto: update
     generate-ddl: true
+integration:
+  youtube:
+    api-key: AIzaSyDJZQpSCAZ0JW_8ZN17m_z6NaQ_DoTK1Oc
+    application-name: Youtube-Api-Key
+#  minio:
+#    access-key: admin
+#    secret-key: admin@2024
+#    url: http://localhost:9000
 
 jwt:
   # This token must be encoded using Base64 and be at least 256 bits long (you can type `openssl rand -base64 64` on your command line to generate a 512 bits one)

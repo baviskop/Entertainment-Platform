@@ -36,7 +36,7 @@ public class AccountEntity extends AbstractAuditingEntity<String> {
 
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(name = "user_roles",
-            joinColumns = @JoinColumn(name = "account_id"),
+            joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     List<RoleEntity> roles = new ArrayList<>();
 
