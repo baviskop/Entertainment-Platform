@@ -11,5 +11,5 @@ public interface AccountRepository extends JpaRepository<AccountEntity,String> {
 //    String ACCOUNT_BY_EMAIL_CACHE = "accountByEmail";
 //
 //    @Cacheable(ACCOUNT_BY_EMAIL_CACHE)
-//    Optional<AccountEntity> findByUsername(String username);
+    Optional<AccountEntity> findByUsername(String username);
 }

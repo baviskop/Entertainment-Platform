@@ -12,7 +12,7 @@ import java.util.Date;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class JwtUtil {
 
-    public static String generateToken(AccountEntity account, String jwtSecret, int jwtExpiration) {
+    public static String generateJwtToken(AccountEntity account, String jwtSecret, int jwtExpiration) {
         return Jwts.builder()
                 .setSubject(account.getUuid())
                 .setIssuedAt(new Date())

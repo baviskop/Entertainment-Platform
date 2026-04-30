@@ -50,12 +50,16 @@ public class AuthenticationFilter extends OncePerRequestFilter {
      */
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        final var authentication = getAuthentication(request, response);
-        if (!ObjectUtils.isEmpty(authentication)) {
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+        if("/_api/v1/auth/login".equals(request.getRequestURI())) {
             filterChain.doFilter(request, response);
         }else {
-            responseFailCredential(response, HttpStatus.UNAUTHORIZED);
+            final var authentication = getAuthentication(request, response);
+            if (!ObjectUtils.isEmpty(authentication)) {
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+                filterChain.doFilter(request, response);
+            }else {
+                responseFailCredential(response, HttpStatus.UNAUTHORIZED);
+            }
         }
     }
 
