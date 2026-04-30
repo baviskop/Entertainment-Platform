@@ -6,11 +6,8 @@ import com.long1dep.youtuberef11.service.dto.response.PagingResponse;
 import com.long1dep.youtuberef11.service.dto.response.Response;
 import jakarta.validation.Valid;
 
-import jakarta.validation.constraints.NotNull;
 import lombok.NonNull;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

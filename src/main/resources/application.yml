@@ -23,12 +23,12 @@ spring:
       ddl-auto: update
     generate-ddl: true
 
-  jwt:
-    # This token must be encoded using Base64 and be at least 256 bits long (you can type `openssl rand -base64 64` on your command line to generate a 512 bits one)
-    jwtSecret: ${JWT_SECRET:MWM0NzE4MDk2MGQwMWFkNjZiNDQ5ZTJkMTJjYTE2N2M1YTFhY2E3M2UzMzBlMGMzZjU3OGVhMGQwMmQyZGM5OTgyODJlOWIwZGVhMzJkOTUzNTdlMjM4ZDIxMTk0YjgzNmEzNDNlMTBjZTMwMGMyNjgzYTc2ZTlmZjE5MzZkZmM=}
-    # Token is valid 24 hours
-    jwtExpiration: ${JWT_EXPIRE:86400}
-#    rememberMeExpiration: ${JWT_EXPIRE:2592000}
+jwt:
+  # This token must be encoded using Base64 and be at least 256 bits long (you can type `openssl rand -base64 64` on your command line to generate a 512 bits one)
+  jwtSecret: ${JWT_SECRET:MWM0NzE4MDk2MGQwMWFkNjZiNDQ5ZTJkMTJjYTE2N2M1YTFhY2E3M2UzMzBlMGMzZjU3OGVhMGQwMmQyZGM5OTgyODJlOWIwZGVhMzJkOTUzNTdlMjM4ZDIxMTk0YjgzNmEzNDNlMTBjZTMwMGMyNjgzYTc2ZTlmZjE5MzZkZmM=}
+  # Token is valid 24 hours
+  jwtExpiration: ${JWT_EXPIRE:86400}
+#  rememberMeExpiration: ${JWT_EXPIRE:2592000}
 
 server:
   port: 8080
