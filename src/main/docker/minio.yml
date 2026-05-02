@@ -1,0 +1,19 @@
+name: youtuberef11
+
+services:
+  minio:
+    image: minio/minio:latest
+    container_name: minio
+    environment:
+      MINIO_ROOT_USER: admin
+      MINIO_ROOT_PASSWORD: admin@2024
+    volumes:
+      - data:/data
+    ports:
+      - '9000:9000'
+      - '9001:9001'
+    command: server /data --console-address ":9001"
+
+volumes:
+  data:
+    driver: local

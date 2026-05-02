@@ -1,7 +1,13 @@
-version: '3.8'
 name: youtuberef11
 services:
   postgresql:
     extends:
       file: ./postgresql.yml
       service: postgresql
+  minio:
+    extends:
+      file: ./minio.yml
+      service: minio
+volumes:
+  data:
+    driver: local

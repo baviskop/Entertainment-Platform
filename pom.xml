@@ -142,6 +142,12 @@
             <artifactId>google-api-client-jackson2</artifactId>
             <version>1.20.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/io.minio/minio -->
+        <dependency>
+            <groupId>io.minio</groupId>
+            <artifactId>minio</artifactId>
+            <version>8.6.0</version>
+        </dependency>
 
     </dependencies>
 
