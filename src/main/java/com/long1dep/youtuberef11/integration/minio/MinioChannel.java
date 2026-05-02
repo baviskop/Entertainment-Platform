@@ -18,10 +18,11 @@ import java.util.Objects;
 @Component
 @RequiredArgsConstructor
 public class MinioChannel {
+    private static final String BUCKET = "resources";
     private final MinioClient minioClient;
 
     @PostConstruct
-    public void init() {createBucket("resources");}
+    public void init() {createBucket("BUCKET");}
 
     @SneakyThrows
     private void createBucket(final String name) {
