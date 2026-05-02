@@ -6,7 +6,7 @@ services:
     container_name: minio
     environment:
       MINIO_ROOT_USER: admin
-      MINIO_ROOT_PASSWORD: admin@2024
+      MINIO_ROOT_PASSWORD: admin1k5
     volumes:
       - data:/data
     ports:
