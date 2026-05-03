@@ -1,5 +1,6 @@
 package com.long1dep.youtuberef11.integration.minio;
 
+import com.long1dep.youtuberef11.common.utils.ConverterUtils;
 import com.long1dep.youtuberef11.web.rest.error.BusinessException;
 import io.minio.*;
 import jakarta.annotation.PostConstruct;
@@ -22,7 +23,9 @@ public class MinioChannel {
     private final MinioClient minioClient;
 
     @PostConstruct
-    public void init() {createBucket("BUCKET");}
+    private void init() {
+        createBucket(BUCKET);
+    }
 
     @SneakyThrows
     private void createBucket(final String name) {

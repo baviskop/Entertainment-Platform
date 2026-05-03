@@ -2,9 +2,13 @@ package com.long1dep.youtuberef11.service.impl;
 
 import com.long1dep.youtuberef11.common.utils.JwtUtil;
 import com.long1dep.youtuberef11.config.properties.SecurityProperties;
+import com.long1dep.youtuberef11.entity.AccountEntity;
 import com.long1dep.youtuberef11.exception.AuthenticationException;
+import com.long1dep.youtuberef11.integration.minio.MinioChannel;
 import com.long1dep.youtuberef11.repository.AccountRepository;
 import com.long1dep.youtuberef11.service.AuthService;
+import com.long1dep.youtuberef11.service.dto.AccountDto;
+import com.long1dep.youtuberef11.service.dto.request.AccountRegisterRequest;
 import com.long1dep.youtuberef11.service.dto.request.LoginRequest;
 import com.long1dep.youtuberef11.service.dto.response.LoginResponse;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +22,7 @@ public class AuthServiceImpl implements AuthService {
     private final AccountRepository accountRepository;
     private final PasswordEncoder passwordEncoder;
     private final SecurityProperties securityProperties;
+    private final MinioChannel minioChannel;
 
     @Override
     public LoginResponse login(LoginRequest request) {
@@ -30,5 +35,14 @@ public class AuthServiceImpl implements AuthService {
         final var token = JwtUtil.generateJwtToken(account, securityProperties.getJwtSecret(), securityProperties.getJwtExpiration());
 
         return new LoginResponse(token);
+    }
+
+    @Override
+    public AccountDto register(AccountRegisterRequest request) {
+        final var account = new AccountEntity();
+        account.setUsername(request.getUsername());
+        account.setPasswordHash(passwordEncoder.encode(request.getPassword()));
+        account.setAvatar(minioChannel.upload(request.getAvatar()));
+        return null;
     }
 }

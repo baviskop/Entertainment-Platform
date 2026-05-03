@@ -1,6 +1,8 @@
 package com.long1dep.youtuberef11.web.rest.impl;
 
 import com.long1dep.youtuberef11.service.AuthService;
+import com.long1dep.youtuberef11.service.dto.AccountDto;
+import com.long1dep.youtuberef11.service.dto.request.AccountRegisterRequest;
 import com.long1dep.youtuberef11.service.dto.request.LoginRequest;
 import com.long1dep.youtuberef11.service.dto.response.LoginResponse;
 import com.long1dep.youtuberef11.service.dto.response.Response;
@@ -16,5 +18,10 @@ public class AuthControllerImpl implements AuthController {
     @Override
     public Response<LoginResponse> login(LoginRequest request) {
         return Response.ok(authService.login(request));
+    }
+
+    @Override
+    public Response<AccountDto> register(AccountRegisterRequest request) {
+        return Response.created(authService.register(request));
     }
 }
