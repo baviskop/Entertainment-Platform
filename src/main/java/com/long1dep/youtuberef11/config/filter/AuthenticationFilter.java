@@ -40,6 +40,10 @@ import java.util.Objects;
 public class AuthenticationFilter extends OncePerRequestFilter {
     SecurityProperties securityProperties;
     AccountRepository accountRepository;
+    static List<String> API_PUBLIC = List.of(
+            "/_api/v1/auth/register",
+            "/_api/v1/auth/login"
+    );
 
     /**
      * @param request
@@ -50,7 +54,7 @@ public class AuthenticationFilter extends OncePerRequestFilter {
      */
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        if("/_api/v1/auth/login".equals(request.getRequestURI())) {
+        if(API_PUBLIC.contains(request.getRequestURI())) {
             filterChain.doFilter(request, response);
         }else {
             final var authentication = getAuthentication(request, response);

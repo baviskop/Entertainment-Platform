@@ -34,7 +34,7 @@ public class AccountEntity extends AbstractAuditingEntity<String> {
     @Column(name = "uuid", unique = true, nullable = false)
     String uuid;
 
-    @Column(name = "avatar")
+    @Column(name = "avatar", columnDefinition = "text")
     String avatar;
 
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})

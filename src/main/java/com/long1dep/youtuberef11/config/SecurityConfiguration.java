@@ -19,6 +19,8 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import java.util.Collections;
+import java.util.List;
+
 import static org.springframework.security.config.Customizer.withDefaults;
 
 //TODO:4 - Nối mạch
@@ -29,7 +31,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @EnableMethodSecurity(securedEnabled = true)
 public class SecurityConfiguration{
 
-    AuthenticationFilter authenticationFilter;
+    final AuthenticationFilter authenticationFilter;
 //    final JWTConfigurer jwtConfigurer;
 //    final SecurityProblemSupport problemSupport;
 //    final SecurityProperties securityProperties;
@@ -48,6 +50,8 @@ public class SecurityConfiguration{
                 )
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/_api/v1/auth/login").permitAll()
+                        .requestMatchers("/_api/v1/auth/register").permitAll()
+                        .requestMatchers("/error").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class)
