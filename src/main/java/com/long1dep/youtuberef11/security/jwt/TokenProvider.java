@@ -1,5 +1,6 @@
 package com.long1dep.youtuberef11.security.jwt;
 
+import com.long1dep.youtuberef11.config.properties.SecurityProperties;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.JwtParser;

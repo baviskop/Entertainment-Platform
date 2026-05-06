@@ -40,6 +40,5 @@ public class AccountInit implements CommandLineRunner {
                 ))
                 .build();
         this.accountRepo.save(account);
-
     }
 }
