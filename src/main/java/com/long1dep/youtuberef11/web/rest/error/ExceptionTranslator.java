@@ -1,7 +1,7 @@
 package com.long1dep.youtuberef11.web.rest.error;
 
 
-import com.long1dep.youtuberef11.common.constants.AppConstants;
+import com.long1dep.youtuberef11.common.constants.AppConstant;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +33,7 @@ public class ExceptionTranslator implements ResponseErrorHandler {
         for (FieldError e : ex.getBindingResult().getFieldErrors()) {
             errorResult.put(e.getField(), e.getDefaultMessage());
         }
-        final ErrorResponse response = new ErrorResponse(AppConstants.BAD_REQUEST.getCode(),
+        final ErrorResponse response = new ErrorResponse(AppConstant.BAD_REQUEST.getCode(),
                 "Validation exception", errorResult);
         return badRequest(response);
     }
@@ -47,8 +47,8 @@ public class ExceptionTranslator implements ResponseErrorHandler {
         Map<String, Object> map = new HashMap<>();
         map.put("service", ex.getMessage());
         return internalServerError(new ErrorResponse(
-                AppConstants.SERVICE_ERROR.getCode(),
-                AppConstants.SERVICE_ERROR.getMessage()
+                AppConstant.SERVICE_ERROR.getCode(),
+                AppConstant.SERVICE_ERROR.getMessage()
                 , map)
         );
     }

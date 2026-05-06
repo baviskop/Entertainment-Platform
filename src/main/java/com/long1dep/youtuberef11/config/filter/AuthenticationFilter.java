@@ -38,12 +38,9 @@ import java.util.Objects;
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class AuthenticationFilter extends OncePerRequestFilter {
-    SecurityProperties securityProperties;
-    AccountRepository accountRepository;
-    static List<String> API_PUBLIC = List.of(
-            "/_api/v1/auth/register",
-            "/_api/v1/auth/login"
-    );
+    static String AUTHORIZATION_HEADER = "Authorization";
+    static String AUTHORIZATION_TOKEN = "access_token";
+
 
     /**
      * @param request
@@ -54,16 +51,10 @@ public class AuthenticationFilter extends OncePerRequestFilter {
      */
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        if(API_PUBLIC.contains(request.getRequestURI())) {
+        final var authentication = getAuthentication(request, response);
+        if (!ObjectUtils.isEmpty(authentication)) {
+            SecurityContextHolder.getContext().setAuthentication(authentication);
             filterChain.doFilter(request, response);
-        }else {
-            final var authentication = getAuthentication(request, response);
-            if (!ObjectUtils.isEmpty(authentication)) {
-                SecurityContextHolder.getContext().setAuthentication(authentication);
-                filterChain.doFilter(request, response);
-            }else {
-                responseFailCredential(response, HttpStatus.UNAUTHORIZED);
-            }
         }
     }
 
