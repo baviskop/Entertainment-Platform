@@ -3,6 +3,7 @@ package com.long1dep.youtuberef11.config;
 import com.long1dep.youtuberef11.config.filter.AuthenticationFilter;
 import com.long1dep.youtuberef11.config.properties.SecurityProperties;
 import com.long1dep.youtuberef11.security.SecurityProblemSupport;
+import com.long1dep.youtuberef11.security.jwt.JWTConfigurer;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -17,11 +18,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
 import java.util.Collections;
 import java.util.List;
@@ -40,14 +39,6 @@ public class SecurityConfiguration{
     final JWTConfigurer jwtConfigurer;
     final SecurityProblemSupport problemSupport;
     final SecurityProperties securityProperties;
-//    final UserDetailsService userDetailsService;
-//
-//    public static final List<String> PUBLIC_APIS = List.of(
-//            "/_api/v1/auth/login",
-//            "/_api/v1/auth/register",
-//            "/error",
-//            "/yubutu/ws/**"
-//    );
     @Bean
     public PasswordEncoder passwordEncoder() {return new BCryptPasswordEncoder();}
 
@@ -78,7 +69,7 @@ public class SecurityConfiguration{
 //                        .frameOptions(HeadersConfigurer.FrameOptionsConfig::disable)
 //                        .httpStrictTransportSecurity(HeadersConfigurer.HstsConfig::disable)
 //                )
-//                .with(jwtConfigurer); // 🔥 QUAN TRỌNG
+//                .with(jwtConfigurer); // 🔥
 
         return http.build();
     }

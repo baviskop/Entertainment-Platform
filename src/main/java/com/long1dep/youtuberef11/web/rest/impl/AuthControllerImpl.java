@@ -8,6 +8,9 @@ import com.long1dep.youtuberef11.service.dto.response.LoginResponse;
 import com.long1dep.youtuberef11.service.dto.response.Response;
 import com.long1dep.youtuberef11.web.rest.AuthController;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -16,8 +19,11 @@ public class AuthControllerImpl implements AuthController {
     private final AuthService authService;
 
     @Override
-    public Response<LoginResponse> login(LoginRequest request) {
-        return Response.ok(authService.login(request));
+    public ResponseEntity<Response<LoginResponse>> login(LoginRequest request) {
+        final var loginResponse = authService.login(request);
+        final var httpHeaders = new HttpHeaders();
+        httpHeaders.add(HttpHeaders.AUTHORIZATION, "Bearer " + loginResponse.token());
+        return new ResponseEntity<>(Response.ok(loginResponse), httpHeaders, HttpStatus.OK);
     }
 
     @Override

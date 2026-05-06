@@ -15,7 +15,6 @@ import org.springframework.http.HttpStatus;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Response<T> {
-
     ApiError status;
     T data;
 

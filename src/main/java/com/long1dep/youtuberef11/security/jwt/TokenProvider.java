@@ -1,6 +1,7 @@
 package com.long1dep.youtuberef11.security.jwt;
 
 import com.long1dep.youtuberef11.config.properties.SecurityProperties;
+import com.long1dep.youtuberef11.management.SecurityMetersService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.JwtParser;
@@ -18,9 +19,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
-import org.springframework.util.ObjectUtils;
-
-import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Arrays;
 import java.util.Collection;

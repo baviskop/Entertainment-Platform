@@ -22,13 +22,13 @@ public class ErrorResponse extends MessageCode {
         this(code, message, Collections.emptyMap());
     }
 
-    public ErrorResponse setDetails(Map<String, Object> details) {
-        this.details = details;
-        return this;
-    }
-
     public ErrorResponse(String code, String message, Map<String, Object> details) {
         super(code, message);
         this.details = details;
+    }
+
+    public ErrorResponse setDetails(Map<String, Object> details) {
+        this.details = details;
+        return this;
     }
 }
