@@ -7,7 +7,6 @@ import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.UnsupportedJwtException;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -19,7 +18,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
-import java.security.Key;
+import javax.crypto.SecretKey;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
@@ -32,7 +31,7 @@ public class TokenProvider {
 
     private static final String INVALID_JWT_TOKEN = "Invalid JWT token.";
 
-    private final Key key;
+    private final SecretKey key;
 
     private final JwtParser jwtParser;
 
@@ -48,7 +47,7 @@ public class TokenProvider {
         log.debug("Using a Base64-encoded JWT secret key");
         keyBytes = Decoders.BASE64.decode(secret);
         key = Keys.hmacShaKeyFor(keyBytes);
-        jwtParser = Jwts.parserBuilder().setSigningKey(key).build();
+        jwtParser = Jwts.parser().verifyWith(key).build();
         this.tokenValidityInMilliseconds = 1000 * securityProperties.getJwtExpiration();
         this.tokenValidityInMillisecondsForRememberMe =
                 1000 * securityProperties.getRememberMeExpiration();
@@ -70,15 +69,15 @@ public class TokenProvider {
 
         return Jwts
                 .builder()
-                .setSubject(authentication.getName())
+                .subject(authentication.getName())
                 .claim(AUTHORITIES_KEY, authorities)
-                .signWith(key, SignatureAlgorithm.HS512)
-                .setExpiration(validity)
+                .signWith(key)
+                .expiration(validity)
                 .compact();
     }
 
     public Authentication getAuthentication(String token) {
-        Claims claims = jwtParser.parseClaimsJws(token).getBody();
+        Claims claims = jwtParser.parseSignedClaims(token).getPayload();
 
         Collection<? extends GrantedAuthority> authorities = Arrays
                 .stream(claims.get(AUTHORITIES_KEY).toString().split(","))
@@ -86,14 +85,14 @@ public class TokenProvider {
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
 
-        User principal = new User(claims.getSubject(), "", authorities);
+        User principal = new User(claims.get("sub", String.class), "", authorities);
 
         return new UsernamePasswordAuthenticationToken(principal, token, authorities);
     }
 
     public boolean validateToken(String authToken) {
         try {
-            jwtParser.parseClaimsJws(authToken);
+            jwtParser.parseSignedClaims(authToken);
             return true;
         } catch (ExpiredJwtException e) {
             this.securityMetersService.trackTokenExpired();

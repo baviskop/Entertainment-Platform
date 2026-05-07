@@ -16,4 +16,5 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class SecurityProperties {
     String jwtSecret;
     int jwtExpiration;
+    int rememberMeExpiration;
 }
