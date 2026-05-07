@@ -27,7 +27,8 @@ public class AuthControllerImpl implements AuthController {
     }
 
     @Override
-    public Response<AccountDto> register(AccountRegisterRequest request) {
-        return Response.created(authService.register(request));
+    public ResponseEntity<Response<AccountDto>> register(AccountRegisterRequest request) {
+        return new ResponseEntity<>(Response.created(authService.register(request)),
+                HttpStatus.CREATED);
     }
 }

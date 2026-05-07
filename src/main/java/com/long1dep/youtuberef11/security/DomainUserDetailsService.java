@@ -6,6 +6,7 @@ import com.long1dep.youtuberef11.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.validator.internal.constraintvalidators.bv.EmailValidator;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,9 +26,10 @@ import java.util.stream.Collectors;
 public class DomainUserDetailsService implements UserDetailsService {
     private final AccountRepository accountRepository;
 
+    @NotNull
     @Override
     @Transactional(readOnly = true)
-    public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(@NotNull final String username) throws UsernameNotFoundException {
         log.debug("Authenticating {}", username);
         if (new EmailValidator().isValid(username, null)) {
             return accountRepository

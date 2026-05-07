@@ -19,5 +19,5 @@ public interface AuthController {
     ResponseEntity<Response<LoginResponse>> login(@Valid @RequestBody LoginRequest request);
 
     @PostMapping(value = "/register", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    Response<AccountDto> register(@Valid AccountRegisterRequest request);
+    ResponseEntity<Response<AccountDto>> register(@Valid AccountRegisterRequest request);
 }
