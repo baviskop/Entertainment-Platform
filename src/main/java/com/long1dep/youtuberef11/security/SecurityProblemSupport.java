@@ -4,6 +4,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apiguardian.api.API;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.access.AccessDeniedException;
@@ -32,12 +33,12 @@ public class SecurityProblemSupport implements AuthenticationEntryPoint, AccessD
     }
 
     @Override
-    public void commence(final HttpServletRequest request, final HttpServletResponse response, final AuthenticationException authException) throws IOException, ServletException {
+    public void commence(@NotNull final HttpServletRequest request, @NotNull final HttpServletResponse response, @NotNull final AuthenticationException authException) throws IOException, ServletException {
         resolver.resolveException(request, response, null, authException);
     }
 
     @Override
-    public void handle(final HttpServletRequest request, final HttpServletResponse response, final AccessDeniedException accessDeniedException) throws IOException, ServletException {
+    public void handle(@NotNull final HttpServletRequest request, @NotNull final HttpServletResponse response, @NotNull final AccessDeniedException accessDeniedException) throws IOException, ServletException {
         resolver.resolveException(request, response, null, accessDeniedException);
     }
 }
