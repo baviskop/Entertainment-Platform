@@ -11,6 +11,7 @@ import java.util.List;
 
 @RequestMapping(value = "/_api/v1/youtube")
 public interface YoutubeController {
+
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping("/search")
     Response<List<YoutubeItem>> search(

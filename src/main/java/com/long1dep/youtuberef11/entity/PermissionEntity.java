@@ -20,13 +20,13 @@ public class PermissionEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @Column(name = "name", nullable = false, unique = true)
-    String name;
-
     public PermissionEntity setName(final String name) {
         this.name = name;
         return this;
     }
+
+    @Column(name = "name", nullable = false, unique = true)
+    String name;
 
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.EAGER)
     @JoinTable(

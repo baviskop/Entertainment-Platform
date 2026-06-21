@@ -1,8 +1,9 @@
 package com.long1dep.youtuberef11.integration.youtube;
 
 import com.google.api.services.youtube.YouTube;
-import com.google.api.services.youtube.model.*;
-
+import com.google.api.services.youtube.model.Channel;
+import com.google.api.services.youtube.model.SearchResult;
+import com.google.api.services.youtube.model.Video;
 import com.long1dep.youtuberef11.config.YoutubeConfiguration;
 import com.long1dep.youtuberef11.integration.youtube.model.YoutubeItem;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +11,9 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-import java.util.*;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Slf4j

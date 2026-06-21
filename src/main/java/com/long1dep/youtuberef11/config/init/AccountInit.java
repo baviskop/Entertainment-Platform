@@ -18,17 +18,18 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class AccountInit implements CommandLineRunner {
-    AccountRepository accountRepo;
+    AccountRepository accountRepository;
     PasswordEncoder passwordEncoder;
+
     @Override
     public void run(String... args) throws Exception {
-        if (accountRepo.count() > 0) {
+        if (accountRepository.count() > 0) {
             return;
         }
 
-        final var account =AccountEntity.builder()
-                .username("hlong030202k6@gmail.com")
-                .passwordHash(this.passwordEncoder.encode("long0302"))
+        final var account = AccountEntity.builder()
+                .username("hlong03022k6@gmail.com")
+                .passwordHash(this.passwordEncoder.encode("long03022006"))
                 .uuid(UUID.randomUUID().toString())
                 .roles(List.of(
                         RoleEntity.builder()
@@ -39,6 +40,6 @@ public class AccountInit implements CommandLineRunner {
                                 .build()
                 ))
                 .build();
-        this.accountRepo.save(account);
+        this.accountRepository.save(account);
     }
 }

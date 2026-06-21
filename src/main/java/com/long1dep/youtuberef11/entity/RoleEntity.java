@@ -19,6 +19,7 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Table(name = "roles")
 public class RoleEntity extends AbstractAuditingEntity<String> implements Serializable {
+
     @Id
     @UuidGenerator
     String id;

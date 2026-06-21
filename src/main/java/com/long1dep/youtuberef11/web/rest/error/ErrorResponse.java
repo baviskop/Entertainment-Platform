@@ -14,7 +14,6 @@ public class ErrorResponse extends MessageCode {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private transient Map<String, Object> details;
 
-
     public ErrorResponse() {
     }
 

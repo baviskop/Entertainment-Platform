@@ -9,9 +9,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-
 @Configuration
 public class YoutubeConfiguration {
+
     @Value("${integration.youtube.application-name}")
     private String applicationName;
 
@@ -20,7 +20,7 @@ public class YoutubeConfiguration {
     private String apiKey;
 
     @Bean
-    public YouTube getYoutube() {
+    public YouTube getYouTube() {
         return new YouTube.Builder(new NetHttpTransport(), new JacksonFactory(), null)
                 .setApplicationName(applicationName)
                 .setYouTubeRequestInitializer(new YouTubeRequestInitializer(apiKey))

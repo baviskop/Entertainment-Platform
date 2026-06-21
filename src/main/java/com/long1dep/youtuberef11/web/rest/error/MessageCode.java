@@ -3,8 +3,10 @@ package com.long1dep.youtuberef11.web.rest.error;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.http.HttpStatus;
 
 import java.io.Serializable;
+
 @Getter
 @Setter
 @ToString
@@ -20,4 +22,8 @@ public class MessageCode implements Serializable {
         this.message = message;
     }
 
+    public MessageCode(HttpStatus status) {
+        this.code = String.valueOf(status.value());
+        this.message = status.getReasonPhrase();
+    }
 }

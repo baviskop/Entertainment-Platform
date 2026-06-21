@@ -1,19 +1,20 @@
 package com.long1dep.youtuberef11.integration.youtube.model;
 
+
 import java.math.BigInteger;
 
 public record YoutubeItem (
-//      Video
+        // Video
         String url,
         String title,
         String thumbnailUrl,
         String description,
-//        Thông số
+        // Thông số
         BigInteger commentCount,
         BigInteger dislikeCount,
         BigInteger likeCount,
         BigInteger viewCount,
-//        Kênh
+        // Kênh
         String channelName,
         String channelAvatar
 ){

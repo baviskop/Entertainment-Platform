@@ -21,8 +21,8 @@ public class Response<T> {
     public static <T> Response<T> ok(T data) {
         final ApiError status = new ApiError(HttpStatus.OK.value());
         return Response.<T>builder()
-                .data(data)
                 .status(status)
+                .data(data)
                 .build();
     }
 
@@ -35,23 +35,16 @@ public class Response<T> {
     }
 
     public static <T> Response<T> fail(String message, int code) {
-        final ApiError status = new ApiError(message, code);
-        return Response.<T>builder()
-                .status(status)
-                .build();
+        ApiError status = new ApiError(message, code);
+        return Response.<T>builder().status(status).build();
     }
 
     public static <T> Response<T> fail(ApiError status) {
-        return Response.<T>builder()
-                .status(status)
-                .build();
+        return Response.<T>builder().status(status).build();
     }
 
     public static <T> Response<T> noContent() {
-        final ApiError status = new ApiError(HttpStatus.NO_CONTENT.value());
-        return Response.<T>builder()
-                .status(status)
-                .build();
+        ApiError status = new ApiError(HttpStatus.NO_CONTENT.value());
+        return Response.<T>builder().status(status).build();
     }
-
 }

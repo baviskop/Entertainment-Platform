@@ -17,3 +17,5 @@ services:
 volumes:
   data:
     driver: local
+  config:
+    driver: local

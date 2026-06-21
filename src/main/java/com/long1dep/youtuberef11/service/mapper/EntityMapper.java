@@ -8,7 +8,7 @@ public interface EntityMapper<D, E> {
     @BeanMapping(nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS)
     E toEntity(D dto);
 
-    //    @Named("toDto")
+//    @Named("toDto")
     @BeanMapping(unmappedTargetPolicy = ReportingPolicy.IGNORE)
     D toDto(E entity);
 

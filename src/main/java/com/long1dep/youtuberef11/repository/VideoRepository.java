@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 import java.util.List;
 
-public interface VideoRepository extends JpaRepository<VideoEntity,String>, JpaSpecificationExecutor<VideoEntity> {
-
+public interface VideoRepository extends JpaRepository<VideoEntity, String>, JpaSpecificationExecutor<VideoEntity> {
     List<VideoEntity> findAllByIdIn(List<String> ids);
 }

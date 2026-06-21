@@ -2,12 +2,7 @@ package com.long1dep.youtuberef11.security.jwt;
 
 import com.long1dep.youtuberef11.config.properties.SecurityProperties;
 import com.long1dep.youtuberef11.management.SecurityMetersService;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.JwtParser;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.MalformedJwtException;
-import io.jsonwebtoken.UnsupportedJwtException;
+import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SignatureException;
@@ -18,7 +13,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
-import javax.crypto.SecretKey;
+
+import java.security.Key;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
@@ -31,7 +27,7 @@ public class TokenProvider {
 
     private static final String INVALID_JWT_TOKEN = "Invalid JWT token.";
 
-    private final SecretKey key;
+    private final Key key;
 
     private final JwtParser jwtParser;
 
@@ -47,11 +43,10 @@ public class TokenProvider {
         log.debug("Using a Base64-encoded JWT secret key");
         keyBytes = Decoders.BASE64.decode(secret);
         key = Keys.hmacShaKeyFor(keyBytes);
-        jwtParser = Jwts.parser().verifyWith(key).build();
+        jwtParser = Jwts.parserBuilder().setSigningKey(key).build();
         this.tokenValidityInMilliseconds = 1000 * securityProperties.getJwtExpiration();
         this.tokenValidityInMillisecondsForRememberMe =
                 1000 * securityProperties.getRememberMeExpiration();
-
 
         this.securityMetersService = securityMetersService;
     }
@@ -69,30 +64,31 @@ public class TokenProvider {
 
         return Jwts
                 .builder()
-                .subject(authentication.getName())
+                .setSubject(authentication.getName())
                 .claim(AUTHORITIES_KEY, authorities)
-                .signWith(key)
-                .expiration(validity)
+                .signWith(key, SignatureAlgorithm.HS512)
+                .setExpiration(validity)
                 .compact();
     }
 
     public Authentication getAuthentication(String token) {
-        Claims claims = jwtParser.parseSignedClaims(token).getPayload();
+        Claims claims = jwtParser.parseClaimsJws(token).getBody();
 
         Collection<? extends GrantedAuthority> authorities = Arrays
                 .stream(claims.get(AUTHORITIES_KEY).toString().split(","))
                 .filter(auth -> !auth.trim().isEmpty())
+                .map("ROLE_"::concat)
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
 
-        User principal = new User(claims.get("sub", String.class), "", authorities);
+        User principal = new User(claims.getSubject(), "", authorities);
 
         return new UsernamePasswordAuthenticationToken(principal, token, authorities);
     }
 
     public boolean validateToken(String authToken) {
         try {
-            jwtParser.parseSignedClaims(authToken);
+            jwtParser.parseClaimsJws(authToken);
             return true;
         } catch (ExpiredJwtException e) {
             this.securityMetersService.trackTokenExpired();

@@ -7,10 +7,10 @@ import com.long1dep.youtuberef11.service.VideoService;
 import com.long1dep.youtuberef11.service.dto.VideoDto;
 import com.long1dep.youtuberef11.service.dto.request.VideoSearchRequest;
 import com.long1dep.youtuberef11.service.mapper.VideoMapper;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,50 +19,43 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class VideoServiceImpl implements VideoService {
-    private final VideoRepository videoRepo;
-    private final VideoMapper videoMapper;
-    @Override
-    public VideoDto getVideoById(@NonNull final String id) {
 
-        return videoRepo.findById(id)
-                .map(videoMapper::toDto) // (entity -> VideoDto.from(entity)) Gọi là method references
+    private final VideoRepository videoRepository;
+    private final VideoMapper videoMapper;
+
+    @Override
+    public VideoDto getVideo(@NonNull final String id) {
+        return videoRepository.findById(id)
+                .map(videoMapper::toDto)
                 .orElseThrow(() -> new RuntimeException("Video không tồn tại với id là: " + id));
     }
 
     @Override
     public Page<VideoDto> getVideos(@NonNull final VideoSearchRequest request) {
-        return videoRepo.findAll(request.specification(), request.getPaging().pageable()).map(videoMapper::toDto);
+        return videoRepository.findAll(request.specification(), request.getPaging().pageable())
+                .map(videoMapper::toDto);
     }
 
     @Override
     public VideoDto create(@NonNull final VideoDto dto) {
-        if (dto.getStatus() == null) {
-            dto.setStatus(VideoStatus.DRAFT);
-        }
         final VideoEntity entity = videoMapper.toEntity(dto);
-        if (entity.getStatus() == null) {
-            entity.setStatus(VideoStatus.DRAFT);
-        }
-        return videoMapper.toDto(videoRepo.save(entity));
+        return videoMapper.toDto(videoRepository.save(entity));
     }
 
     @Override
     public VideoDto update(@NonNull final VideoDto dto) {
         final String id = dto.getId();
-        final VideoEntity entity = videoRepo.findById(id)
-                .orElseThrow(() -> new RuntimeException("Không tìm thấy video với id là: " + id));
-
-        videoMapper.update(dto, entity);
-        if (entity.getStatus() == null) {
-            entity.setStatus(VideoStatus.DRAFT);
+        if (videoRepository.existsById(id)) {
+            final VideoEntity entity = videoMapper.toEntity(dto);
+            return videoMapper.toDto(videoRepository.save(entity));
         }
-        return videoMapper.toDto(videoRepo.save(entity));
+        throw new RuntimeException("Không tìm thấy video với id là :" + id);
     }
 
     @Override
     public void delete(@NonNull final List<String> ids) {
-        final List<VideoEntity> videos = videoRepo.findAllByIdIn(ids);
+        final List<VideoEntity> videos = videoRepository.findAllByIdIn(ids);
         videos.forEach(video -> video.setStatus(VideoStatus.DELETED));
-        videoRepo.saveAll(videos);
+        videoRepository.saveAll(videos);
     }
 }

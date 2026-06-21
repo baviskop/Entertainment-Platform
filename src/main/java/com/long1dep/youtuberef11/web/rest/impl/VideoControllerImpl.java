@@ -9,18 +9,16 @@ import com.long1dep.youtuberef11.service.dto.response.PagingResponse;
 import com.long1dep.youtuberef11.service.dto.response.Response;
 import com.long1dep.youtuberef11.web.rest.VideoController;
 import com.long1dep.youtuberef11.web.rest.error.BusinessException;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
-
 import org.springframework.http.HttpStatus;
+import org.springframework.lang.NonNull;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-
 
 @Slf4j
 @RestController
@@ -32,18 +30,19 @@ public class VideoControllerImpl implements VideoController {
     @Override
     public Response<VideoDto> create(@NonNull final VideoDto dto) {
         if (!ObjectUtils.isEmpty(dto.getId())) {
-            throw new BusinessException(HttpStatus.BAD_REQUEST.getReasonPhrase(), "Id không được để trống");
+            throw new BusinessException(HttpStatus.BAD_REQUEST.getReasonPhrase(), "Id phải phải để trống");
         }
-        log.info("========= Create Video Request: {}", dto);
+        log.info("======== Create video request: {}", dto);
         final VideoDto video = videoService.create(dto);
-        log.info("========= Create Video Response: {}", dto);
+        log.info("======== Create video response: {}", dto);
 
-        return Response.created(video);
+        return Response
+                .created(video);
     }
 
     @Override
     public Response<PagingResponse<VideoDto>> getVideos(@RequestBody final VideoSearchRequest request) {
-        log.info("========= Get List Video =========");
+        log.info("======== Get list video ========");
         final Page<VideoDto> videos = videoService.getVideos(request);
         final PagingRequest paging = request.getPaging();
         return Response
@@ -53,40 +52,37 @@ public class VideoControllerImpl implements VideoController {
                                 .setPaging(
                                         new PageableData()
                                                 .setPageNumber(paging.getPage() - 1)
+                                                .setTotalPage(videos.getTotalPages())
                                                 .setPageSize(paging.getSize())
-                                                .setTotalPages(videos.getTotalPages())
                                                 .setTotalRecord(videos.getTotalElements())
                                 )
                 );
     }
 
     @Override
-    public Response<VideoDto> getVideoById(@NonNull final String id) {
-        log.info("========= Get Video Request: {}", id);
-        final VideoDto video = videoService.getVideoById(id);
-        log.info("========= Get Video Response: {}", video);
+    public Response<VideoDto> getVideo(@NonNull final String id) {
+        log.info("======== Get video request: {}", id);
+        final VideoDto video = videoService.getVideo(id);
+        log.info("======== Get video response: {}", video);
         return Response
                 .ok(video);
-
     }
 
     @Override
     public Response<VideoDto> update(@NonNull final VideoDto dto) {
-        log.info("========= Update Video Request: {}", dto);
+        log.info("======== Update video request: {}", dto);
         final VideoDto video = videoService.update(dto);
-        log.info("========= Update Video Response: {}", dto);
+        log.info("======== Update video response: {}", dto);
 
         return Response
                 .ok(video);
-
     }
 
     @Override
-    public Response<Void> delete(List<String> ids) {
-        log.info("========= Delete Video Request: {}", ids);
+    public Response<Void> delete(@NonNull final List<String> ids) {
+        log.info("======== Delete video request: {}", ids);
         videoService.delete(ids);
         return Response
                 .noContent();
-
     }
 }

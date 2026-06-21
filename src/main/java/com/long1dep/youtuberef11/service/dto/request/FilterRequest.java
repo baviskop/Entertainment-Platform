@@ -1,7 +1,6 @@
 package com.long1dep.youtuberef11.service.dto.request;
 
 import lombok.Data;
-import org.hibernate.annotations.SecondaryRow;
 import org.springframework.data.jpa.domain.Specification;
 
 @Data

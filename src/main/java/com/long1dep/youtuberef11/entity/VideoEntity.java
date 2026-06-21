@@ -25,5 +25,5 @@ public class VideoEntity extends AbstractAuditingEntity<String> {
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
-    private VideoStatus status;
+    private VideoStatus status = VideoStatus.DRAFT;
 }

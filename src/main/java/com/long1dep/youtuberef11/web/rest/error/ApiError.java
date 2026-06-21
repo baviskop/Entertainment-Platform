@@ -1,6 +1,5 @@
 package com.long1dep.youtuberef11.web.rest.error;
 
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.validation.ConstraintViolation;

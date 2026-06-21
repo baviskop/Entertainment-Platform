@@ -12,5 +12,5 @@ import java.lang.annotation.Target;
 @PreAuthorize("@permissionEvaluator.hasPermission(authentication, #entity, #action)")
 public @interface PermissionRequired {
     String value(); // Giá trị này có thể là permission
-    String action(); //Hành động yêu cầu
+    String action(); // Hành động yêu cầu
 }

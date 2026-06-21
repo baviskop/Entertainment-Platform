@@ -2,14 +2,13 @@ package com.long1dep.youtuberef11.service;
 
 import com.long1dep.youtuberef11.service.dto.VideoDto;
 import com.long1dep.youtuberef11.service.dto.request.VideoSearchRequest;
-import lombok.NonNull;
 import org.springframework.data.domain.Page;
+import org.springframework.lang.NonNull;
 
 import java.util.List;
 
 public interface VideoService {
-
-    VideoDto getVideoById(@NonNull final String id);
+    VideoDto getVideo(@NonNull final String id);
 
     Page<VideoDto> getVideos(final VideoSearchRequest request);
 

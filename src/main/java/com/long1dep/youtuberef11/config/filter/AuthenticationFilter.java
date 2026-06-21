@@ -13,9 +13,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
+
 import java.io.IOException;
 
-//TODO:3
+import static com.long1dep.youtuberef11.config.SecurityConfiguration.PUBLIC_APIS;
+
 @Configuration
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -24,14 +26,12 @@ public class AuthenticationFilter extends OncePerRequestFilter {
     static String AUTHORIZATION_TOKEN = "access_token";
     TokenProvider tokenProvider;
 
+    @Override
+    protected boolean shouldNotFilter(final HttpServletRequest request) throws ServletException {
+        final var path = request.getRequestURI();
+        return PUBLIC_APIS.contains(path);
+    }
 
-    /**
-     * @param request
-     * @param response
-     * @param filterChain
-     * @throws ServletException
-     * @throws IOException
-     */
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String jwt = resolveToken(request);
@@ -41,6 +41,9 @@ public class AuthenticationFilter extends OncePerRequestFilter {
         }
         filterChain.doFilter(request, response);
     }
+
+
+
 
     private String resolveToken(HttpServletRequest request) {
         String bearerToken = request.getHeader(AUTHORIZATION_HEADER);

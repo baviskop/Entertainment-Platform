@@ -6,5 +6,4 @@ import org.mapstruct.Mapper;
 
 @Mapper(config = DefaultConfigMapper.class)
 public interface AccountMapper extends EntityMapper<AccountDto, AccountEntity> {
-
 }

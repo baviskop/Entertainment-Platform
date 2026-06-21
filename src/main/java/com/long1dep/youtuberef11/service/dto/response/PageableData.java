@@ -11,7 +11,7 @@ import lombok.experimental.FieldDefaults;
 public class PageableData {
     int pageNumber;
     int pageSize;
-    int totalPages;
+    int totalPage;
     long totalRecord;
 
     public PageableData setPageNumber(final int pageNumber) {
@@ -24,10 +24,11 @@ public class PageableData {
         return this;
     }
 
-    public PageableData setTotalPages(final int totalPages) {
-        this.totalPages = totalPages;
+    public PageableData setTotalPage(final int totalPage) {
+        this.totalPage = totalPage;
         return this;
     }
+
     public PageableData setTotalRecord(final long totalRecord) {
         this.totalRecord = totalRecord;
         return this;

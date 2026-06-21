@@ -83,14 +83,14 @@ public class MinioChannel {
             throw new BusinessException("400", "Unable to upload file", ex);
         }
         return minioClient.getPresignedObjectUrl(
-                io.minio.GetPresignedObjectUrlArgs.builder()
+                GetPresignedObjectUrlArgs.builder()
                         .method(io.minio.http.Method.GET)
                         .bucket(BUCKET)
                         .object(fileName)
                         .build()
         );
     }
-
+    
     public byte[] download(String bucket, String name) {
         try (GetObjectResponse inputStream = minioClient.getObject(GetObjectArgs.builder()
                 .bucket(bucket)

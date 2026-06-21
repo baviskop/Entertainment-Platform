@@ -1,65 +1,66 @@
 package com.long1dep.youtuberef11.config;
 
-import com.long1dep.youtuberef11.config.filter.AuthenticationFilter;
-import com.long1dep.youtuberef11.config.handler.CustomAccessDeniedHandler;
 import com.long1dep.youtuberef11.config.properties.SecurityProperties;
 import com.long1dep.youtuberef11.security.SecurityProblemSupport;
 import com.long1dep.youtuberef11.security.jwt.JWTConfigurer;
-import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
-import lombok.experimental.FieldDefaults;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.header.writers.ReferrerPolicyHeaderWriter;
+import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
+import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
 import java.util.Collections;
 import java.util.List;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
-//TODO:4 - Nối mạch
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
 @EnableMethodSecurity(securedEnabled = true)
-public class SecurityConfiguration{
+public class SecurityConfiguration {
     final JWTConfigurer jwtConfigurer;
     final SecurityProblemSupport problemSupport;
     final SecurityProperties securityProperties;
     final UserDetailsService userDetailsService;
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {return new BCryptPasswordEncoder();}
+    public static final List<String> PUBLIC_APIS = List.of(
+            "/_api/v1/auth/login",
+            "/_api/v1/auth/register",
+            "/yubutu/ws/**"
+    );
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http, MvcRequestMatcher.Builder mvc) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
                 .cors(withDefaults())
                 .httpBasic(AbstractHttpConfigurer::disable)
                 .formLogin(AbstractHttpConfigurer::disable)
-                .sessionManagement(session ->
-                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                )
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/_api/v1/auth/login").permitAll()
-                        .requestMatchers("/_api/v1/auth/register").permitAll()
-//                        .requestMatchers("/error").permitAll()
-                        .anyRequest().authenticated()
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authorizeHttpRequests(
+                        auth -> auth.requestMatchers(apiPublic(mvc)).permitAll()
+                                .anyRequest()
+                                .authenticated()
                 )
                 .rememberMe(
                         httpSecurityRememberMeConfigurer ->
@@ -67,30 +68,37 @@ public class SecurityConfiguration{
                                         .tokenValiditySeconds((int) securityProperties.getRememberMeExpiration())
                                         .userDetailsService(userDetailsService)
                 )
-                .exceptionHandling(httpSecurityExceptionHandlingConfigure -> httpSecurityExceptionHandlingConfigure
-                        .accessDeniedHandler(problemSupport)
-                        .authenticationEntryPoint(problemSupport)
+                .exceptionHandling(
+                        httpSecurityExceptionHandlingConfigurer ->
+                                httpSecurityExceptionHandlingConfigurer
+                                        .accessDeniedHandler(problemSupport)
+                                        .authenticationEntryPoint(problemSupport)
                 )
                 .headers(
-                        headersConfigurer
-                                -> headersConfigurer.referrerPolicy(
-                                        referrer
-                                                -> referrer.policy(
-                                                ReferrerPolicyHeaderWriter.ReferrerPolicy.STRICT_ORIGIN_WHEN_CROSS_ORIGIN
+                        headersConfigurer ->
+                                headersConfigurer
+                                        .referrerPolicy(
+                                                referrer ->
+                                                        referrer.policy(
+                                                                ReferrerPolicyHeaderWriter.ReferrerPolicy.STRICT_ORIGIN_WHEN_CROSS_ORIGIN
+                                                        )
                                         )
-                                )
+                                        .frameOptions(HeadersConfigurer.FrameOptionsConfig::disable)
+                                        .httpStrictTransportSecurity(HeadersConfigurer.HstsConfig::disable)
                 )
                 .apply(jwtConfigurer);
-//                .headers(headers -> headers
-//                        .referrerPolicy(ref -> ref.policy(
-//                                ReferrerPolicyHeaderWriter.ReferrerPolicy.STRICT_ORIGIN_WHEN_CROSS_ORIGIN
-//                        ))
-//                        .frameOptions(HeadersConfigurer.FrameOptionsConfig::disable)
-//                        .httpStrictTransportSecurity(HeadersConfigurer.HstsConfig::disable)
-//                )
-//                .with(jwtConfigurer); // 🔥
-
         return http.build();
+    }
+
+    public RequestMatcher[] apiPublic(MvcRequestMatcher.Builder mvc) {
+        return PUBLIC_APIS.stream()
+                .map(mvc::pattern)
+                .toArray(RequestMatcher[]::new);
+    }
+
+    @Bean
+    MvcRequestMatcher.Builder mvc(HandlerMappingIntrospector introspect) {
+        return new MvcRequestMatcher.Builder(introspect);
     }
 
     @Bean
@@ -105,5 +113,4 @@ public class SecurityConfiguration{
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
-
 }

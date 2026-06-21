@@ -17,42 +17,43 @@ public final class VideoSpecification {
 
     private static final String FIELD_URL = "url";
     private static final String FIELD_DESCRIPTION = "description";
-    private static final String FIELD_STATUSES = "status";
+    private static final String FIELD_STATUS = "status";
 
-    public final List<Specification<VideoEntity>> specifications = new ArrayList<>();
+    private final List<Specification<VideoEntity>> specifications = new ArrayList<>();
 
     public static VideoSpecification builder() {
         return new VideoSpecification();
     }
 
     public VideoSpecification withUrl(final String url) {
-        if(!ObjectUtils.isEmpty(url)) {
+        if (!ObjectUtils.isEmpty(url)) {
             specifications.add(
-                    (root, query, criteriaBuilder) -> criteriaBuilder.like(criteriaBuilder.upper(root.get(FIELD_URL)), like(url))
+                    (root, query, criteriaBuilder) ->
+                            criteriaBuilder.like(criteriaBuilder.upper(root.get(FIELD_URL)), like(url))
             );
         }
         return this;
     }
 
     public VideoSpecification withDescription(final String description) {
-        if(!ObjectUtils.isEmpty(description)) {
+        if (!ObjectUtils.isEmpty(description)) {
             specifications.add(
-                    (root, query, criteriaBuilder) -> criteriaBuilder.like(criteriaBuilder.upper(root.get(FIELD_DESCRIPTION)), like(description))
+                    (root, query, criteriaBuilder) ->
+                            criteriaBuilder.like(criteriaBuilder.upper(root.get(FIELD_DESCRIPTION)), like(description))
             );
         }
         return this;
     }
 
     public VideoSpecification withStatuses(final List<VideoStatus> statuses) {
-        if(!ObjectUtils.isEmpty(statuses)) {
+        if (!ObjectUtils.isEmpty(statuses)) {
             specifications.add(
-                    (root, query, criteriaBuilder) -> root.get(FIELD_STATUSES).in(statuses)
+                    (root, query, criteriaBuilder) ->
+                            root.get(FIELD_STATUS).in(statuses)
             );
         }
         return this;
     }
-
-
 
     private static String like(final String value) {
         return "%" + value.toUpperCase() + "%";

@@ -17,6 +17,7 @@ public class ActionEntity extends AbstractAuditingEntity<Long> implements Serial
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+
     @Column(name = "name", nullable = false, unique = true)
     String name;
 

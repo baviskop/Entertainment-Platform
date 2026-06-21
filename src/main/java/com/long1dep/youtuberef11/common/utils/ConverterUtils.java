@@ -8,6 +8,7 @@ import java.io.InputStream;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class ConverterUtils {
+
     public static byte[] readBytesFromInputStream(InputStream inputStream, int length) {
         try {
             ByteArrayOutputStream buffer = new ByteArrayOutputStream();

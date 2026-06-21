@@ -1,9 +1,9 @@
 package com.long1dep.youtuberef11.web.rest.impl;
 
-import com.long1dep.youtuberef11.service.AuthService;
+import com.long1dep.youtuberef11.service.AuthenticationService;
 import com.long1dep.youtuberef11.service.dto.AccountDto;
-import com.long1dep.youtuberef11.service.dto.request.AccountRegisterRequest;
 import com.long1dep.youtuberef11.service.dto.request.LoginRequest;
+import com.long1dep.youtuberef11.service.dto.request.RegisterAccountRequest;
 import com.long1dep.youtuberef11.service.dto.response.LoginResponse;
 import com.long1dep.youtuberef11.service.dto.response.Response;
 import com.long1dep.youtuberef11.web.rest.AuthController;
@@ -11,26 +11,24 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import jakarta.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
 public class AuthControllerImpl implements AuthController {
-    private final AuthService authService;
+    private final AuthenticationService authenticationService;
 
     @Override
-    public ResponseEntity<Response<LoginResponse>> login(@Valid @RequestBody LoginRequest request) {
-        final var loginResponse = authService.login(request);
+    public ResponseEntity<Response<LoginResponse>> login(LoginRequest request) {
+        final var loginResponse = authenticationService.login(request);
         final var httpHeaders = new HttpHeaders();
         httpHeaders.add(HttpHeaders.AUTHORIZATION, "Bearer " + loginResponse.token());
         return new ResponseEntity<>(Response.ok(loginResponse), httpHeaders, HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<Response<AccountDto>> register(AccountRegisterRequest request) {
-        return new ResponseEntity<>(Response.created(authService.register(request)),
-                HttpStatus.CREATED);
+    public Response<AccountDto> register(RegisterAccountRequest request) {
+        return Response
+                .created(authenticationService.register(request));
     }
 }

@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 public class YoutubeControllerImpl implements YoutubeController {
+
     private final YoutubeChannel youtubeChannel;
 
     @Override

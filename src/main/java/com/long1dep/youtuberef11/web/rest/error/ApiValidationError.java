@@ -11,19 +11,16 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ApiValidationError<T> implements ApiSubError {
-    String object; // chứa obj dto gửi lên bị lỗi
+    String object;
 
-    String field; // lỗi đó ở field nào
+    String field;
 
-    T rejectedValue; // value bị lỗi
+    T rejectedValue;
 
-    String message; // message chi tiết
+    String message;
 
     public ApiValidationError(String object, String message) {
         this.object = object;
         this.message = message;
     }
 }
-
-
-
