@@ -17,6 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.lang.NonNull;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -86,5 +87,13 @@ public class VideoControllerImpl implements VideoController {
         videoService.delete(ids);
         return Response
                 .noContent();
+    }
+
+    @Override
+    public Response<Void> increaseViews(@NonNull @PathVariable("id") final String id) {
+        log.info("======== Increase video views request: {}", id);
+        videoService.increaseViews(id);
+        log.info("======== Increase video views response: {}", id);
+        return Response.ok(null);
     }
 }

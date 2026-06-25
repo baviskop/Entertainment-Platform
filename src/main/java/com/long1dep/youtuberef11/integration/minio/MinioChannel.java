@@ -1,6 +1,7 @@
 package com.long1dep.youtuberef11.integration.minio;
 
 import com.long1dep.youtuberef11.common.utils.ConverterUtils;
+import com.long1dep.youtuberef11.config.properties.MinioProperties;
 import com.long1dep.youtuberef11.web.rest.error.BusinessException;
 import io.minio.*;
 import jakarta.annotation.PostConstruct;
@@ -13,7 +14,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 @Slf4j
 @Component
@@ -21,6 +24,7 @@ import java.util.Objects;
 public class MinioChannel {
     private static final String BUCKET = "resources";
     private final MinioClient minioClient;
+    private final MinioProperties minioProperties;
 
     @PostConstruct
     private void init() {
@@ -68,7 +72,22 @@ public class MinioChannel {
     @SneakyThrows
     public String upload(@NonNull final MultipartFile file) {
         log.info("Bucket: {}, file size: {}", BUCKET, file.getSize());
-        final var fileName = file.getOriginalFilename();
+
+        if(file.isEmpty()) {
+            throw new BusinessException("400", "File upload is empty");
+        }
+
+        if(file.getSize() > 5 * 1024 * 1024) {
+            throw new BusinessException("400", "File upload is too large (Limit 5MB)");
+        }
+
+        final String originalFileName = file.getOriginalFilename();
+        final String extension = StringUtils.getFilenameExtension(originalFileName);
+        if(extension == null || !List.of("png", "jpg", "jpeg").contains(extension.toLowerCase())) {
+            throw new BusinessException("400", "File upload is invalid. Just allow file with extension: .png, .jpg, .jpeg");
+        }
+
+        final String fileName = UUID.randomUUID().toString() + "." + extension.toLowerCase();
         try {
             minioClient.putObject(
                     PutObjectArgs.builder()
@@ -82,13 +101,7 @@ public class MinioChannel {
             log.error("Error saving image \n {} ", ex.getMessage());
             throw new BusinessException("400", "Unable to upload file", ex);
         }
-        return minioClient.getPresignedObjectUrl(
-                GetPresignedObjectUrlArgs.builder()
-                        .method(io.minio.http.Method.GET)
-                        .bucket(BUCKET)
-                        .object(fileName)
-                        .build()
-        );
+        return minioProperties.getUrl() + "/" + BUCKET + "/" + fileName;
     }
     
     public byte[] download(String bucket, String name) {
@@ -101,6 +114,29 @@ public class MinioChannel {
             return ConverterUtils.readBytesFromInputStream(inputStream, size);
         } catch (Exception e) {
             throw new BusinessException("400", "Unable to download file", e);
+        }
+    }
+
+    @SneakyThrows
+    public void deleteFile(String fileUrl) {
+        if(!StringUtils.hasText(fileUrl)) {
+            return;
+        }
+
+        try {
+            String[] parts = fileUrl.split("/");
+            String objectName = parts[parts.length - 1];
+
+            minioClient.removeObject(
+                    RemoveObjectArgs.builder()
+                            .bucket(BUCKET)
+                            .object(objectName)
+                            .build()
+            );
+            log.info("Delete success file {}.", objectName);
+        }
+        catch (Exception ex) {
+            log.error("Error deleting file {}.", fileUrl, ex);
         }
     }
 }

@@ -42,4 +42,7 @@ public interface VideoController {
     @DeleteMapping
     @ResponseStatus(HttpStatus.OK)
     Response<Void> delete(@RequestBody final List<String> ids);
+
+    @PutMapping("/{id}/increase-views")
+    Response<Void> increaseViews(@PathVariable("id") final String id);
 }

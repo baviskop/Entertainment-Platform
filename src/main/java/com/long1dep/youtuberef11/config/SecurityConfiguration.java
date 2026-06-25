@@ -42,7 +42,8 @@ public class SecurityConfiguration {
     public static final List<String> PUBLIC_APIS = List.of(
             "/_api/v1/auth/login",
             "/_api/v1/auth/register",
-            "/yubutu/ws/**"
+            "/yubutu/ws/**",
+            "/_api/v1/admin/video/*/increase-views"
     );
 
     @Bean

@@ -19,4 +19,6 @@ public interface VideoService {
 
     void delete(@NonNull final List<String> ids);
 
+    void increaseViews(@NonNull final String id);
+
 }
