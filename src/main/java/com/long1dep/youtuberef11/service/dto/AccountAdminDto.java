@@ -7,7 +7,8 @@ import java.util.List;
 
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class AccountDto {
+public class AccountAdminDto {
+    String id;
     String username;
     String avatar;
     List<String> roles;

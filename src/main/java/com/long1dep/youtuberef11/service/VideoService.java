@@ -1,5 +1,6 @@
 package com.long1dep.youtuberef11.service;
 
+import com.long1dep.youtuberef11.service.dto.DashboardStatsDto;
 import com.long1dep.youtuberef11.service.dto.VideoDto;
 import com.long1dep.youtuberef11.service.dto.request.CreateVideoRequest;
 import com.long1dep.youtuberef11.service.dto.request.UpdateVideoRequest;
@@ -22,4 +23,5 @@ public interface VideoService {
 
     void increaseViews(@NonNull final String id);
 
+    DashboardStatsDto getDashboardStats();
 }

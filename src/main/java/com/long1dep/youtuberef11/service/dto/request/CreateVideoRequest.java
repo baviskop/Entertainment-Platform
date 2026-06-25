@@ -9,4 +9,5 @@ public class CreateVideoRequest {
     private String url;
     private String description;
     private MultipartFile thumbnail;
+    private com.long1dep.youtuberef11.entity.enums.VideoStatus status;
 }

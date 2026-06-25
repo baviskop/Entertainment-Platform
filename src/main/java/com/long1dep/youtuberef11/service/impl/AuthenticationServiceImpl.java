@@ -17,6 +17,8 @@ import lombok.RequiredArgsConstructor;
 import org.redisson.api.RBucket;
 import org.redisson.api.RedissonClient;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.http.HttpStatus;
+import com.long1dep.youtuberef11.web.rest.error.BusinessException;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -84,5 +86,17 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 bucket.set("revoked", ttl, TimeUnit.MILLISECONDS);
             }
         }
+    }
+
+    @Override
+    public AccountDto getCurrentUser() {
+        org.springframework.security.core.Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || !authentication.isAuthenticated() || authentication instanceof org.springframework.security.authentication.AnonymousAuthenticationToken) {
+            throw new BusinessException(HttpStatus.UNAUTHORIZED.getReasonPhrase(), "Chưa đăng nhập");
+        }
+        String username = authentication.getName();
+        return accountRepository.findByUsername(username)
+                .map(accountMapper::toDto)
+                .orElseThrow(() -> new BusinessException(HttpStatus.NOT_FOUND.getReasonPhrase(), "Không tìm thấy tài khoản: " + username));
     }
 }

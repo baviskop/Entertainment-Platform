@@ -18,11 +18,11 @@ public class NotificationService {
     private final VideoRepository videoRepository;
     private final VideoMapper videoMapper;
 
-    @Scheduled(fixedRate = 5000)
-    public void sendNotification() {
+//    @Scheduled(fixedRate = 5000)
+//    public void sendNotification() {
 //        final var request = new VideoSearchRequest();
 //        final var videos = videoRepository.findAll(request.specification(), request.getPaging().pageable())
 //                .map(videoMapper::toDto);
-        videoProducer.syncVideos("Baviskop Hello AE !!!!");
-    }
+//        videoProducer.syncVideos("Baviskop Hello AE !!!!");
+//    }
 }

@@ -1,5 +1,6 @@
 package com.long1dep.youtuberef11.web.rest;
 
+import com.long1dep.youtuberef11.service.dto.DashboardStatsDto;
 import com.long1dep.youtuberef11.service.dto.VideoDto;
 import com.long1dep.youtuberef11.service.dto.request.CreateVideoRequest;
 import com.long1dep.youtuberef11.service.dto.request.UpdateVideoRequest;
@@ -46,4 +47,9 @@ public interface VideoController {
 
     @PutMapping("/{id}/increase-views")
     Response<Void> increaseViews(@PathVariable("id") final String id);
+
+    @Secured("ROLE_ADMIN")
+    @GetMapping("/stats")
+    @ResponseStatus(HttpStatus.OK)
+    Response<DashboardStatsDto> getStats();
 }

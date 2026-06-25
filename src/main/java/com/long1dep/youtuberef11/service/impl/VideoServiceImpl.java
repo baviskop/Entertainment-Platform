@@ -7,6 +7,7 @@ import com.long1dep.youtuberef11.integration.minio.MinioChannel;
 import com.long1dep.youtuberef11.repository.VideoRepository;
 import com.long1dep.youtuberef11.security.SecurityUtils;
 import com.long1dep.youtuberef11.service.VideoService;
+import com.long1dep.youtuberef11.service.dto.DashboardStatsDto;
 import com.long1dep.youtuberef11.service.dto.VideoDto;
 import com.long1dep.youtuberef11.service.dto.request.CreateVideoRequest;
 import com.long1dep.youtuberef11.service.dto.request.UpdateVideoRequest;
@@ -20,7 +21,11 @@ import org.redisson.api.RedissonClient;
 import org.springframework.data.domain.Page;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -57,7 +62,7 @@ public class VideoServiceImpl implements VideoService {
         entity.setUrl(request.getUrl());
         entity.setDescription(request.getDescription());
         entity.setViews(0L);
-        entity.setStatus(VideoStatus.ACTIVE);
+        entity.setStatus(request.getStatus() != null ? request.getStatus() : VideoStatus.ACTIVE);
 
         if (request.getThumbnail() != null && !request.getThumbnail().isEmpty()) {
             String thumbnailUrl = minioChannel.upload(request.getThumbnail());
@@ -111,12 +116,12 @@ public class VideoServiceImpl implements VideoService {
         final String lockKey = "view_lock:" + id + ":" + viewerIdentifier;
 
         RBucket<String> lockBucket = redissonClient.getBucket(lockKey);
+        boolean isSet = lockBucket.trySet("locked", 10, TimeUnit.MINUTES);
 
-        if (lockBucket.isExists()) {
+        if (!isSet) {
             log.info("Spam view detected for video: {} by: {}. Request ignored.", id, viewerIdentifier);
             return;
         }
-        lockBucket.set("locked", 10, TimeUnit.MINUTES);
         videoRepository.increaseViewsById(id);
         log.info("Successfully increased view count for video: {} by user/ip: {}", id, viewerIdentifier);
     }
@@ -140,5 +145,30 @@ public class VideoServiceImpl implements VideoService {
             ipaddress = request.getRemoteAddr();
         }
         return ipaddress;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public DashboardStatsDto getDashboardStats() {
+        long totalVideos = videoRepository.count();
+        long totalViews = videoRepository.sumViews();
+
+        ZonedDateTime now = ZonedDateTime.now(ZoneOffset.UTC);
+        Instant startOfMonth = now.withDayOfMonth(1)
+                .withHour(0)
+                .withMinute(0)
+                .withSecond(0)
+                .withNano(0)
+                .toInstant();
+        long newThisMonth = videoRepository.countByCreatedDateAfter(startOfMonth);
+
+        long pendingApproval = videoRepository.countByStatus(VideoStatus.DRAFT);
+
+        return DashboardStatsDto.builder()
+                .totalVideos(totalVideos)
+                .totalViews(totalViews)
+                .newThisMonth(newThisMonth)
+                .pendingApproval(pendingApproval)
+                .build();
     }
 }

@@ -43,4 +43,9 @@ public class AuthControllerImpl implements AuthController {
         }
         return new ResponseEntity<>(Response.ok(null), HttpStatus.OK);
     }
+
+    @Override
+    public ResponseEntity<Response<AccountDto>> getMe() {
+        return new ResponseEntity<>(Response.ok(authenticationService.getCurrentUser()), HttpStatus.OK);
+    }
 }

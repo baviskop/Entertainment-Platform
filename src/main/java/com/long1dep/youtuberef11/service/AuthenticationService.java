@@ -11,4 +11,6 @@ public interface AuthenticationService {
     AccountDto register(RegisterAccountRequest request);
 
     void Logout(String token);
+
+    AccountDto getCurrentUser();
 }

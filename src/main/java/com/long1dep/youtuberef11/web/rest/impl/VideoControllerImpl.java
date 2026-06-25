@@ -1,6 +1,7 @@
 package com.long1dep.youtuberef11.web.rest.impl;
 
 import com.long1dep.youtuberef11.service.VideoService;
+import com.long1dep.youtuberef11.service.dto.DashboardStatsDto;
 import com.long1dep.youtuberef11.service.dto.VideoDto;
 import com.long1dep.youtuberef11.service.dto.request.CreateVideoRequest;
 import com.long1dep.youtuberef11.service.dto.request.PagingRequest;
@@ -55,7 +56,7 @@ public class VideoControllerImpl implements VideoController {
                                 .setContents(videos.getContent())
                                 .setPaging(
                                         new PageableData()
-                                                .setPageNumber(paging.getPage() - 1)
+                                                .setPageNumber(Math.max(paging.getPage() - 1, 0))
                                                 .setTotalPage(videos.getTotalPages())
                                                 .setPageSize(paging.getSize())
                                                 .setTotalRecord(videos.getTotalElements())
@@ -97,5 +98,13 @@ public class VideoControllerImpl implements VideoController {
         videoService.increaseViews(id);
         log.info("======== Increase video views response: {}", id);
         return Response.ok(null);
+    }
+
+    @Override
+    public Response<DashboardStatsDto> getStats() {
+        log.info("======== Get dashboard stats request ========");
+        final DashboardStatsDto stats = videoService.getDashboardStats();
+        log.info("======== Get dashboard stats response: {}", stats);
+        return Response.ok(stats);
     }
 }

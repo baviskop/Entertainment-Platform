@@ -22,4 +22,5 @@ public class VideoDto {
     private Long views;
     private VideoStatus status = VideoStatus.DRAFT;
     private Instant updatedAt;
+    private String createdBy;
 }

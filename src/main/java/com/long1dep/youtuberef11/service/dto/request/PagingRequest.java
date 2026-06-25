@@ -20,18 +20,20 @@ public class PagingRequest {
     private Map<String, String> orders = new HashMap<>();
 
     public Pageable pageable() {
+        int pageIndex = Math.max(page - 1, 0);
         if (CollectionUtils.isEmpty(orders)) {
-            return PageRequest.of(page - 1, size);
+            return PageRequest.of(pageIndex, size);
         }
         Sort sortable = sortable(orders);
-        return PageRequest.of(page - 1, size, sortable);
+        return PageRequest.of(pageIndex, size, sortable);
     }
 
     public Sort sortable(Map<String, String> orders) {
         List<Sort.Order> sortableList = new ArrayList<>();
         orders.forEach((key, value) -> {
             Sort.Direction direction = Sort.Direction.DESC.name().equals(value) ? Sort.Direction.DESC : Sort.Direction.ASC;
-            Sort.Order order = new Sort.Order(direction, key);
+            String mappedKey = "updatedAt".equals(key) ? "lastModifiedDate" : key;
+            Sort.Order order = new Sort.Order(direction, mappedKey);
             sortableList.add(order);
         });
         return Sort.by(sortableList);

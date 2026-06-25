@@ -28,11 +28,12 @@ public class AuthenticationFilter extends OncePerRequestFilter {
     static String AUTHORIZATION_TOKEN = "access_token";
     TokenProvider tokenProvider;
     RedissonClient redissonClient;
+    org.springframework.util.AntPathMatcher pathMatcher = new org.springframework.util.AntPathMatcher();
 
     @Override
     protected boolean shouldNotFilter(final HttpServletRequest request) throws ServletException {
         final var path = request.getRequestURI();
-        return PUBLIC_APIS.contains(path);
+        return PUBLIC_APIS.stream().anyMatch(pattern -> pathMatcher.match(pattern, path));
     }
 
     @Override
