@@ -14,14 +14,18 @@ import com.long1dep.youtuberef11.service.dto.request.RegisterAccountRequest;
 import com.long1dep.youtuberef11.service.dto.response.LoginResponse;
 import com.long1dep.youtuberef11.service.mapper.AccountMapper;
 import lombok.RequiredArgsConstructor;
+import org.redisson.api.RBucket;
+import org.redisson.api.RedissonClient;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 @Service
 @RequiredArgsConstructor
@@ -40,6 +44,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     // Repository
     private final AccountRepository accountRepository;
     private final RoleRepository roleRepository;
+
+    private final RedissonClient redissonClient;
 
     @Override
     public LoginResponse login(LoginRequest request) {
@@ -64,5 +70,19 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         account.setRoles(List.of(useRole));
         account.setAvatar(minioChannel.upload(request.getAvatar()));
         return accountMapper.toDto(accountRepository.save(account));
+    }
+
+    @Override
+    public void Logout(String token) {
+        if (token != null && tokenProvider.validateToken(token)) {
+            Date expirationDate = tokenProvider.getExpirationDateFromToken(token);
+
+            long ttl = expirationDate.getTime() - System.currentTimeMillis();
+
+            if (ttl > 0) {
+                RBucket<String> bucket = redissonClient.getBucket("blacklist:token:"+ token);
+                bucket.set("revoked", ttl, TimeUnit.MILLISECONDS);
+            }
+        }
     }
 }

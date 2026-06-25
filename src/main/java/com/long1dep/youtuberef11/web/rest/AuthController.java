@@ -5,6 +5,7 @@ import com.long1dep.youtuberef11.service.dto.request.LoginRequest;
 import com.long1dep.youtuberef11.service.dto.request.RegisterAccountRequest;
 import com.long1dep.youtuberef11.service.dto.response.LoginResponse;
 import com.long1dep.youtuberef11.service.dto.response.Response;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -20,4 +21,7 @@ public interface AuthController {
 
     @PostMapping(value = "/register", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     Response<AccountDto> register(@Valid RegisterAccountRequest request);
+
+    @PostMapping("/logout")
+    ResponseEntity<Response<Void>> logout(HttpServletRequest request);
 }

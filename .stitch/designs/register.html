@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Đăng ký - FPT Video</title>
+<!-- Tailwind CSS v3 CDN with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Custom Font: Inter for a modern look similar to the image -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<style data-purpose="global-styles">
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fcfcfc; /* Very light background to contrast with white card */
+    }
+  </style>
+<style data-purpose="custom-utilities">
+    /* Custom dashed border for the avatar upload circle */
+    .dashed-border {
+      border: 1.5px dashed #cbd5e1;
+    }
+    /* Specific blue shade used in the reference image */
+    .btn-primary-blue {
+      background-color: #0070e0;
+    }
+    .btn-primary-blue:hover {
+      background-color: #0060c0;
+    }
+    .text-primary-blue {
+      color: #0070e0;
+    }
+    /* Focused border for password field as shown in image */
+    .focus-blue-ring:focus-within {
+      border-color: #0070e0;
+      ring: 2px;
+      ring-color: rgba(0, 112, 224, 0.2);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4">
+<!-- BEGIN: RegistrationCard -->
+<main class="w-full max-w-[450px] bg-white rounded-xl border border-gray-200 shadow-sm p-8 md:p-10" data-purpose="registration-card">
+<!-- BEGIN: HeaderSection -->
+<header class="text-center mb-8" data-purpose="header">
+<h1 class="text-3xl font-bold text-gray-900 mb-2">FPT Video</h1>
+<p class="text-gray-500 text-sm font-medium">Tạo tài khoản mới để tiếp tục</p>
+</header>
+<!-- END: HeaderSection -->
+<!-- BEGIN: AvatarUpload -->
+<section class="flex justify-center mb-8" data-purpose="avatar-upload">
+<div class="w-28 h-28 dashed-border rounded-full flex flex-col items-center justify-center cursor-pointer hover:bg-gray-50 transition-colors">
+<!-- Upload Icon (Cloud with arrow) -->
+<svg class="h-6 w-6 text-gray-400 mb-1" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+<span class="text-[10px] text-gray-500 text-center px-4 leading-tight">
+          Tải ảnh đại diện<br/>(Tùy chọn)
+        </span>
+</div>
+</section>
+<!-- END: AvatarUpload -->
+<!-- BEGIN: RegistrationForm -->
+<form action="#" class="space-y-5" data-purpose="registration-form" method="POST">
+<!-- Full Name Field -->
+<div class="space-y-1.5">
+<label class="block text-sm font-semibold text-gray-700" for="full-name">Họ và tên</label>
+<input class="w-full border border-gray-300 rounded-lg text-sm focus:ring-1 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all p-4" id="full-name" name="full-name" placeholder="Nhập họ và tên" type="text"/>
+</div>
+<!-- Email Field -->
+<div class="space-y-1.5">
+<label class="block text-sm font-semibold text-gray-700" for="email">Email</label>
+<input class="w-full border border-gray-300 rounded-lg text-sm focus:ring-1 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all p-4" id="email" name="email" placeholder="Nhập địa chỉ email" type="email"/>
+</div>
+<!-- Password Field (Active State Simulation) -->
+<div class="space-y-1.5">
+<label class="block text-sm font-semibold text-gray-700" for="password">Mật khẩu</label>
+<div class="relative group">
+<input class="w-full border-2 border-[#0070e0] rounded-lg text-sm outline-none transition-all p-4" id="password" name="password" placeholder="Nhập mật khẩu" type="password"/>
+<!-- Password Visibility Toggle (Eye Icon) -->
+<button class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 hover:text-gray-700" type="button">
+<svg class="h-5 w-5" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.917 9.917 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</div>
+<!-- Submit Button -->
+<div class="pt-2">
+<button class="w-full btn-primary-blue text-white py-3 px-4 rounded-lg transition-colors shadow-sm font-bold" type="submit">
+          Đăng ký
+        </button>
+</div>
+</form>
+<!-- END: RegistrationForm -->
+<!-- BEGIN: CardFooter -->
+<footer class="mt-6 text-center" data-purpose="login-link">
+<p class="text-sm text-gray-600 font-medium">
+        Đã có tài khoản? <a class="text-primary-blue font-semibold hover:underline" href="#">Đăng nhập</a>
+</p>
+</footer>
+<!-- END: CardFooter -->
+</main>
+<!-- END: RegistrationCard -->
+<!-- BEGIN: PageFooter -->
+<footer class="mt-8 text-center text-gray-500 text-xs tracking-wide" data-purpose="page-footer">
+    © 2024 FPT Corporation
+  </footer>
+<!-- END: PageFooter -->
+<!-- Simple JavaScript for interactivity demo -->
+<script data-purpose="event-handlers">
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('FPT Video Registration Screen Loaded');
+      
+      // Example: Basic toggle for password visibility
+      const passwordInput = document.getElementById('password');
+      const toggleBtn = passwordInput.nextElementSibling;
+      
+      toggleBtn.addEventListener('click', () => {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+      });
+    });
+  </script>
+</body></html>

@@ -18,6 +18,7 @@ import javax.cache.expiry.CreatedExpiryPolicy;
 import javax.cache.expiry.Duration;
 import java.net.URI;
 import java.util.concurrent.TimeUnit;
+import org.redisson.api.RedissonClient;
 
 import static com.long1dep.youtuberef11.repository.AccountRepository.ACCOUNT_BY_EMAIL_CACHE;
 
@@ -29,10 +30,10 @@ public class CacheConfiguration {
     @Autowired(required = false)
     private BuildProperties buildProperties;
 
-    @Bean
-    public javax.cache.configuration.Configuration<Object, Object> jcacheConfiguration(CacheProperties properties) {
-        final MutableConfiguration<Object, Object> jcacheConfig = new MutableConfiguration<>();
 
+    // redisson client dùng chung cả app
+    @Bean(destroyMethod = "shutdown")
+    public RedissonClient redissonClient(CacheProperties properties) {
         final var redis = properties.getRedis();
         final var redisUri = URI.create(redis.getServer()[0]);
         final var config = new Config();
@@ -59,12 +60,21 @@ public class CacheConfiguration {
                 singleServerConfig.setPassword(redisUri.getUserInfo().substring(redisUri.getUserInfo().indexOf(':') + 1));
             }
         }
+        return Redisson.create(config);
+    }
+
+
+    @Bean
+    public javax.cache.configuration.Configuration<Object, Object> jcacheConfiguration(CacheProperties properties, RedissonClient redissonClient) {
+        final MutableConfiguration<Object, Object> jcacheConfig = new MutableConfiguration<>();
+
+        final var redis = properties.getRedis();
 
         jcacheConfig.setStatisticsEnabled(true);
         jcacheConfig.setExpiryPolicyFactory(
                 CreatedExpiryPolicy.factoryOf(new Duration(TimeUnit.SECONDS, redis.getExpiration()))
         );
-        return RedissonConfiguration.fromInstance(Redisson.create(config), jcacheConfig);
+        return RedissonConfiguration.fromInstance(redissonClient, jcacheConfig);
     }
 
     @Bean

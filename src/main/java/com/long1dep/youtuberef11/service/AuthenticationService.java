@@ -9,4 +9,6 @@ public interface AuthenticationService {
     LoginResponse login(LoginRequest request);
 
     AccountDto register(RegisterAccountRequest request);
+
+    void Logout(String token);
 }

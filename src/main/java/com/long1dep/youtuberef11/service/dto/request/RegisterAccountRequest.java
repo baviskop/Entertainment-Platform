@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
+import org.checkerframework.common.aliasing.qual.Unique;
 import org.springframework.web.multipart.MultipartFile;
 
 @Data

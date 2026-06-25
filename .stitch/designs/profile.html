@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hồ sơ Người dùng - FPT Video</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-dim": "#dadada",
+                      "on-secondary-container": "#656464",
+                      "inverse-on-surface": "#f0f1f1",
+                      "on-tertiary-fixed": "#1b1c1c",
+                      "surface": "#f9f9f9",
+                      "on-surface-variant": "#414754",
+                      "on-secondary-fixed-variant": "#474646",
+                      "secondary-container": "#e5e2e1",
+                      "outline": "#727786",
+                      "on-tertiary-container": "#ffffff",
+                      "surface-container-highest": "#e2e2e2",
+                      "on-primary-fixed-variant": "#004397",
+                      "on-error-container": "#93000a",
+                      "on-secondary": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "on-error": "#ffffff",
+                      "surface-container-high": "#e8e8e8",
+                      "primary-container": "#0070f3",
+                      "on-primary": "#ffffff",
+                      "primary-fixed-dim": "#aec6ff",
+                      "surface-container": "#eeeeee",
+                      "inverse-primary": "#aec6ff",
+                      "on-secondary-fixed": "#1c1b1b",
+                      "surface-container-low": "#f3f3f3",
+                      "secondary-fixed-dim": "#c8c6c5",
+                      "on-tertiary-fixed-variant": "#464747",
+                      "primary-fixed": "#d8e2ff",
+                      "on-tertiary": "#ffffff",
+                      "on-surface": "#1a1c1c",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary-fixed": "#e5e2e1",
+                      "inverse-surface": "#2f3131",
+                      "surface-bright": "#f9f9f9",
+                      "tertiary": "#5d5d5d",
+                      "surface-tint": "#0059c5",
+                      "secondary": "#5f5e5e",
+                      "primary": "#0058c3",
+                      "on-background": "#1a1c1c",
+                      "error": "#ba1a1a",
+                      "on-primary-container": "#ffffff",
+                      "on-primary-fixed": "#001a43",
+                      "background": "#f9f9f9",
+                      "tertiary-container": "#767676",
+                      "outline-variant": "#c1c6d7",
+                      "tertiary-fixed": "#e4e2e2",
+                      "tertiary-fixed-dim": "#c7c6c6",
+                      "surface-variant": "#e2e2e2",
+                      "electric-blue": "#0070F3",
+                      "ui-border": "#EAEAEA"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem",
+                      "button": "0.375rem" // 6px for buttons
+              },
+              "spacing": {
+                      "gutter": "1.5rem",
+                      "margin": "2rem",
+                      "2xl": "4rem",
+                      "lg": "1.5rem",
+                      "max-width": "1200px",
+                      "sm": "0.5rem",
+                      "md": "1rem",
+                      "xl": "2.5rem",
+                      "xs": "0.25rem"
+              },
+              "fontFamily": {
+                      "headline-lg": ["Geist", "sans-serif"],
+                      "body-sm": ["Geist", "sans-serif"],
+                      "label-sm": ["Geist", "sans-serif"],
+                      "body-lg": ["Geist", "sans-serif"],
+                      "display": ["Geist", "sans-serif"],
+                      "headline-md": ["Geist", "sans-serif"],
+                      "label-md": ["Geist", "sans-serif"],
+                      "headline-lg-mobile": ["Geist", "sans-serif"]
+              },
+              "fontSize": {
+                      "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.03em", "fontWeight": "600"}],
+                      "body-sm": ["14px", {"lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400"}],
+                      "label-sm": ["12px", {"lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                      "body-lg": ["16px", {"lineHeight": "1.6", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                      "display": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                      "headline-md": ["20px", {"lineHeight": "1.4", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "label-md": ["13px", {"lineHeight": "1.2", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        body {
+            background-color: #FAFAFA;
+            color: #1a1c1c;
+        }
+      </style>
+</head>
+<body class="min-h-screen font-body-lg text-body-lg selection:bg-electric-blue selection:text-white">
+<!-- TopNavBar Web-->
+<nav class="hidden md:flex fixed top-0 w-full z-50 justify-between items-center px-gutter h-16 max-w-max-width mx-auto bg-surface-container-lowest border-b border-outline-variant transition-colors duration-200">
+<div class="flex items-center gap-margin">
+<a class="text-headline-md font-headline-md font-bold text-primary tracking-tight" href="#">FPT Video</a>
+<div class="flex gap-md">
+<a class="text-on-surface-variant text-label-md font-label-md hover:bg-surface-container-low transition-colors px-3 py-2 rounded-md" href="#">Explore</a>
+<a class="text-on-surface-variant text-label-md font-label-md hover:bg-surface-container-low transition-colors px-3 py-2 rounded-md" href="#">Live</a>
+<a class="text-on-surface-variant text-label-md font-label-md hover:bg-surface-container-low transition-colors px-3 py-2 rounded-md" href="#">Trending</a>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="bg-electric-blue text-white rounded-button px-4 py-2 text-label-md font-label-md hover:opacity-90 transition-opacity">Upload</button>
+<button class="w-8 h-8 rounded-full bg-surface-variant overflow-hidden border border-ui-border flex items-center justify-center focus:ring-2 focus:ring-electric-blue focus:outline-none">
+<span class="material-symbols-outlined text-on-surface-variant" style="font-size: 20px;">person</span>
+</button>
+</div>
+</nav>
+<!-- SideNavBar Web-->
+<aside class="hidden md:flex fixed left-0 top-16 h-[calc(100vh-64px)] w-64 py-md flex-col bg-surface border-r border-outline-variant z-40">
+<div class="px-gutter mb-margin">
+<div class="flex items-center gap-sm mb-1">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center text-label-md font-bold">F</div>
+<h2 class="text-headline-md font-headline-md text-primary">FPT Video</h2>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant ml-9">Enterprise Portal</p>
+</div>
+<nav class="flex-1 flex flex-col gap-1 px-sm">
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-on-surface-variant hover:bg-surface-container-high transition-colors text-label-md font-label-md group" href="#">
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">home</span>
+                Home
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-on-surface-variant hover:bg-surface-container-high transition-colors text-label-md font-label-md group" href="#">
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">video_library</span>
+                Library
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-on-surface-variant hover:bg-surface-container-high transition-colors text-label-md font-label-md group" href="#">
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">history</span>
+                History
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-md text-on-surface-variant hover:bg-surface-container-high transition-colors text-label-md font-label-md group" href="#">
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">subscriptions</span>
+                Subscribed
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-primary font-bold bg-primary-container/10 border-r-4 border-primary text-label-md font-label-md opacity-80 transition-opacity" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Settings
+            </a>
+</nav>
+</aside>
+<!-- Main Content Canvas -->
+<main class="md:ml-64 pt-16 md:pt-24 min-h-screen px-4 sm:px-gutter pb-2xl max-w-max-width mx-auto">
+<!-- Page Header -->
+<header class="mb-xl">
+<h1 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg text-on-surface mb-2">Hồ sơ Người dùng</h1>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Quản lý thông tin cá nhân và cài đặt bảo mật của bạn.</p>
+</header>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Column: Identity Card -->
+<div class="lg:col-span-4 flex flex-col gap-gutter">
+<div class="bg-surface-container-lowest border border-ui-border rounded-lg p-margin flex flex-col items-center text-center">
+<div class="relative mb-margin">
+<img class="w-32 h-32 rounded-full border-2 border-electric-blue object-cover" data-alt="A clean, professional headshot of a person looking directly at the camera. The lighting is soft and even, studio quality, high-key bright. The background is a stark, pure white to seamlessly blend with the UI. The overall mood is modern, sharp, and minimalist, typical of a high-end corporate profile picture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1CF80L7V19DWmiZ6E7E3l5osb6AatCM9PCu8iVf0UlhaVurlRZ5VArjCCRgIkqrWVEiMUXHDQUU5oSp4guUWQspsn3BQqjZVQyQy2dlmqS8kw1opEMfHQA9CHmPcpOBz_mld5Wg2cEhbQ7240O3eQLbb5UOzcvYH7mgUYLXPPwJrRkV_qTC3wv4OYsVZtqbyugZcqwjQ1DqCVYNQBZ6uXTZxz-DEcH07pIbn9FDzLITS0A0gXTooFInmFSAVd9VFxyIHyIIzNS-70"/>
+<button aria-label="Change avatar" class="absolute bottom-0 right-0 bg-surface-container-lowest border border-ui-border rounded-full p-2 hover:bg-surface-container-low transition-colors shadow-sm focus:ring-2 focus:ring-electric-blue focus:outline-none">
+<span class="material-symbols-outlined text-on-surface-variant" style="font-size: 16px;">edit</span>
+</button>
+</div>
+<h2 class="text-headline-md font-headline-md text-on-surface mb-1">Nguyễn Văn A</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-4">nguyenvana@fpt.com.vn</p>
+<div class="w-full border-t border-ui-border pt-4 mt-2 flex justify-between items-center text-body-sm font-body-sm">
+<span class="text-on-surface-variant">Vai trò</span>
+<span class="bg-surface-container-low px-2 py-1 rounded text-on-surface font-medium">Quản trị viên</span>
+</div>
+<div class="w-full flex justify-between items-center text-body-sm font-body-sm mt-3">
+<span class="text-on-surface-variant">Trạng thái</span>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-[#10B981]"></span>
+<span class="text-on-surface font-medium">Hoạt động</span>
+</div>
+</div>
+</div>
+<!-- Secondary Info Card -->
+<div class="bg-surface-container-lowest border border-ui-border rounded-lg overflow-hidden">
+<div class="px-md py-3 border-b border-ui-border bg-surface-container-low/50">
+<h3 class="text-label-md font-label-md text-on-surface font-semibold">Bảo mật</h3>
+</div>
+<div class="p-md flex flex-col gap-4">
+<div class="flex justify-between items-center">
+<div>
+<p class="text-body-sm font-body-sm text-on-surface font-medium">Xác thực 2 yếu tố</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant mt-1">Đã bật qua SMS</p>
+</div>
+<button class="text-electric-blue text-label-sm font-label-sm font-medium hover:underline">Quản lý</button>
+</div>
+<div class="w-full h-px bg-ui-border"></div>
+<div class="flex justify-between items-center">
+<div>
+<p class="text-body-sm font-body-sm text-on-surface font-medium">Mật khẩu</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant mt-1">Cập nhật 3 tháng trước</p>
+</div>
+<button class="text-electric-blue text-label-sm font-label-sm font-medium hover:underline">Thay đổi</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Form Card -->
+<div class="lg:col-span-8">
+<div class="bg-surface-container-lowest border border-ui-border rounded-lg h-full">
+<div class="px-margin py-md border-b border-ui-border flex items-center justify-between">
+<h3 class="text-headline-md font-headline-md text-on-surface">Thông tin cá nhân</h3>
+</div>
+<form class="p-margin flex flex-col gap-margin">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<!-- Field: Họ và tên -->
+<div class="flex flex-col gap-2">
+<label class="text-label-sm font-label-sm text-on-surface-variant font-medium" for="fullName">Họ và tên</label>
+<input class="w-full bg-surface-container-lowest border border-ui-border rounded-[6px] px-3 py-2 text-body-sm font-body-sm text-on-surface focus:border-electric-blue focus:ring-1 focus:ring-electric-blue outline-none transition-colors" id="fullName" type="text" value="Nguyễn Văn A"/>
+</div>
+<!-- Field: Số điện thoại -->
+<div class="flex flex-col gap-2">
+<label class="text-label-sm font-label-sm text-on-surface-variant font-medium" for="phone">Số điện thoại</label>
+<input class="w-full bg-surface-container-lowest border border-ui-border rounded-[6px] px-3 py-2 text-body-sm font-body-sm text-on-surface focus:border-electric-blue focus:ring-1 focus:ring-electric-blue outline-none transition-colors" id="phone" type="tel" value="+84 901 234 567"/>
+</div>
+<!-- Field: Email (Readonly) -->
+<div class="flex flex-col gap-2 md:col-span-2">
+<label class="text-label-sm font-label-sm text-on-surface-variant font-medium flex items-center gap-2" for="email">
+                                    Email
+                                    <span class="material-symbols-outlined text-outline" style="font-size: 14px;" title="Không thể thay đổi email">lock</span>
+</label>
+<input class="w-full bg-surface border border-ui-border rounded-[6px] px-3 py-2 text-body-sm font-body-sm text-on-surface-variant cursor-not-allowed" id="email" readonly="" type="email" value="nguyenvana@fpt.com.vn"/>
+</div>
+<!-- Field: Chức vụ -->
+<div class="flex flex-col gap-2">
+<label class="text-label-sm font-label-sm text-on-surface-variant font-medium" for="title">Chức vụ</label>
+<input class="w-full bg-surface-container-lowest border border-ui-border rounded-[6px] px-3 py-2 text-body-sm font-body-sm text-on-surface focus:border-electric-blue focus:ring-1 focus:ring-electric-blue outline-none transition-colors" id="title" type="text" value="Trưởng phòng Kỹ thuật"/>
+</div>
+<!-- Field: Phòng ban -->
+<div class="flex flex-col gap-2">
+<label class="text-label-sm font-label-sm text-on-surface-variant font-medium" for="department">Phòng ban</label>
+<select class="w-full bg-surface-container-lowest border border-ui-border rounded-[6px] px-3 py-2 text-body-sm font-body-sm text-on-surface focus:border-electric-blue focus:ring-1 focus:ring-electric-blue outline-none transition-colors appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23727786%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-no-repeat bg-[position:right_8px_center] pr-10" id="department">
+<option value="tech">Khối Công nghệ</option>
+<option value="product">Khối Sản phẩm</option>
+<option value="hr">Nhân sự</option>
+</select>
+</div>
+<!-- Field: Bio -->
+<div class="flex flex-col gap-2 md:col-span-2">
+<label class="text-label-sm font-label-sm text-on-surface-variant font-medium" for="bio">Giới thiệu ngắn</label>
+<textarea class="w-full bg-surface-container-lowest border border-ui-border rounded-[6px] px-3 py-2 text-body-sm font-body-sm text-on-surface focus:border-electric-blue focus:ring-1 focus:ring-electric-blue outline-none transition-colors resize-y" id="bio" rows="4">Chịu trách nhiệm quản lý hệ thống phân phối nội dung video và kiến trúc hạ tầng đám mây cho dự án FPT Video Enterprise.</textarea>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="mt-4 pt-margin border-t border-ui-border flex justify-end gap-md">
+<button class="bg-surface-container-lowest border border-ui-border text-on-surface rounded-button px-6 py-2 text-body-sm font-body-sm font-medium hover:bg-surface transition-colors focus:ring-2 focus:ring-ui-border focus:outline-none" type="button">
+                                Hủy
+                            </button>
+<button class="bg-electric-blue text-white rounded-button px-6 py-2 text-body-sm font-body-sm font-medium hover:bg-primary transition-colors focus:ring-2 focus:ring-electric-blue focus:ring-offset-2 focus:outline-none" type="submit">
+                                Lưu thay đổi
+                            </button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-xl px-gutter flex flex-col md:flex-row justify-between items-center max-w-max-width mx-auto bg-surface-container-lowest border-t border-outline-variant mt-auto">
+<div class="text-label-md font-bold text-on-surface mb-4 md:mb-0">
+            © 2024 FPT Corporation
+        </div>
+<nav class="flex gap-md">
+<a class="text-on-surface-variant text-body-sm font-body-sm hover:text-primary transition-colors focus:ring-2 focus:ring-primary outline-none rounded-sm" href="#">Privacy</a>
+<a class="text-on-surface-variant text-body-sm font-body-sm hover:text-primary transition-colors focus:ring-2 focus:ring-primary outline-none rounded-sm" href="#">Terms</a>
+<a class="text-on-surface-variant text-body-sm font-body-sm hover:text-primary transition-colors focus:ring-2 focus:ring-primary outline-none rounded-sm" href="#">Support</a>
+</nav>
+</footer>
+<!-- AI Chat Widget -->
+<div class="fixed bottom-margin right-margin z-50 flex flex-col items-end gap-4">
+<!-- Chat Window (Hidden by default) -->
+<div class="hidden w-80 md:w-96 bg-surface-container-lowest rounded-xl shadow-xl border border-ui-border overflow-hidden flex flex-col mb-4" id="ai-chat-window">
+<!-- Header -->
+<div class="bg-electric-blue p-4 flex justify-between items-center">
+<div class="flex items-center gap-2 text-white">
+<span class="material-symbols-outlined" style="font-size: 20px;">auto_awesome</span>
+<span class="font-headline-md text-label-md font-semibold">AI Assistant</span>
+</div>
+<button class="text-white/80 hover:text-white" onclick="document.getElementById('ai-chat-window').classList.add('hidden')">
+<span class="material-symbols-outlined" style="font-size: 20px;">close</span>
+</button>
+</div>
+<!-- Chat Content -->
+<div class="h-80 overflow-y-auto p-4 flex flex-col gap-4 bg-surface-container-low/50">
+<div class="flex gap-2">
+<div class="w-8 h-8 rounded-full bg-electric-blue flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-white" style="font-size: 16px;">auto_awesome</span>
+</div>
+<div class="bg-white p-3 rounded-lg rounded-tl-none border border-ui-border shadow-sm">
+<p class="text-body-sm text-on-surface">Xin chào! Tôi có thể giúp gì cho bạn về hồ sơ người dùng của mình?</p>
+</div>
+</div>
+<div class="flex flex-row-reverse gap-2">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-on-surface-variant" style="font-size: 16px;">person</span>
+</div>
+<div class="bg-electric-blue p-3 rounded-lg rounded-tr-none shadow-sm">
+<p class="text-body-sm text-white">Tôi muốn đổi mật khẩu.</p>
+</div>
+</div>
+</div>
+<!-- Input Footer -->
+<div class="p-3 border-t border-ui-border bg-white flex gap-2">
+<input class="flex-1 bg-surface-container-low border-none rounded-full px-4 py-2 text-body-sm focus:ring-1 focus:ring-electric-blue outline-none" placeholder="Nhập tin nhắn..." type="text"/>
+<button class="text-electric-blue p-2 hover:bg-surface-container-low rounded-full transition-colors">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+<!-- Floating Action Button (FAB) -->
+<button class="w-14 h-14 bg-electric-blue text-white rounded-full shadow-lg flex items-center justify-center hover:opacity-90 transition-all active:scale-95 focus:ring-2 focus:ring-electric-blue focus:ring-offset-2 outline-none" onclick="document.getElementById('ai-chat-window').classList.toggle('hidden')">
+<span class="material-symbols-outlined" style="font-size: 28px;">auto_awesome</span>
+</button>
+</div></body></html>

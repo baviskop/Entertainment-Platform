@@ -8,6 +8,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.redisson.api.RBucket;
+import org.redisson.api.RedissonClient;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -25,6 +27,7 @@ public class AuthenticationFilter extends OncePerRequestFilter {
     static String AUTHORIZATION_HEADER = "Authorization";
     static String AUTHORIZATION_TOKEN = "access_token";
     TokenProvider tokenProvider;
+    RedissonClient redissonClient;
 
     @Override
     protected boolean shouldNotFilter(final HttpServletRequest request) throws ServletException {
@@ -36,12 +39,19 @@ public class AuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String jwt = resolveToken(request);
         if (StringUtils.hasText(jwt) && this.tokenProvider.validateToken(jwt)) {
+
+            RBucket<String> blacklistBucket = redissonClient.getBucket("blacklist:token:"+ jwt);
+            if (blacklistBucket.isExists()) {
+                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED); //401
+                response.getWriter().write("token expired");
+                return;
+            }
+
             Authentication authentication = this.tokenProvider.getAuthentication(jwt);
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
         filterChain.doFilter(request, response);
     }
-
 
 
 

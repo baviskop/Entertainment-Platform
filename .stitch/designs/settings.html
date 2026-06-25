@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Settings - FPT Video</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed-dim": "#c7c6c6",
+                    "on-surface": "#1a1c1c",
+                    "on-primary-container": "#ffffff",
+                    "inverse-primary": "#aec6ff",
+                    "secondary-fixed": "#e5e2e1",
+                    "on-tertiary-fixed": "#1b1c1c",
+                    "error-container": "#ffdad6",
+                    "tertiary": "#5d5d5d",
+                    "on-error": "#ffffff",
+                    "surface-container-highest": "#e2e2e2",
+                    "on-tertiary-container": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "secondary": "#5f5e5e",
+                    "surface-tint": "#0059c5",
+                    "surface-container-high": "#e8e8e8",
+                    "surface-dim": "#dadada",
+                    "on-primary-fixed-variant": "#004397",
+                    "on-primary-fixed": "#001a43",
+                    "on-tertiary": "#ffffff",
+                    "on-background": "#1a1c1c",
+                    "primary-fixed-dim": "#aec6ff",
+                    "on-surface-variant": "#414754",
+                    "outline-variant": "#c1c6d7",
+                    "surface-bright": "#f9f9f9",
+                    "primary": "#0058c3",
+                    "inverse-surface": "#2f3131",
+                    "primary-fixed": "#d8e2ff",
+                    "surface-variant": "#e2e2e2",
+                    "primary-container": "#0070f3",
+                    "tertiary-fixed": "#e4e2e2",
+                    "on-error-container": "#93000a",
+                    "inverse-on-surface": "#f0f1f1",
+                    "on-secondary-fixed-variant": "#474646",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "on-secondary-container": "#656464",
+                    "surface": "#f9f9f9",
+                    "secondary-container": "#e5e2e1",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "surface-container-low": "#f3f3f3",
+                    "outline": "#727786",
+                    "surface-container": "#eeeeee",
+                    "background": "#f9f9f9",
+                    "error": "#ba1a1a",
+                    "tertiary-container": "#767676",
+                    "on-tertiary-fixed-variant": "#464747"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin": "2rem",
+                    "gutter": "1.5rem",
+                    "md": "1rem",
+                    "max-width": "1200px",
+                    "lg": "1.5rem",
+                    "xl": "2.5rem",
+                    "xs": "0.25rem",
+                    "sm": "0.5rem",
+                    "2xl": "4rem"
+            },
+            "fontFamily": {
+                    "label-sm": [
+                            "Geist"
+                    ],
+                    "headline-lg-mobile": [
+                            "Geist"
+                    ],
+                    "display": [
+                            "Geist"
+                    ],
+                    "body-sm": [
+                            "Geist"
+                    ],
+                    "body-lg": [
+                            "Geist"
+                    ],
+                    "label-md": [
+                            "Geist"
+                    ],
+                    "headline-md": [
+                            "Geist"
+                    ],
+                    "headline-lg": [
+                            "Geist"
+                    ]
+            },
+            "fontSize": {
+                    "label-sm": [
+                            "12px",
+                            {
+                                    "lineHeight": "1",
+                                    "letterSpacing": "0.02em",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "headline-lg-mobile": [
+                            "24px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "display": [
+                            "48px",
+                            {
+                                    "lineHeight": "1.1",
+                                    "letterSpacing": "-0.04em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-sm": [
+                            "14px",
+                            {
+                                    "lineHeight": "1.5",
+                                    "letterSpacing": "0em",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "body-lg": [
+                            "16px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "label-md": [
+                            "13px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "letterSpacing": "0.01em",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "headline-md": [
+                            "20px",
+                            {
+                                    "lineHeight": "1.4",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-lg": [
+                            "32px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "letterSpacing": "-0.03em",
+                                    "fontWeight": "600"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Geist', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-lg text-body-lg antialiased">
+<!-- TopNavBar -->
+<header class="bg-surface-container-lowest dark:bg-surface-container-lowest border-b border-outline-variant dark:border-outline-variant fixed top-0 w-full z-50 flex justify-between items-center px-gutter h-16 max-w-max-width mx-auto">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary cursor-pointer hover:bg-surface-container-low transition-colors p-sm rounded-full md:hidden">menu</span>
+<div class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed">
+                FPT Video
+            </div>
+</div>
+<nav class="hidden md:flex gap-lg items-center h-full text-label-md font-label-md">
+<a class="text-on-surface-variant dark:text-on-secondary-container hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors h-full flex items-center px-sm" href="#">Explore</a>
+<a class="text-on-surface-variant dark:text-on-secondary-container hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors h-full flex items-center px-sm" href="#">Live</a>
+<a class="text-on-surface-variant dark:text-on-secondary-container hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors h-full flex items-center px-sm" href="#">Trending</a>
+</nav>
+<div class="flex items-center gap-md">
+<button class="hidden md:flex bg-primary-container text-on-primary-container px-md py-sm rounded hover:bg-primary-fixed hover:text-on-primary-fixed transition-colors font-label-md text-label-md">Upload</button>
+<div class="w-8 h-8 rounded-full bg-surface-variant overflow-hidden cursor-pointer hover:ring-2 hover:ring-primary-container transition-all">
+<img alt="User profile menu" class="w-full h-full object-cover" data-alt="A small circular user profile picture showing a young professional in a brightly lit, modern office setting. The style is clean, crisp, and high-fidelity, matching a premium technical dashboard aesthetic with a light-mode color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXiU0G4FDsPYMCY8_3mzs7yap2Y3WOKPlUSwRP7ndOzJ_2LGli3yG88VEW-oi73srLa8c-8UYZTksGF0HhKCejM3RmB6Y7Eo2yugADULXkyA_rLxsv9e9YXCKvQB_5TeTDX1YTaz9SyFSJd9qft8DczY_tpAgsAPwMIpZM4Hua6j2cEqelcjNIjZBkqXlQG9KDDDbR8JuzErOxSbi_33MqWj-yRGaCym7V0noFBWG1c2n7s77AmJ5xr94tXyGEwwWAUlMyCd73fjyu"/>
+</div>
+</div>
+</header>
+<div class="flex flex-1 pt-16 w-full max-w-max-width mx-auto">
+<!-- SideNavBar -->
+<aside class="hidden md:flex flex-col bg-surface dark:bg-surface border-r border-outline-variant dark:border-outline-variant fixed left-0 top-16 h-[calc(100vh-64px)] w-64 py-md z-40">
+<div class="px-gutter pb-md border-b border-outline-variant mb-md flex items-center gap-sm">
+<div class="w-10 h-10 rounded bg-surface-variant overflow-hidden">
+<img alt="FPT Admin" class="w-full h-full object-cover" data-alt="A small square avatar image for an administrative user, featuring a minimalist geometric logo in electric blue on a white background. The image is crisp and professional, suited for an enterprise platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcJR80_JSLot0E3GtkGhAcfyO_1yzTA51B1D8HjDekLreG3l2d04hTYk3O0pEyX23dixTs8vJPoNoLua5TH9TBkCVasNN_h71B632iH1KFo9H0LdHiXvTNCW6hMCj3gNaw2rlf1IMqLba3TPGYKPvrwxfRLP_Gb0tgidfHYe8npMTKk3RSVK0ikAv27qxU4q4334hD36ji4kbr7ExZah1we6in7Esi8qH-5cwBvyeTXOpTBPcKnej57xVZUW3R_TykqfaFF3RCbcNF"/>
+</div>
+<div>
+<div class="text-label-md font-label-md font-bold text-on-surface">FPT Video</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant">Enterprise Portal</div>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-xs px-sm text-label-md font-label-md">
+<a class="flex items-center gap-md px-sm py-sm rounded-r-lg text-on-surface-variant dark:text-on-secondary-container hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">home</span>
+                    Home
+                </a>
+<a class="flex items-center gap-md px-sm py-sm rounded-r-lg text-on-surface-variant dark:text-on-secondary-container hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">video_library</span>
+                    Library
+                </a>
+<a class="flex items-center gap-md px-sm py-sm rounded-r-lg text-on-surface-variant dark:text-on-secondary-container hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">history</span>
+                    History
+                </a>
+<a class="flex items-center gap-md px-sm py-sm rounded-r-lg text-on-surface-variant dark:text-on-secondary-container hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">subscriptions</span>
+                    Subscribed
+                </a>
+<a class="flex items-center gap-md px-sm py-sm rounded-r-lg text-primary dark:text-primary-fixed font-bold bg-primary-container/10 border-r-4 border-primary dark:border-primary-fixed opacity-80 scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">settings</span>
+                    Settings
+                </a>
+</nav>
+</aside>
+<!-- Main Canvas -->
+<main class="flex-1 md:ml-64 p-gutter md:p-xl w-full">
+<div class="max-w-3xl mx-auto">
+<div class="mb-xl">
+<h1 class="text-headline-lg font-headline-lg text-on-surface tracking-tight">Settings</h1>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-xs">Manage your account preferences and security configurations.</p>
+</div>
+<div class="bg-surface-container-lowest border border-surface-variant rounded-lg overflow-hidden">
+<!-- General Section -->
+<section class="p-gutter md:p-lg border-b border-surface-variant">
+<h2 class="text-headline-md font-headline-md text-on-surface mb-lg">General</h2>
+<div class="flex items-center gap-lg mb-lg">
+<div class="w-16 h-16 rounded-full bg-surface-variant border border-surface-variant overflow-hidden relative group cursor-pointer">
+<img class="w-full h-full object-cover" data-alt="A clear, professional headshot of a user, set against a stark white background. The image style is bright, highly detailed, and consistent with a minimalist developer tool aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLtwjWiHvvV2a_4atNVjQiN-tjUs9DEgwOj7qkY7oXYObpmWH91czaqYtbCb3a5L8F7TyGWGUc-uffIU0ui9u40qkjgXGHAV5EXQblgmLSJ-TPSo5DbFNPauFO66b56DasGD5WJPBWkShGYTAM_qDqbhHmaZ1almWbsdrF4eLW7zXyP9dZE3OflwoLlfdFw4C2jPJ8z86spP59UIsdia-rW6OU0692oFmyCenxQFsW_hks3gOGtytsNDS66n4QmPxCzb7KEUDGUVRN"/>
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white">edit</span>
+</div>
+</div>
+<div>
+<button class="px-md py-sm bg-surface-container-lowest border border-surface-variant rounded text-label-md font-label-md text-on-surface hover:bg-surface-container-low transition-colors">Change Avatar</button>
+<p class="text-label-sm font-label-sm text-on-surface-variant mt-xs">JPG, GIF or PNG. 1MB max.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div>
+<label class="block text-label-md font-label-md text-on-surface mb-xs">Display Name</label>
+<input class="w-full px-md py-sm bg-surface-container-lowest border border-surface-variant rounded text-body-sm font-body-sm text-on-surface focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-colors" type="text" value="Jane Doe"/>
+</div>
+<div>
+<label class="block text-label-md font-label-md text-on-surface mb-xs">Email Address</label>
+<input class="w-full px-md py-sm bg-surface-container-lowest border border-surface-variant rounded text-body-sm font-body-sm text-on-surface focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-colors" type="email" value="jane.doe@fpt.com"/>
+</div>
+</div>
+</section>
+<!-- Security Section -->
+<section class="p-gutter md:p-lg border-b border-surface-variant">
+<h2 class="text-headline-md font-headline-md text-on-surface mb-lg">Security</h2>
+<div class="space-y-md mb-lg">
+<div>
+<label class="block text-label-md font-label-md text-on-surface mb-xs">Current Password</label>
+<input class="w-full max-w-md px-md py-sm bg-surface-container-lowest border border-surface-variant rounded text-body-sm font-body-sm text-on-surface focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-colors" placeholder="••••••••" type="password"/>
+</div>
+<div>
+<label class="block text-label-md font-label-md text-on-surface mb-xs">New Password</label>
+<input class="w-full max-w-md px-md py-sm bg-surface-container-lowest border border-surface-variant rounded text-body-sm font-body-sm text-on-surface focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-colors" type="password"/>
+</div>
+</div>
+<div class="flex items-center justify-between py-md border-t border-surface-container-highest">
+<div>
+<h3 class="text-label-md font-label-md text-on-surface">Two-Factor Authentication</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Add an extra layer of security to your account.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-container rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-surface-container-lowest after:border-surface-variant after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+</section>
+<!-- Notifications Section -->
+<section class="p-gutter md:p-lg">
+<h2 class="text-headline-md font-headline-md text-on-surface mb-lg">Notifications</h2>
+<div class="space-y-sm">
+<div class="flex items-center justify-between py-xs">
+<span class="text-body-sm font-body-sm text-on-surface">Email Notifications</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-container rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-surface-container-lowest after:border-surface-variant after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+<div class="flex items-center justify-between py-xs">
+<span class="text-body-sm font-body-sm text-on-surface">Push Notifications</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-container rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-surface-container-lowest after:border-surface-variant after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+</div>
+</section>
+<div class="p-gutter md:p-lg bg-surface-container-low border-t border-surface-variant flex justify-end">
+<button class="bg-primary-container text-on-primary-container px-lg py-sm rounded text-label-md font-label-md hover:opacity-90 transition-opacity">Save Changes</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant dark:border-outline-variant w-full py-xl px-gutter flex flex-col md:flex-row justify-between items-center max-w-max-width mx-auto mt-auto md:ml-64 z-10 relative">
+<div class="text-label-md font-bold text-on-surface mb-sm md:mb-0">
+            © 2024 FPT Corporation
+        </div>
+<nav class="flex gap-md text-body-sm font-body-sm">
+<a class="text-on-surface-variant dark:text-on-secondary-container hover:text-primary dark:hover:text-primary-fixed transition-colors focus:ring-2 focus:ring-primary outline-none rounded" href="#">Privacy</a>
+<a class="text-on-surface-variant dark:text-on-secondary-container hover:text-primary dark:hover:text-primary-fixed transition-colors focus:ring-2 focus:ring-primary outline-none rounded" href="#">Terms</a>
+<a class="text-on-surface-variant dark:text-on-secondary-container hover:text-primary dark:hover:text-primary-fixed transition-colors focus:ring-2 focus:ring-primary outline-none rounded" href="#">Support</a>
+</nav>
+</footer>
+<!-- AI Chat Widget -->
+<div class="fixed bottom-8 right-8 z-50 flex flex-col items-end gap-md">
+<!-- Chat Window (Hidden by default, but for this task we'll render it as requested) -->
+<div class="w-80 md:w-96 bg-surface-container-lowest rounded-xl shadow-2xl border border-outline-variant overflow-hidden flex flex-col mb-md">
+<!-- Header -->
+<div class="bg-primary-container p-md flex items-center justify-between">
+<div class="flex items-center gap-sm text-on-primary-container">
+<span class="material-symbols-outlined">auto_awesome</span>
+<span class="font-headline-md text-label-md">AI Assistant</span>
+</div>
+<button class="text-on-primary-container hover:bg-white/10 rounded-full p-xs transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Chat Content -->
+<div class="h-80 overflow-y-auto p-md space-y-md bg-surface-container-low">
+<div class="flex flex-col gap-xs">
+<div class="bg-surface-container-highest text-on-surface p-sm rounded-lg rounded-tl-none max-w-[85%] text-body-sm">
+          Hello! How can I help you with your FPT Video settings today?
+        </div>
+<span class="text-[10px] text-on-surface-variant ml-1">10:30 AM</span>
+</div>
+<div class="flex flex-col items-end gap-xs">
+<div class="bg-primary-container text-on-primary-container p-sm rounded-lg rounded-tr-none max-w-[85%] text-body-sm">
+          How do I enable 2FA?
+        </div>
+<span class="text-[10px] text-on-surface-variant mr-1">10:31 AM</span>
+</div>
+</div>
+<!-- Input Footer -->
+<div class="p-sm border-t border-outline-variant bg-surface-container-lowest flex gap-sm items-center">
+<input class="flex-1 bg-surface-container-low border-none rounded-full px-md py-xs text-body-sm focus:ring-2 focus:ring-primary-container outline-none" placeholder="Type a message..." type="text"/>
+<button class="text-primary-container p-xs hover:bg-primary-container/10 rounded-full transition-colors">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+<!-- FAB -->
+<button class="w-16 h-16 bg-primary-container text-on-primary-container rounded-full shadow-lg flex items-center justify-center hover:scale-105 transition-transform active:scale-95">
+<span class="material-symbols-outlined text-[32px]">auto_awesome</span>
+</button>
+</div></body></html>

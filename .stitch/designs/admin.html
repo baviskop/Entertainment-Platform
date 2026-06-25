@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FPT Video - Enterprise Portal - Admin Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-primary": "#ffffff",
+                      "tertiary-fixed-dim": "#c7c6c6",
+                      "on-surface": "#1a1c1c",
+                      "on-primary-container": "#ffffff",
+                      "inverse-primary": "#aec6ff",
+                      "secondary-fixed": "#e5e2e1",
+                      "on-tertiary-fixed": "#1b1c1c",
+                      "error-container": "#ffdad6",
+                      "tertiary": "#5d5d5d",
+                      "on-error": "#ffffff",
+                      "surface-container-highest": "#e2e2e2",
+                      "on-tertiary-container": "#ffffff",
+                      "on-secondary": "#ffffff",
+                      "secondary": "#5f5e5e",
+                      "surface-tint": "#0059c5",
+                      "surface-container-high": "#e8e8e8",
+                      "surface-dim": "#dadada",
+                      "on-primary-fixed-variant": "#004397",
+                      "on-primary-fixed": "#001a43",
+                      "on-tertiary": "#ffffff",
+                      "on-background": "#1a1c1c",
+                      "primary-fixed-dim": "#aec6ff",
+                      "on-surface-variant": "#414754",
+                      "outline-variant": "#c1c6d7",
+                      "surface-bright": "#f9f9f9",
+                      "primary": "#0058c3",
+                      "inverse-surface": "#2f3131",
+                      "primary-fixed": "#d8e2ff",
+                      "surface-variant": "#e2e2e2",
+                      "primary-container": "#0070f3",
+                      "tertiary-fixed": "#e4e2e2",
+                      "on-error-container": "#93000a",
+                      "inverse-on-surface": "#f0f1f1",
+                      "on-secondary-fixed-variant": "#474646",
+                      "on-secondary-fixed": "#1c1b1b",
+                      "on-secondary-container": "#656464",
+                      "surface": "#f9f9f9",
+                      "secondary-container": "#e5e2e1",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary-fixed-dim": "#c8c6c5",
+                      "surface-container-low": "#f3f3f3",
+                      "outline": "#727786",
+                      "surface-container": "#eeeeee",
+                      "background": "#f9f9f9",
+                      "error": "#ba1a1a",
+                      "tertiary-container": "#767676",
+                      "on-tertiary-fixed-variant": "#464747"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "margin": "2rem",
+                      "gutter": "1.5rem",
+                      "md": "1rem",
+                      "max-width": "1200px",
+                      "lg": "1.5rem",
+                      "xl": "2.5rem",
+                      "xs": "0.25rem",
+                      "sm": "0.5rem",
+                      "2xl": "4rem"
+              },
+              "fontFamily": {
+                      "label-sm": [
+                              "Geist"
+                      ],
+                      "headline-lg-mobile": [
+                              "Geist"
+                      ],
+                      "display": [
+                              "Geist"
+                      ],
+                      "body-sm": [
+                              "Geist"
+                      ],
+                      "body-lg": [
+                              "Geist"
+                      ],
+                      "label-md": [
+                              "Geist"
+                      ],
+                      "headline-md": [
+                              "Geist"
+                      ],
+                      "headline-lg": [
+                              "Geist"
+                      ]
+              },
+              "fontSize": {
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.04em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "letterSpacing": "0em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-md": [
+                              "13px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.03em",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-[#FAFAFA] text-on-surface font-body-lg min-h-screen flex">
+<!-- SideNavBar -->
+<nav class="hidden md:flex fixed left-0 top-0 h-full w-64 py-md flex-col bg-surface border-r border-outline-variant z-40">
+<div class="px-gutter mb-xl flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary text-2xl" data-weight="fill" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+<div>
+<h1 class="text-headline-md font-headline-md font-bold text-primary">FPT Video</h1>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Enterprise Portal</p>
+</div>
+</div>
+<div class="flex-1 px-sm space-y-xs">
+<a class="flex items-center gap-md px-md py-sm rounded-md text-primary font-bold bg-primary-container/10 border-r-4 border-primary" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-label-md font-label-md">Home</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-md text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="video_library">video_library</span>
+<span class="text-label-md font-label-md">Library</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-md text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="text-label-md font-label-md">History</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-md text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="subscriptions">subscriptions</span>
+<span class="text-label-md font-label-md">Subscribed</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-md text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-label-md font-label-md">Settings</span>
+</a>
+</div>
+<div class="mt-auto px-gutter pt-md border-t border-outline-variant">
+<div class="flex items-center gap-sm">
+<img alt="FPT Admin" class="w-8 h-8 rounded-full object-cover bg-surface-container-high" data-alt="A small, professional portrait photo of a corporate system administrator in a clean studio setting. The lighting is crisp and even, suitable for an avatar. High contrast, minimalist background. 50 words max." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPbjMRwvlWF7sgSwV3zgzRFuIVyuA_vgzD-OXzym1Ir3kEF8jBkiRkJ2E1vRUt2sguHR_znOVts_bGPVrNloJBOiFoiUhjt6kV8gUcGqr0y9gjk0PVIhnxp59b4ayUpG4JtPnF9noZH3tFBWYzmfYnMhM48be0toIbQ99JRrPLJcNaGaERa0uj5XYIIxdzuOlcPzn9TWUgESpAJYFEPivHpMoQQoHGpKvVf6rA7aP-mjYakK84Rxj5mnB3pLhTgmQ-aTiEGe__He-j"/>
+<div>
+<p class="text-label-md font-label-md font-bold">Admin User</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant">admin@fpt.com</p>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 flex flex-col min-h-screen">
+<!-- TopNavBar (Mobile only context, but rendered as simple header here for desktop admin layout) -->
+<header class="bg-surface-container-lowest border-b border-outline-variant sticky top-0 z-30 px-gutter h-16 flex items-center justify-between">
+<div class="flex items-center gap-md">
+<button class="md:hidden text-on-surface p-sm rounded-md hover:bg-surface-container-low">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h2 class="text-headline-md font-headline-md font-bold">Dashboard Overview</h2>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline text-sm">search</span>
+<input class="pl-8 pr-md py-sm rounded-md border border-[#EAEAEA] bg-surface-container-lowest text-body-sm font-body-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-shadow w-64" placeholder="Search videos, IDs..." type="text"/>
+</div>
+<button class="bg-primary-container text-on-primary-container px-md py-sm rounded-md text-label-md font-label-md font-bold hover:bg-primary transition-colors flex items-center gap-xs shadow-sm">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                    Add New Video
+                </button>
+</div>
+</header>
+<!-- Canvas -->
+<div class="p-gutter md:p-margin max-w-max-width mx-auto w-full flex-1 space-y-xl">
+<!-- Stat Cards Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-md">
+<!-- Card 1 -->
+<div class="bg-[#FFFFFF] border border-[#EAEAEA] p-md flex flex-col gap-sm">
+<div class="flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Total Views</span>
+<span class="material-symbols-outlined text-outline text-sm">visibility</span>
+</div>
+<div class="flex items-baseline gap-sm">
+<span class="text-display font-display">2.4M</span>
+<span class="text-label-sm font-label-sm text-[#10B981] flex items-center"><span class="material-symbols-outlined text-[14px]">arrow_upward</span> 12%</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-[#FFFFFF] border border-[#EAEAEA] p-md flex flex-col gap-sm">
+<div class="flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Active Streams</span>
+<span class="material-symbols-outlined text-outline text-sm">stream</span>
+</div>
+<div class="flex items-baseline gap-sm">
+<span class="text-display font-display">8,342</span>
+<span class="text-label-sm font-label-sm text-[#10B981] flex items-center"><span class="material-symbols-outlined text-[14px]">arrow_upward</span> 4%</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-[#FFFFFF] border border-[#EAEAEA] p-md flex flex-col gap-sm">
+<div class="flex items-center justify-between">
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Storage Used</span>
+<span class="material-symbols-outlined text-outline text-sm">storage</span>
+</div>
+<div class="flex items-baseline gap-sm">
+<span class="text-display font-display">42.8<span class="text-headline-md font-headline-md text-on-surface-variant">TB</span></span>
+<span class="text-label-sm font-label-sm text-on-surface-variant flex items-center">of 50TB</span>
+</div>
+<div class="w-full bg-surface-container h-1 mt-xs">
+<div class="bg-primary h-full w-[85%]"></div>
+</div>
+</div>
+</div>
+<!-- Data Table Section -->
+<div class="bg-[#FFFFFF] border border-[#EAEAEA] flex flex-col">
+<div class="p-md border-b border-[#EAEAEA] flex items-center justify-between">
+<h3 class="text-headline-md font-headline-md font-bold">Recent Uploads</h3>
+<button class="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">filter_list</span> Filter
+                    </button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-[#EAEAEA] text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">
+<th class="p-md font-medium">Video Title &amp; ID</th>
+<th class="p-md font-medium">Date</th>
+<th class="p-md font-medium">Duration</th>
+<th class="p-md font-medium">Status</th>
+<th class="p-md font-medium text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="text-body-sm font-body-sm">
+<tr class="border-b border-[#EAEAEA] hover:bg-[#FAFAFA] transition-colors group">
+<td class="p-md">
+<div class="flex items-center gap-md">
+<img alt="Thumbnail" class="w-16 h-9 object-cover bg-surface-container" data-alt="A clean, minimalist 16:9 thumbnail showing abstract blue data streams on a dark background. Corporate tech aesthetic, high contrast. 50 words max." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqis67GWvbkQ_o5dfPzl4UrSuodPQJDI7fGAeWPLfxLEnzkDhUfTcCQdOP31JeBhJ5le2yd91JkFH06H6tXnTtxpf8WZMl0GVPLkjJ7VYQSpC4iVhz95sYQqJ50XyM6gshoY12an4xg6zY9MEckZFLB-ZrLYqyW2JKB_-Ix2--uNRiN7XEczx5Pie_5T5U4keep6-P-CJRRNBMQ1KUfZRSmKWCUmSj5JBW6gjy7m9hHXVFPk8rJBknK0PzHRUyX-a58nYJboIKMKiE"/>
+<div>
+<p class="font-bold text-on-surface group-hover:text-primary transition-colors">Q3 Earnings Call Presentation</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant font-mono">vid_098x7a</p>
+</div>
+</div>
+</td>
+<td class="p-md text-on-surface-variant">Oct 24, 2024</td>
+<td class="p-md text-on-surface-variant font-mono">45:20</td>
+<td class="p-md">
+<span class="inline-flex items-center gap-xs text-label-sm font-label-sm">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+                                        Active
+                                    </span>
+</td>
+<td class="p-md text-right">
+<button class="text-on-surface-variant hover:text-on-surface p-xs rounded hover:bg-[#EAEAEA] transition-colors">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="border-b border-[#EAEAEA] hover:bg-[#FAFAFA] transition-colors group">
+<td class="p-md">
+<div class="flex items-center gap-md">
+<img alt="Thumbnail" class="w-16 h-9 object-cover bg-surface-container" data-alt="A clean, minimalist 16:9 thumbnail showing a sleek server rack interior illuminated by cool blue LEDs. Corporate tech aesthetic, high contrast. 50 words max." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAacdM2v-P6PUNbSWDboO0jpEAFJwbJGD0Fw6fHmboHZFtIb5KOp8XMTtqEPo8UCXx06WxlZ4zb_s3OJjijmqjT-N27Bsa8inqRTUCgeGstnwe7VvVns-59looA0cDoLIsNP538QspMghmOpSp9pJj7eko7BYykkH292PCIMOb146i0iNe1f2HrxqFTd0NSSHnyr61Rt3aTBdcy36gT6Lws2jb1TROTjv6YfIUany_FkCLKCVeBzpSEDq6j4fWa6xXDhC3arjb7Mj1c"/>
+<div>
+<p class="font-bold text-on-surface group-hover:text-primary transition-colors">Data Center Migration Guide</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant font-mono">vid_098x7b</p>
+</div>
+</div>
+</td>
+<td class="p-md text-on-surface-variant">Oct 22, 2024</td>
+<td class="p-md text-on-surface-variant font-mono">12:05</td>
+<td class="p-md">
+<span class="inline-flex items-center gap-xs text-label-sm font-label-sm">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+                                        Active
+                                    </span>
+</td>
+<td class="p-md text-right">
+<button class="text-on-surface-variant hover:text-on-surface p-xs rounded hover:bg-[#EAEAEA] transition-colors">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="border-b border-[#EAEAEA] hover:bg-[#FAFAFA] transition-colors group">
+<td class="p-md">
+<div class="flex items-center gap-md">
+<div class="w-16 h-9 bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-outline">movie</span>
+</div>
+<div>
+<p class="font-bold text-on-surface group-hover:text-primary transition-colors">Employee Onboarding V2</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant font-mono">vid_098x7c</p>
+</div>
+</div>
+</td>
+<td class="p-md text-on-surface-variant">Oct 20, 2024</td>
+<td class="p-md text-on-surface-variant font-mono">--:--</td>
+<td class="p-md">
+<span class="inline-flex items-center gap-xs text-label-sm font-label-sm text-on-surface-variant">
+<span class="w-2 h-2 rounded-full bg-[#F59E0B]"></span>
+                                        Processing
+                                    </span>
+</td>
+<td class="p-md text-right">
+<button class="text-on-surface-variant hover:text-on-surface p-xs rounded hover:bg-[#EAEAEA] transition-colors">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="mt-auto bg-surface-container-lowest border-t border-outline-variant py-xl px-gutter flex flex-col md:flex-row justify-between items-center w-full max-w-max-width mx-auto">
+<div class="text-label-md font-bold text-on-surface mb-md md:mb-0">
+                © 2024 FPT Corporation
+            </div>
+<div class="flex gap-md text-body-sm font-body-sm">
+<a class="text-on-surface-variant hover:text-primary transition-colors focus:ring-2 focus:ring-primary rounded" href="#">Privacy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors focus:ring-2 focus:ring-primary rounded" href="#">Terms</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors focus:ring-2 focus:ring-primary rounded" href="#">Support</a>
+</div>
+</footer>
+</main>
+<!-- AI Chat Widget -->
+<div class="fixed bottom-md right-md z-40 flex flex-col items-end gap-sm">
+<!-- Chat Window (Hidden by default in a real app, but shown here as requested) -->
+<div class="w-64 sm:w-80 bg-[#FFFFFF] rounded-xl shadow-sm border border-[#EAEAEA] flex flex-col overflow-hidden mb-sm">
+<!-- Header -->
+<div class="bg-primary-container p-md flex items-center justify-between">
+<div class="flex items-center gap-sm text-on-primary-container">
+<span class="material-symbols-outlined text-[20px]">auto_awesome</span>
+<span class="font-bold text-label-md">AI Assistant</span>
+</div>
+<button class="text-on-primary-container/80 hover:text-on-primary-container">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<!-- Chat Body -->
+<div class="h-64 p-md overflow-y-auto space-y-md bg-[#FAFAFA]">
+<div class="flex flex-col gap-xs">
+<div class="bg-surface-container-high p-sm rounded-lg rounded-tl-none max-w-[85%] text-body-sm">
+                    Hello! How can I help you with your video dashboard today?
+                </div>
+<span class="text-[10px] text-on-surface-variant ml-xs">10:30 AM</span>
+</div>
+<div class="flex flex-col items-end gap-xs">
+<div class="bg-primary text-on-primary p-sm rounded-lg rounded-tr-none max-w-[85%] text-body-sm">
+                    Show me the storage usage trends.
+                </div>
+<span class="text-[10px] text-on-surface-variant mr-xs">10:31 AM</span>
+</div>
+</div>
+<!-- Input Footer -->
+<div class="p-sm border-t border-[#EAEAEA] bg-[#FFFFFF] flex items-center gap-xs">
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-body-sm outline-none px-xs" placeholder="Ask anything..." type="text"/>
+<button class="text-primary p-xs hover:bg-primary-container/10 rounded-full">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+<!-- FAB -->
+<button class="w-16 h-16 bg-primary text-on-primary rounded-full shadow-sm flex items-center justify-center hover:bg-primary/90 transition-colors">
+<span class="material-symbols-outlined text-[32px]">auto_awesome</span>
+</button>
+</div></body></html>

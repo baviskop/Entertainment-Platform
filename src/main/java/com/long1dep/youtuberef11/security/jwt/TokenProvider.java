@@ -109,4 +109,9 @@ public class TokenProvider {
         return false;
     }
 
+    public Date getExpirationDateFromToken(String token) {
+        Claims claims = jwtParser.parseClaimsJws(token).getBody();
+        return claims.getExpiration();
+    }
+
 }

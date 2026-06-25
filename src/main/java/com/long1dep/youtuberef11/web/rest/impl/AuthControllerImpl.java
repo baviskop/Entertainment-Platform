@@ -7,10 +7,12 @@ import com.long1dep.youtuberef11.service.dto.request.RegisterAccountRequest;
 import com.long1dep.youtuberef11.service.dto.response.LoginResponse;
 import com.long1dep.youtuberef11.service.dto.response.Response;
 import com.long1dep.youtuberef11.web.rest.AuthController;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -30,5 +32,15 @@ public class AuthControllerImpl implements AuthController {
     public Response<AccountDto> register(RegisterAccountRequest request) {
         return Response
                 .created(authenticationService.register(request));
+    }
+
+    @Override
+    public ResponseEntity<Response<Void>> logout(HttpServletRequest request) {
+        String bearerToken = request.getHeader(HttpHeaders.AUTHORIZATION);
+        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
+            String token = bearerToken.substring(7);
+            authenticationService.Logout(token);
+        }
+        return new ResponseEntity<>(Response.ok(null), HttpStatus.OK);
     }
 }

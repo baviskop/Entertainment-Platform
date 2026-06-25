@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Video Detail - FPT Video</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#c7c6c6",
+                        "on-surface": "#1a1c1c",
+                        "on-primary-container": "#ffffff",
+                        "inverse-primary": "#aec6ff",
+                        "secondary-fixed": "#e5e2e1",
+                        "on-tertiary-fixed": "#1b1c1c",
+                        "error-container": "#ffdad6",
+                        "tertiary": "#5d5d5d",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-tertiary-container": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "secondary": "#5f5e5e",
+                        "surface-tint": "#0059c5",
+                        "surface-container-high": "#e8e8e8",
+                        "surface-dim": "#dadada",
+                        "on-primary-fixed-variant": "#004397",
+                        "on-primary-fixed": "#001a43",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#1a1c1c",
+                        "primary-fixed-dim": "#aec6ff",
+                        "on-surface-variant": "#414754",
+                        "outline-variant": "#c1c6d7",
+                        "surface-bright": "#f9f9f9",
+                        "primary": "#0058c3",
+                        "inverse-surface": "#2f3131",
+                        "primary-fixed": "#d8e2ff",
+                        "surface-variant": "#e2e2e2",
+                        "primary-container": "#0070f3",
+                        "tertiary-fixed": "#e4e2e2",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#f0f1f1",
+                        "on-secondary-fixed-variant": "#474646",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "on-secondary-container": "#656464",
+                        "surface": "#f9f9f9",
+                        "secondary-container": "#e5e2e1",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "surface-container-low": "#f3f3f3",
+                        "outline": "#727786",
+                        "surface-container": "#eeeeee",
+                        "background": "#f9f9f9",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#767676",
+                        "on-tertiary-fixed-variant": "#464747"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin": "2rem",
+                        "gutter": "1.5rem",
+                        "md": "1rem",
+                        "max-width": "1200px",
+                        "lg": "1.5rem",
+                        "xl": "2.5rem",
+                        "xs": "0.25rem",
+                        "sm": "0.5rem",
+                        "2xl": "4rem"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Geist"],
+                        "headline-lg-mobile": ["Geist"],
+                        "display": ["Geist"],
+                        "body-sm": ["Geist"],
+                        "body-lg": ["Geist"],
+                        "label-md": ["Geist"],
+                        "headline-md": ["Geist"],
+                        "headline-lg": ["Geist"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "display": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "1.6", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+                        "label-md": ["13px", { "lineHeight": "1.2", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "headline-md": ["20px", { "lineHeight": "1.4", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.03em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface min-h-screen flex flex-col font-body-lg">
+<!-- TopNavBar -->
+<header class="bg-surface-container-lowest border-b border-outline-variant fixed top-0 w-full z-50 flex justify-between items-center px-gutter h-16 max-w-max-width mx-auto">
+<div class="flex items-center gap-lg">
+<a class="text-headline-md font-headline-md font-bold text-primary" href="#">FPT Video</a>
+<div class="relative hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="pl-10 pr-4 py-2 border border-outline-variant rounded bg-surface-container-lowest text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors w-64 text-body-sm font-body-sm" placeholder="Search..." type="text"/>
+</div>
+</div>
+<nav class="hidden md:flex items-center gap-md">
+<a class="text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low transition-colors px-3 py-2 rounded" href="#">Explore</a>
+<a class="text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low transition-colors px-3 py-2 rounded" href="#">Live</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-md text-label-md hover:bg-surface-container-low transition-colors px-3 py-2 rounded" href="#">Trending</a>
+</nav>
+<div class="flex items-center gap-md">
+<button class="bg-primary text-on-primary px-4 py-2 rounded font-label-md text-label-md hover:opacity-90 transition-opacity">Upload</button>
+<div aria-label="User profile menu" class="w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant flex items-center justify-center overflow-hidden cursor-pointer">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a developer in a modern, well-lit studio environment. The lighting is crisp and even, highlighting their features. They are wearing a simple, dark t-shirt. The background is a plain, light grey wall, keeping the focus entirely on the person. The overall aesthetic is clean, modern, and minimalist." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4elySGABgIxN6S1qJp25qROvUJTSED0FmID44x92O94fT1Gf1tDQMM0xZu9A-Y_tZFVsK634AghRoaeLQG5-UYmIQXsMfQbIW_EZ04EpoySbn9pgRBvNWi57LhP72K8DeiYR-63aBMSjbEVB1WJbM7NrZecoK1af5bJ-ZF71WApOHLMcRUmHcMNk-6DxjiyzwnJNW5TLX_gEaBYfQ8x1Q1HmZoiTJ07XczhNhr5Bzyzm1-7UB0fMpk4x051xfO0S2GfgbAm8_LIKn"/>
+</div>
+</div>
+</header>
+<div class="flex flex-1 pt-16">
+<!-- SideNavBar (Hidden on Mobile) -->
+<aside class="hidden md:flex bg-surface border-r border-outline-variant fixed left-0 top-16 h-[calc(100vh-64px)] w-64 py-md flex-col z-40">
+<div class="px-md mb-lg">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high border border-outline-variant overflow-hidden">
+<img alt="FPT Admin" class="w-full h-full object-cover" data-alt="A stylized, flat vector illustration of an administrator icon. The design uses geometric shapes and a minimalist color palette of deep blue and crisp white. The icon represents authority and control within a high-performance developer tool environment. The lines are sharp and precise." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPlzLjBLLTUz4qTg8k6tpa5bE81VvKaSK3XGIn1wONGX0oYCZ1-3t8fKrKT_lsLoqdSvxZEaAB20bhIdtPVHi6FFevsBUjh810hK3m2ughghXVhUWkhcd5H4f3dwfq7_OhbiIwU2lDBLZXuO4kjksJkJiC59CnXuI9DpzXPaC1qzhn7afl9JvbsQ9zdvxOnajYA8j36bizix_PPwgm7SPVlK3AOnVkPkG03li5CrFZcef7M_DYxtqsccybGFLoT_IawrdBSeiRdk1b"/>
+</div>
+<div>
+<h2 class="text-label-md font-label-md font-bold text-on-surface">FPT Video</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Enterprise Portal</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-sm px-sm">
+<a class="flex items-center gap-3 px-3 py-2 rounded text-on-surface-variant hover:bg-surface-container-high transition-colors font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span> Home
+                </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded text-on-surface-variant hover:bg-surface-container-high transition-colors font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="video_library">video_library</span> Library
+                </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded text-on-surface-variant hover:bg-surface-container-high transition-colors font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span> History
+                </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded text-on-surface-variant hover:bg-surface-container-high transition-colors font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="subscriptions">subscriptions</span> Subscribed
+                </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded text-on-surface-variant hover:bg-surface-container-high transition-colors font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span> Settings
+                </a>
+</nav>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-64 p-gutter max-w-max-width mx-auto w-full">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-xl">
+<!-- 70% Video Player & Details -->
+<div class="lg:col-span-8 flex flex-col gap-lg">
+<!-- Video Player Container (Sharp Rectangle) -->
+<div class="w-full aspect-video bg-surface-container-highest border border-outline-variant relative overflow-hidden group">
+<img alt="Video Content" class="w-full h-full object-cover" data-alt="A highly detailed, hyper-realistic rendering of a complex cloud server architecture diagram. The diagram is displayed on a stark white background with sharp, precise blue lines connecting various geometric nodes. The overall look is technical, clean, and minimalist, typical of high-end developer documentation." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPnRwdOSHqP46k1zw39qp9_Y_xOtlqplZ4lZvOW1PwoSx2xthu2_rCulhS2a_6ixsi5Hi7c6qtW03gd8Ttdz7UCMeyZjpQdTtbfL3HaZCzi2dfYxa64nIfWSvYgivk4PKscYrDcgPn6tpsKTsvZVzySuaySwfAIqyZDBy3RhXOKqyt8WySNsD44hQADsF_fNihZLl6zeno8fqlUn95MF-sAO2Q4bc8pwJH-Li_LKvhr0QhEahi12-sQ7vQqabz_d4IQEmmb_pa2vFF"/>
+<!-- Simple Player Controls Overlay -->
+<div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col gap-2">
+<div class="w-full h-1 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary w-1/3"></div>
+</div>
+<div class="flex justify-between items-center text-on-primary">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors" style="font-variation-settings: 'FILL' 1;">volume_up</span>
+<span class="text-body-sm font-body-sm">04:20 / 12:45</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">settings</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">fullscreen</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Video Title & Metadata -->
+<div class="flex flex-col gap-sm border-b border-outline-variant pb-md">
+<h1 class="text-headline-lg font-headline-lg font-bold text-on-surface">Deploying Microservices Architecture: A Practical Guide</h1>
+<div class="flex flex-wrap justify-between items-center gap-4">
+<div class="flex items-center gap-4 text-on-surface-variant text-body-sm font-body-sm">
+<span>245,102 views</span>
+<span>•</span>
+<span>Oct 12, 2024</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex items-center gap-2 px-3 py-1.5 bg-surface border border-outline-variant rounded hover:bg-surface-container-low transition-colors text-label-md font-label-md text-on-surface">
+<span class="material-symbols-outlined" data-icon="thumb_up">thumb_up</span> 12K
+                                </button>
+<button class="flex items-center gap-2 px-3 py-1.5 bg-surface border border-outline-variant rounded hover:bg-surface-container-low transition-colors text-label-md font-label-md text-on-surface">
+<span class="material-symbols-outlined" data-icon="thumb_down">thumb_down</span>
+</button>
+<button class="flex items-center gap-2 px-3 py-1.5 bg-surface border border-outline-variant rounded hover:bg-surface-container-low transition-colors text-label-md font-label-md text-on-surface">
+<span class="material-symbols-outlined" data-icon="share">share</span> Share
+                                </button>
+<button class="flex items-center gap-2 px-3 py-1.5 bg-surface border border-outline-variant rounded hover:bg-surface-container-low transition-colors text-label-md font-label-md text-on-surface">
+<span class="material-symbols-outlined" data-icon="bookmark">bookmark</span> Save
+                                </button>
+</div>
+</div>
+</div>
+<!-- Channel & Description -->
+<div class="flex gap-md pt-sm border-b border-outline-variant pb-lg">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest border border-outline-variant flex-shrink-0 overflow-hidden">
+<img alt="Channel Logo" class="w-full h-full object-cover" data-alt="A clean, minimalist logo featuring the letters 'CS' in a stark, sans-serif font. The letters are dark gray against a pure white background. The logo suggests a professional software development or cloud services company. The edges are sharp and precise." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVSkht9rvDVUkpZWr-gYnEKeRVWbryKv8WGqNoVWucyPjEHWOciLVoEWZii9uzDtdHjS5Y1y1DSqgv_pGg8aKRq-IZGd8_-qPGd_4ANGZejoLuYmZJPyhCWD4Xd4moLRO5B7b8RCEFzI9-bnsyvUFtEgd9uKn-zHmp57GKpF0bkon5pexIHb-GGP6_3AH-cgJglTeh6j32Rx8PV-mluRwPtrF_cMxSCy8rzo5I6P8YKcrwRvnQMZZAgm8_ODlOwQr0I8J-yiZ4od5P"/>
+</div>
+<div class="flex flex-col gap-xs flex-1">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-label-md font-label-md font-bold text-on-surface">CloudSystems Engineering</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">1.2M subscribers</p>
+</div>
+<button class="bg-primary text-on-primary px-4 py-2 rounded font-label-md text-label-md hover:bg-primary-fixed hover:text-on-primary-fixed transition-colors">Subscribe</button>
+</div>
+<!-- Description Box -->
+<div class="mt-md bg-surface border border-outline-variant rounded p-4 text-body-sm font-body-sm text-on-surface leading-relaxed">
+<p>In this comprehensive tutorial, we dive deep into the practicalities of deploying a robust microservices architecture using modern container orchestration tools.</p>
+<br/>
+<p class="font-bold text-label-md font-label-md">Key Topics Covered:</p>
+<ul class="list-disc list-inside mt-2 space-y-1 text-on-surface-variant">
+<li>Containerization strategies</li>
+<li>Service mesh implementation</li>
+<li>Automated CI/CD pipelines</li>
+<li>Observability and monitoring setups</li>
+</ul>
+<button class="mt-4 text-primary font-label-md font-label-md hover:underline">Show more</button>
+</div>
+</div>
+</div>
+<!-- Comments Section -->
+<div class="pt-sm flex flex-col gap-md">
+<h4 class="text-headline-md font-headline-md font-bold text-on-surface">1,402 Comments</h4>
+<!-- Add Comment -->
+<div class="flex gap-md items-start">
+<div class="w-10 h-10 rounded-full bg-surface-container-high border border-outline-variant flex-shrink-0 overflow-hidden">
+<img alt="Current User" class="w-full h-full object-cover" data-alt="A simple avatar placeholder consisting of a flat, light gray silhouette of a person against a slightly darker gray background. The style is highly minimal and functional, avoiding any unnecessary details." src="https://lh3.googleusercontent.com/aida-public/AB6AXuANV7cs2GivrDrAnl7LmurTDplVHpphv-zZaDgq-BcmM3i4UH1RgHIKqkWCK6nU6lgpufReNtlqw1R1vKIWmtboiQtA81szmYA1MsqxDSWW1K4D0krPjLmNmyn65GTDwU7NFeMSantoEhlf3bIc0cDLW3sTNE0oJaGRpE-wKoCShc92-XlRKstMzYsMkWltI7gDUOt08lwkvb7BRBvU3yd_-tctIk_DVSxGDwXmvuBH8DjDzY1ccgnDQhzoCjg9wPyf_y9i73EEllI-"/>
+</div>
+<div class="flex-1 flex flex-col gap-2">
+<input class="w-full border-b border-outline-variant bg-transparent pb-2 focus:border-primary outline-none text-body-sm font-body-sm transition-colors placeholder:text-on-surface-variant" placeholder="Add a public comment..." type="text"/>
+<div class="flex justify-end gap-2 hidden">
+<button class="px-3 py-1.5 text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low rounded">Cancel</button>
+<button class="px-3 py-1.5 bg-surface-container-highest text-on-surface-variant font-label-md text-label-md rounded" disabled="">Comment</button>
+</div>
+</div>
+</div>
+<!-- Comment List -->
+<div class="flex flex-col gap-lg mt-md">
+<!-- Comment Item -->
+<div class="flex gap-md border-b border-outline-variant pb-md">
+<div class="w-10 h-10 rounded-full bg-surface-container-high border border-outline-variant flex-shrink-0 overflow-hidden">
+<img alt="User 1" class="w-full h-full object-cover" data-alt="A stark, minimalist profile picture featuring a geometric pattern of overlapping squares in shades of gray and subdued blue. The image represents a tech-savvy user in a professional forum. The design is flat and devoid of organic shapes." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOEsPXKKsC2fJPFhjzC_plMSdN7s1hhSQOWsuL3uK-AFffzX_WuwoHk_Ri5Pg9Crqpvm95H0XMI6Ltg9UN1gln1YWJRFkwGnKBeQkqu7SYXTpVCd_9cnqOJXxiKL8917HOsXJyZ283LrfZVGZlyKlo4e2XIMLFoY-3QT373dUSD6SNGp7eiXvb6LCQSBM7m1KsHh1PKoa7SVRh41lUJD5sMnw8jxyoLVpJl9AKI2JrtwSSK2HnfQZYhpRHD0bh-ApbLs_WdG5AOl0m"/>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-baseline gap-2">
+<span class="text-label-md font-label-md font-bold text-on-surface">@dev_ops_ninja</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">2 hours ago</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface">The explanation of service mesh latency was incredibly clear. Finally, someone explains it without getting bogged down in unnecessary jargon. Great work!</p>
+<div class="flex items-center gap-4 mt-2">
+<button class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-[16px]" data-icon="thumb_up">thumb_up</span> 42
+                                        </button>
+<button class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-[16px]" data-icon="thumb_down">thumb_down</span>
+</button>
+<button class="text-label-sm font-label-sm text-on-surface-variant hover:text-on-surface transition-colors">Reply</button>
+</div>
+</div>
+</div>
+<!-- Comment Item -->
+<div class="flex gap-md border-b border-outline-variant pb-md">
+<div class="w-10 h-10 rounded-full bg-surface-container-high border border-outline-variant flex-shrink-0 overflow-hidden">
+<img alt="User 2" class="w-full h-full object-cover" data-alt="A simple profile image showing a block of raw code text on a dark background. The code is highlighted in subtle syntax colors, emphasizing a technical focus. The framing is square, typical for a developer profile." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxe9h8B1aljgvcgyh-0Uno1V3Dld3BTPplMO1m8bheyImya9SpOqL151QBFeXUplC_As7pO5yp7PehCmnJiupH2MDI8FJXbqL6W9lEVsr3LKOd3n-NdP7--AuW34BZx2Dz2iOXVjc7Qwl32eFMINO5QIZ42cTfH1pK15M813k-4SrbETUA15JydcSXXRAUS9mRsO5vwtnvRGZQxKkmAGPMSw4aOqfgGtTpYcwQDGUqVnHBDf0MJSs8mE6xgC2l0Eiqt8_ajRphJpJQ"/>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-baseline gap-2">
+<span class="text-label-md font-label-md font-bold text-on-surface">@sysadmin_jane</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">5 hours ago</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface">Are you planning a follow-up video on integrating these pipelines with legacy on-prem systems? That's the main hurdle we're facing right now.</p>
+<div class="flex items-center gap-4 mt-2">
+<button class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-[16px]" data-icon="thumb_up">thumb_up</span> 15
+                                        </button>
+<button class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-[16px]" data-icon="thumb_down">thumb_down</span>
+</button>
+<button class="text-label-sm font-label-sm text-on-surface-variant hover:text-on-surface transition-colors">Reply</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 30% Next Up Sidebar -->
+<aside class="lg:col-span-4 flex flex-col gap-md">
+<h3 class="text-headline-md font-headline-md font-bold text-on-surface mb-2">Next up</h3>
+<div class="flex flex-col gap-md">
+<!-- Up Next Card -->
+<div class="flex gap-3 bg-surface border border-outline-variant p-2 hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="w-40 aspect-video bg-surface-container-high border border-outline-variant flex-shrink-0 relative overflow-hidden">
+<img alt="Thumbnail 1" class="w-full h-full object-cover" data-alt="A sleek, minimalist thumbnail image for a video tutorial. The image features a clean architectural diagram of a database structure, rendered in sharp white lines on a subtle gray background. The aesthetic is strictly technical and high-performance." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDc63D-ARxt8MqSzYYrLIGP0z9Z3GqGtCVSEZXmQbSQMjrHfhNVStnePfdkiQlWVYyP417L3Xg_rp9F6xJl7K4MGoFfSRvCVXlfLsJsO38NO0Y6tcJ2PsbM4tHX8CrHG-OO50z05MFoGL8UGSueBcZaqGZ6Wqat0VSIHpSRfnXG7JXIC4XD1Q6Ad0vaCFpivvD0kWJCX12rS7IX6y70PSi6pQfe80PKlILYVdBPwWrtoemyGDpFB7bBq1ylTcwgaoZ5ozBvM9CqUnqH"/>
+<span class="absolute bottom-1 right-1 bg-inverse-surface text-inverse-on-surface px-1 text-[10px] rounded">18:32</span>
+</div>
+<div class="flex flex-col gap-1 overflow-hidden">
+<h4 class="text-label-md font-label-md font-bold text-on-surface line-clamp-2 group-hover:text-primary transition-colors">Advanced Database Sharding Techniques</h4>
+<p class="text-label-sm font-label-sm text-on-surface-variant">CloudSystems Engineering</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant">89K views • 2 weeks ago</p>
+</div>
+</div>
+<!-- Up Next Card -->
+<div class="flex gap-3 bg-surface border border-outline-variant p-2 hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="w-40 aspect-video bg-surface-container-high border border-outline-variant flex-shrink-0 relative overflow-hidden">
+<img alt="Thumbnail 2" class="w-full h-full object-cover" data-alt="A minimalist thumbnail showing abstract lines of code in a light mode editor theme. The code is crisp and legible, set against a stark white background with subtle gray syntax highlighting. The focus is purely on the text." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSZiw4RLf3N5dOloB4kfzZVyJ_ST-ACy_U5-3VeMenSFDmXXr77so_E37HxNmcDTGQb7CPi6ejVUo0T9HKtYcj99vMsTPHPQAxoa-89KHOw1x08GHNrwO7M2WlwoLdQLSm_EuuCQ-pd_Mdc-tkWkfZKNHrGwcHIleW4N0cbgeMazPWkeAaFcqlo1IenoZXMvcGXBrLNJJyVZUMT_uzfNBKAsWPgMVUq5CNj_vq44eLgzX3doKq41KAVxP45Ir6Ydj9tUXnshCUhJg0"/>
+<span class="absolute bottom-1 right-1 bg-inverse-surface text-inverse-on-surface px-1 text-[10px] rounded">45:10</span>
+</div>
+<div class="flex flex-col gap-1 overflow-hidden">
+<h4 class="text-label-md font-label-md font-bold text-on-surface line-clamp-2 group-hover:text-primary transition-colors">Building Scalable APIs with Go</h4>
+<p class="text-label-sm font-label-sm text-on-surface-variant">DevStack Tutorials</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant">210K views • 1 month ago</p>
+</div>
+</div>
+<!-- Up Next Card -->
+<div class="flex gap-3 bg-surface border border-outline-variant p-2 hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="w-40 aspect-video bg-surface-container-high border border-outline-variant flex-shrink-0 relative overflow-hidden">
+<img alt="Thumbnail 3" class="w-full h-full object-cover" data-alt="A stark, high-contrast illustration of a security padlock integrated with a network node diagram. The colors are limited to deep blues and sharp whites, conveying a serious, enterprise-level security context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4HZIhMHfNE-_cWJX9YwnYj81-FKbX91v1DCQwunk1i2zGH7M02-JjmFhx4tuCJ7ejcyOpJ5pMEqhpWb_lV-e6Qy2W0U6GcKvDgMU1n8K3jn3Atao-SVhdofJOXXotGL9-cuia6_cGnZSPvMO_fw9BpaXMOQEZHRa6e18RPRbujZ_w5C9ZiOV5V4_TggI1Zw-mbioXq3KN6SvFoEGPbXY9WL1XKqUSqKoNfdzuzjfXe_u5kMF4naYfXgILh6Ulnrm0rrGBDIHLooxj"/>
+<span class="absolute bottom-1 right-1 bg-inverse-surface text-inverse-on-surface px-1 text-[10px] rounded">12:05</span>
+</div>
+<div class="flex flex-col gap-1 overflow-hidden">
+<h4 class="text-label-md font-label-md font-bold text-on-surface line-clamp-2 group-hover:text-primary transition-colors">Zero Trust Network Architecture Essentials</h4>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Security Insights</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant">45K views • 3 days ago</p>
+</div>
+</div>
+<!-- Up Next Card -->
+<div class="flex gap-3 bg-surface border border-outline-variant p-2 hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="w-40 aspect-video bg-surface-container-high border border-outline-variant flex-shrink-0 relative overflow-hidden">
+<img alt="Thumbnail 4" class="w-full h-full object-cover" data-alt="A clean, flat graphic showing a series of interconnected server racks in an isometric view. The style is strictly technical illustration, using a monochromatic gray palette with a single bright blue highlight to indicate active status." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCR7RTFwa7LsQluBv3ElN-0rqAb0YxX7y1Tvdfb8-wvFOroLKAoMr9VAdK68OeFVJZXdtGOOXyUY69eP-0sO1iQGJzawCkvtHHrd7h_u-omfksHct3P0KrLufVRHtzpl5XQScpnpOf1TgIAubR2deT6nI7sZYcqfLWrTFBKquKNRaKHgD2xDY3zkDYZ0QaoBNZIRdAaptlqYJ6whYDQQy7bF9HNhc6Ciictm22_FNbMatFPsxzPAbr11X0rZgKpMt1WqKudr8AuxB3Y"/>
+<span class="absolute bottom-1 right-1 bg-inverse-surface text-inverse-on-surface px-1 text-[10px] rounded">08:50</span>
+</div>
+<div class="flex flex-col gap-1 overflow-hidden">
+<h4 class="text-label-md font-label-md font-bold text-on-surface line-clamp-2 group-hover:text-primary transition-colors">Optimizing Server Rack Airflow</h4>
+<p class="text-label-sm font-label-sm text-on-surface-variant">InfraOps Daily</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant">12K views • 1 year ago</p>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+</div>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant w-full py-xl px-gutter flex flex-col md:flex-row justify-between items-center max-w-max-width mx-auto z-50">
+<div class="text-label-md font-bold text-on-surface mb-4 md:mb-0">
+            © 2024 FPT Corporation
+        </div>
+<nav class="flex gap-md">
+<a class="text-on-surface-variant text-label-sm font-label-sm hover:text-primary transition-colors focus:ring-2 focus:ring-primary outline-none px-2 py-1 rounded" href="#">Privacy</a>
+<a class="text-on-surface-variant text-label-sm font-label-sm hover:text-primary transition-colors focus:ring-2 focus:ring-primary outline-none px-2 py-1 rounded" href="#">Terms</a>
+<a class="text-on-surface-variant text-label-sm font-label-sm hover:text-primary transition-colors focus:ring-2 focus:ring-primary outline-none px-2 py-1 rounded" href="#">Support</a>
+</nav>
+</footer>
+<script>
+        // Simple input focus interaction for comments
+        const commentInput = document.querySelector('input[placeholder="Add a public comment..."]');
+        const commentActions = commentInput.nextElementSibling;
+        
+        commentInput.addEventListener('focus', () => {
+            commentActions.classList.remove('hidden');
+        });
+
+        // Basic mock functionality for cancel button
+        const cancelBtn = commentActions.querySelector('button:first-child');
+        cancelBtn.addEventListener('click', () => {
+            commentInput.value = '';
+            commentActions.classList.add('hidden');
+        });
+    </script>
+<div class="fixed bottom-6 right-6 z-[100] flex flex-col items-end gap-4" id="ai-chat-widget">
+<!-- Chat Window (Hidden by default) -->
+<div class="hidden w-80 h-96 bg-surface-container-lowest border border-outline-variant rounded-xl shadow-lg flex flex-col overflow-hidden" id="chat-window">
+<div class="bg-primary p-4 flex justify-between items-center">
+<div class="flex items-center gap-2 text-on-primary">
+<span class="material-symbols-outlined text-[20px]">auto_awesome</span>
+<span class="font-bold text-label-md">AI Assistant</span>
+</div>
+<button class="text-on-primary hover:opacity-80" onclick="document.getElementById('chat-window').classList.add('hidden')">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="flex-1 p-4 overflow-y-auto flex flex-col gap-4">
+<div class="bg-surface-container-low p-3 rounded-lg text-body-sm max-w-[85%]">
+        Hello! How can I help you with your video development workflow today?
+      </div>
+</div>
+<div class="p-4 border-t border-outline-variant">
+<div class="relative">
+<input class="w-full pl-3 pr-10 py-2 bg-surface border border-outline-variant rounded-full text-body-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none" placeholder="Ask a question..." type="text"/>
+<button class="absolute right-2 top-1/2 -translate-y-1/2 text-primary">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</div>
+<!-- FAB -->
+<button class="w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center hover:opacity-90 transition-all active:scale-95" onclick="document.getElementById('chat-window').classList.toggle('hidden')">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</button>
+</div></body></html>

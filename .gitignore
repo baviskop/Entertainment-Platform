@@ -33,3 +33,4 @@ build/
 .vscode/
 .agents/
 src/main/resources/application.yml
+frontend

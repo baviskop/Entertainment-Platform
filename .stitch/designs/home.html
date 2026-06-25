@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Trang Chủ Khám phá (Discovery Home) - FPT Video</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#c7c6c6",
+                        "on-surface": "#1a1c1c",
+                        "on-primary-container": "#ffffff",
+                        "inverse-primary": "#aec6ff",
+                        "secondary-fixed": "#e5e2e1",
+                        "on-tertiary-fixed": "#1b1c1c",
+                        "error-container": "#ffdad6",
+                        "tertiary": "#5d5d5d",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-tertiary-container": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "secondary": "#5f5e5e",
+                        "surface-tint": "#0059c5",
+                        "surface-container-high": "#e8e8e8",
+                        "surface-dim": "#dadada",
+                        "on-primary-fixed-variant": "#004397",
+                        "on-primary-fixed": "#001a43",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#1a1c1c",
+                        "primary-fixed-dim": "#aec6ff",
+                        "on-surface-variant": "#414754",
+                        "outline-variant": "#c1c6d7",
+                        "surface-bright": "#f9f9f9",
+                        "primary": "#0058c3",
+                        "inverse-surface": "#2f3131",
+                        "primary-fixed": "#d8e2ff",
+                        "surface-variant": "#e2e2e2",
+                        "primary-container": "#0070f3",
+                        "tertiary-fixed": "#e4e2e2",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#f0f1f1",
+                        "on-secondary-fixed-variant": "#474646",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "on-secondary-container": "#656464",
+                        "surface": "#f9f9f9",
+                        "secondary-container": "#e5e2e1",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "surface-container-low": "#f3f3f3",
+                        "outline": "#727786",
+                        "surface-container": "#eeeeee",
+                        "background": "#f9f9f9",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#767676",
+                        "on-tertiary-fixed-variant": "#464747"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin": "2rem",
+                        "gutter": "1.5rem",
+                        "md": "1rem",
+                        "max-width": "1200px",
+                        "lg": "1.5rem",
+                        "xl": "2.5rem",
+                        "xs": "0.25rem",
+                        "sm": "0.5rem",
+                        "2xl": "4rem"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Geist"],
+                        "headline-lg-mobile": ["Geist"],
+                        "display": ["Geist"],
+                        "body-sm": ["Geist"],
+                        "body-lg": ["Geist"],
+                        "label-md": ["Geist"],
+                        "headline-md": ["Geist"],
+                        "headline-lg": ["Geist"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "display": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "1.6", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+                        "label-md": ["13px", { "lineHeight": "1.2", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "headline-md": ["20px", { "lineHeight": "1.4", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.03em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-lg antialiased">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-gutter h-16 max-w-max-width mx-auto bg-surface-container-lowest border-b border-outline-variant">
+<div class="flex items-center gap-md">
+<span class="text-headline-md font-headline-md font-bold text-primary">FPT Video</span>
+</div>
+<div class="hidden md:flex flex-1 max-w-2xl mx-gutter items-center gap-sm bg-surface-container-lowest border border-outline-variant rounded-md px-sm py-xs">
+<span class="material-symbols-outlined text-on-surface-variant">search</span>
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-body-sm font-body-sm text-on-surface placeholder:text-on-surface-variant outline-none" placeholder="Search..." type="text"/>
+</div>
+<nav class="hidden md:flex gap-lg items-center">
+<a class="text-label-md font-label-md text-primary font-bold border-b-2 border-primary pb-1 opacity-80 transition-opacity" href="#">Explore</a>
+<a class="text-label-md font-label-md text-on-surface-variant hover:bg-surface-container-low transition-colors px-xs py-xs rounded" href="#">Live</a>
+<a class="text-label-md font-label-md text-on-surface-variant hover:bg-surface-container-low transition-colors px-xs py-xs rounded" href="#">Trending</a>
+</nav>
+<div class="flex items-center gap-md">
+<button class="bg-primary-container text-on-primary-container px-md py-xs rounded-lg text-label-md font-label-md font-bold hover:opacity-90 transition-opacity hidden md:block">Upload</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img alt="User profile menu" class="w-full h-full object-cover" data-alt="A professional headshot of a user in a well-lit studio setting. Crisp focus on the face, minimalist white background, subtle cool lighting reflecting the clean aesthetic of a modern tech platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzNEkQ63hPWInk62vGCIyMY0azHcG0kbNRRyFLvw_O387SV3U1Rqn2OlgA8na8eZGk-h17MRCKZBZ0en9Gdp2sZoGEacJKkjxbIX2WnSUzMIIvIDcM46RdiBUKzdHM-NZQNmJELWsmZv6ixgZL8Ee4X8Zs3VupfnpzX14Cnev1WaOZ50i5P0urK7GHU6QJxzToVTM7NjgnzgANdLlGwE6XlXgBNV6NEp_e2aXbUQCPZ9DGXTkq31nN38TQP8ycng9bnzGezg3Ahtnn"/>
+</div>
+</div>
+</header>
+<div class="flex pt-16">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-64 py-md flex flex-col bg-surface border-r border-outline-variant hidden md:flex">
+<div class="px-gutter mb-xl">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant shrink-0">
+<img alt="FPT Admin" class="w-full h-full object-cover" data-alt="A stylized, minimalist avatar icon for an admin user. Sharp lines, deep blacks and pristine whites with a subtle accent of electric blue. High contrast, clean vector style aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_ElbgJEoWzyOcHIC54n8ECXEgfMzQ_ZUI8Z3tKzucMVz3i5ft3iRQSvXi_eyebNq_uo0s-row5VsQhCIlcMpW7hmbyYtPmCnx1C3ad6At_zBD2sMgRJNc9JvwwrLVzMKpp_etcDUPFl7fv4W8XJaaFRkP-hXbcKSIDn2YLXV5DkNQMTSFj_A9jE0I2N-UgEhekbE8JwYgzzS2ftoUADeEB8R6CamK12UPnI5ixsrBsd2T_4miNQuBVYjrNX2iB5PqHbqew-YndFhb"/>
+</div>
+<div>
+<h2 class="text-headline-md font-headline-md text-primary m-0">FPT Video</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant m-0">Enterprise Portal</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-xs px-sm">
+<a class="flex items-center gap-md px-md py-sm rounded-md text-label-md font-label-md text-primary font-bold bg-primary-container/10 border-r-4 border-primary scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+                    Home
+                </a>
+<a class="flex items-center gap-md px-md py-sm rounded-md text-label-md font-label-md text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">video_library</span>
+                    Library
+                </a>
+<a class="flex items-center gap-md px-md py-sm rounded-md text-label-md font-label-md text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">history</span>
+                    History
+                </a>
+<a class="flex items-center gap-md px-md py-sm rounded-md text-label-md font-label-md text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">subscriptions</span>
+                    Subscribed
+                </a>
+</nav>
+<div class="px-sm mt-auto">
+<a class="flex items-center gap-md px-md py-sm rounded-md text-label-md font-label-md text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+                    Settings
+                </a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 md:ml-64 p-gutter md:p-xl max-w-max-width mx-auto w-full">
+<header class="mb-xl flex justify-between items-end border-b border-outline-variant pb-sm">
+<div>
+<h1 class="text-display font-display text-on-surface m-0">Discovery Home</h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant mt-xs">Curated content for you.</p>
+</div>
+<div class="flex gap-sm">
+<button class="px-sm py-xs border border-outline-variant rounded-md text-label-sm font-label-sm text-on-surface bg-surface-container-lowest hover:bg-surface-container-low transition-colors">Latest</button>
+<button class="px-sm py-xs border border-outline-variant rounded-md text-label-sm font-label-sm text-on-surface bg-surface-container-lowest hover:bg-surface-container-low transition-colors">Popular</button>
+</div>
+</header>
+<!-- Video Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Card 1 -->
+<article class="bg-surface-container-lowest border border-outline-variant group cursor-pointer hover:border-primary transition-colors">
+<div class="aspect-video w-full border-b border-outline-variant overflow-hidden">
+<img alt="Video thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A crisp, high-resolution thumbnail showing a complex cloud infrastructure dashboard. Minimalist aesthetic, cool blue tones dominating the interface, sharp typography, and clean lines. The image exudes a technical, professional, and efficient mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxbQWMPkIlQsA0oLGNTv83XphV-BJFDmSm9VU8_YxqxkL93Zpa0ZJ5wxq7efdY5h8gdRZdyACMlOfeiYbvAu4hG3ECTK7BgCU-sCS2zxnPAW6SGEa28PdxxB2qhX5UR43QDsihvngbJGlzQtU2xp0VSUHOF-zLdHPMBNXclmmUJgEItQkmAjtO9cMF8sMKuZO-COFEaG1PfmqZGerYCdcDdL-xfBXuWqgkshtW5aa0IOvK1UT2umJhpc51ljbWL4EOYQcQCjY7FKw7"/>
+</div>
+<div class="p-md">
+<h3 class="text-body-lg font-body-lg font-bold text-on-surface mb-xs line-clamp-2 leading-snug">Scaling Kubernetes Clusters Automatically</h3>
+<div class="flex items-center gap-xs text-body-sm font-body-sm text-on-surface-variant">
+<span>FPT Cloud</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span>12K views</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span>2 days ago</span>
+</div>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="bg-surface-container-lowest border border-outline-variant group cursor-pointer hover:border-primary transition-colors">
+<div class="aspect-video w-full border-b border-outline-variant overflow-hidden">
+<img alt="Video thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A close-up shot of code being written on a dark-mode IDE screen. The syntax highlighting is subtle with sharp, electric blue accents. Minimalist developer aesthetic, highlighting precision and clarity in software engineering." src="https://lh3.googleusercontent.com/aida-public/AB6AXuARSmTx-XFufnF-nnzHvJamhyhCNr-GEa_A7EQOeIk-4EKSaKSYcm7_c8jRfmezifKvSpv7WugquLEf6YBL_lsERXk3n06hIaxc2WVFGi6Soi8dflAZrG-tEyaCWlnbo850hRGpuJZcTqK4ipwFMCNuRpuLGcD-FMcGL501ofl4OE2zTjEJNGCeex2AXIV4qdB8t6bVt5dNMayRYCTyYeme-e2u6iRsXMm87sirj8M4QYt_avIHkMLDJGmvLHKKVrXii3Lkn_sBBAlJ"/>
+</div>
+<div class="p-md">
+<h3 class="text-body-lg font-body-lg font-bold text-on-surface mb-xs line-clamp-2 leading-snug">Advanced React Patterns for Enterprise Apps</h3>
+<div class="flex items-center gap-xs text-body-sm font-body-sm text-on-surface-variant">
+<span>Frontend Masters</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span>8.5K views</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span>1 week ago</span>
+</div>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="bg-surface-container-lowest border border-outline-variant group cursor-pointer hover:border-primary transition-colors">
+<div class="aspect-video w-full border-b border-outline-variant overflow-hidden bg-surface-container">
+<img alt="Video thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A sleek presentation slide detailing a microservices architecture diagram. Crisp geometric shapes connected by precise lines on a stark white background. High-utility minimalism style emphasizing clarity and mathematical spacing." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkhjEcLs7OnA9PyNkpmjpoQ6F5XlITtaXwviDK048eQ3PfZlpzj4mW9Nl89R4cxcRQZtJmbYa5LFzU6aw5jlItrqIX_wOXPO64SeOvG4z9-gPBtCamgAUAWYdDLNLSLV2b9MGY16vG9yexA11zXQp2tbu7XBa0tPH6v_HatIftleGsdOZtUhKI1N8OK-CDq1F-LTDp8KerYtoX8-sF_nlA8YRg_MfAhtnqLh9b75pfvf6ayVQduLdocJamdao12x3B5qr4s8HtW5aX"/>
+</div>
+<div class="p-md">
+<h3 class="text-body-lg font-body-lg font-bold text-on-surface mb-xs line-clamp-2 leading-snug">Microservices vs Monoliths: A Case Study</h3>
+<div class="flex items-center gap-xs text-body-sm font-body-sm text-on-surface-variant">
+<span>ArchTalks</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span>45K views</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span>3 weeks ago</span>
+</div>
+</div>
+</article>
+<!-- Card 4 -->
+<article class="bg-surface-container-lowest border border-outline-variant group cursor-pointer hover:border-primary transition-colors">
+<div class="aspect-video w-full border-b border-outline-variant overflow-hidden">
+<img alt="Video thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="An abstract 3D render of data flow, represented by pristine white lines moving through a geometric grid. Subtle shading provides minimal depth without breaking the flat aesthetic. The image conveys speed, efficiency, and modern tech." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmgL7B-LoU-05wScABQSWLhen5vJghbdW6kP7ho7GalM3igNT9gvavvvi8ZPVXG2Fdj1wXf5e6-iWEpZYKBrhJcthBMM6a8rnBSIzDNd73doS_iGy8jl9yfN3QPFWiLr0voCE1MsRX4QH_Gc4BJdQ37EgYoqzN9ChANfTzH6XbBNBOHe-tqvg0vVKw9vkDZ8JNOVdaVYt_-TNMgdbdrQLzPJzk7o8AxObLOIaRgbWDZSfGkXd6z6vdEH2_w35EbSu5WLeulxfoYNjb"/>
+</div>
+<div class="p-md">
+<h3 class="text-body-lg font-body-lg font-bold text-on-surface mb-xs line-clamp-2 leading-snug">Optimizing Data Pipelines for Machine Learning</h3>
+<div class="flex items-center gap-xs text-body-sm font-body-sm text-on-surface-variant">
+<span>DataEng Live</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span>3.2K views</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span>5 hours ago</span>
+</div>
+</div>
+</article>
+<!-- Card 5 -->
+<article class="bg-surface-container-lowest border border-outline-variant group cursor-pointer hover:border-primary transition-colors">
+<div class="aspect-video w-full border-b border-outline-variant overflow-hidden">
+<img alt="Video thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A stark, minimalist photograph of a modern server room aisle. Clean white server racks stretch into the distance with subtle blue LED indicators. The lighting is bright and even, reflecting a high-performance cloud infrastructure environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGlk3Nq5PR23PhGnOYDFJZVTkh6nK4h0vGeC1mF2TpfE3CAPN9RVl66Ye1cgcWggbjNKvFhi5HqbdFj41uQUu8kDZwQmBKS4Jo_6bTa_MjmoObzNjH-TN2SJvbc4AKHW8YG41xiIPatfk2oFd0P_j79btSGJsjKxXbVdVbJ2b6bqlQbqLN7-nO6m7NDbE5DUTI8ZTjXo5R2yBG8xqip_OIxXPnP06DAskXZI6RxCq-FuUrUMZcuX_3d7wrW3XtNHfMLCXB0E7yGs4k"/>
+</div>
+<div class="p-md">
+<h3 class="text-body-lg font-body-lg font-bold text-on-surface mb-xs line-clamp-2 leading-snug">Zero Trust Network Architecture Deep Dive</h3>
+<div class="flex items-center gap-xs text-body-sm font-body-sm text-on-surface-variant">
+<span>SecOps Weekly</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span>15K views</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span>1 month ago</span>
+</div>
+</div>
+</article>
+<!-- Card 6 -->
+<article class="bg-surface-container-lowest border border-outline-variant group cursor-pointer hover:border-primary transition-colors">
+<div class="aspect-video w-full border-b border-outline-variant overflow-hidden">
+<img alt="Video thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A clean top-down view of a designer's workspace featuring a laptop displaying a minimalist UI wireframe. Sharp focus on the screen, surrounded by generous negative space. The aesthetic is professional, disciplined, and strictly adheres to a light mode palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuALCXFI5HJiOw8xLY3WK1ZX_zREkHPBtqO2O4x39lbXt8I9tkRpDphUP1RDbbEGWaYZUZzn2s1NvlIXWvIR3Y42Sqcbb6A3Pyd21q3uG1IYpb0uYokvjjeQmefVtBySRfJdl22tIczSJAJjwqT6FEVVI4i4hq4My00NAGCNZiA2XjtBRRNe2uVmlDl1JQ8Lbxuq73eQq0_uaaxEZS9YVRLFSTiYKpblweR8q7loK-Xqm2O0aU-N2KNm_Bptlu42RU-aAUQkJrepoFsN"/>
+</div>
+<div class="p-md">
+<h3 class="text-body-lg font-body-lg font-bold text-on-surface mb-xs line-clamp-2 leading-snug">Designing Design Systems: The Grid Rules</h3>
+<div class="flex items-center gap-xs text-body-sm font-body-sm text-on-surface-variant">
+<span>UI/UX Labs</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span>22K views</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span>2 months ago</span>
+</div>
+</div>
+</article>
+</div>
+</main>
+</div>
+<!-- AI Chat Widget -->
+<div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-md" id="ai-chat-container">
+<!-- Chat Window -->
+<div class="hidden w-[320px] h-[450px] bg-surface-container-lowest border border-outline-variant shadow-xl rounded-xl flex flex-col overflow-hidden mb-md" id="ai-chat-window">
+<!-- Header -->
+<div class="bg-primary-container p-md flex justify-between items-center">
+<span class="text-on-primary-container font-headline-md text-body-lg">AI Assistant</span>
+<button class="text-on-primary-container hover:opacity-80" onclick="document.getElementById('ai-chat-window').classList.add('hidden')">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Body -->
+<div class="flex-1 p-md overflow-y-auto flex flex-col gap-md bg-surface-container-low">
+<!-- AI Message -->
+<div class="flex flex-col items-start max-w-[80%]">
+<div class="bg-surface-container-highest text-on-surface p-sm rounded-lg rounded-tl-none text-body-sm">
+                    Hello! How can I help you with FPT Video today?
+                </div>
+</div>
+<!-- User Message -->
+<div class="flex flex-col items-end max-w-[80%] self-end">
+<div class="bg-primary-container text-on-primary-container p-sm rounded-lg rounded-tr-none text-body-sm">
+                    How do I scale my Kubernetes clusters?
+                </div>
+</div>
+</div>
+<!-- Footer -->
+<div class="p-sm border-t border-outline-variant bg-surface-container-lowest flex items-center gap-xs">
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-body-sm outline-none px-xs" placeholder="Type a message..." type="text"/>
+<button class="text-primary p-xs hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+<!-- Floating Action Button -->
+<button class="w-16 h-16 bg-primary-container text-on-primary-container rounded-full shadow-lg flex items-center justify-center hover:opacity-90 transition-opacity" onclick="document.getElementById('ai-chat-window').classList.toggle('hidden')">
+<span class="material-symbols-outlined text-[32px]">auto_awesome</span>
+</button>
+</div></body></html>
