@@ -18,6 +18,8 @@ public class VideoDto {
     @NotBlank(message = "Không được để trống")
     private String url;
     private String description;
+    private String thumbnail;
+    private Long views;
     private VideoStatus status = VideoStatus.DRAFT;
     private Instant updatedAt;
 }

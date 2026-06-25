@@ -23,6 +23,12 @@ public class VideoEntity extends AbstractAuditingEntity<String> {
     @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
+    @Column(name = "thumbnail", columnDefinition = "TEXT")
+    private String thumbnail;
+
+    @Column(name = "views")
+    private Long views = 0L;
+
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private VideoStatus status = VideoStatus.DRAFT;

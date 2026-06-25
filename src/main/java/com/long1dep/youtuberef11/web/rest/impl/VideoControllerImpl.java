@@ -2,6 +2,7 @@ package com.long1dep.youtuberef11.web.rest.impl;
 
 import com.long1dep.youtuberef11.service.VideoService;
 import com.long1dep.youtuberef11.service.dto.VideoDto;
+import com.long1dep.youtuberef11.service.dto.request.CreateVideoRequest;
 import com.long1dep.youtuberef11.service.dto.request.PagingRequest;
 import com.long1dep.youtuberef11.service.dto.request.VideoSearchRequest;
 import com.long1dep.youtuberef11.service.dto.response.PageableData;
@@ -15,6 +16,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.lang.NonNull;
 import org.springframework.util.ObjectUtils;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,13 +30,13 @@ public class VideoControllerImpl implements VideoController {
     private final VideoService videoService;
 
     @Override
-    public Response<VideoDto> create(@NonNull final VideoDto dto) {
-        if (!ObjectUtils.isEmpty(dto.getId())) {
-            throw new BusinessException(HttpStatus.BAD_REQUEST.getReasonPhrase(), "Id phải phải để trống");
+    public Response<VideoDto> create(@ModelAttribute @NonNull final CreateVideoRequest request) {
+        if (!ObjectUtils.isEmpty(request.getId())) {
+            throw new BusinessException(HttpStatus.BAD_REQUEST.getReasonPhrase(), "Url existed");
         }
-        log.info("======== Create video request: {}", dto);
-        final VideoDto video = videoService.create(dto);
-        log.info("======== Create video response: {}", dto);
+        log.info("======== Create video request: {}", request.getUrl());
+        final VideoDto video = videoService.create(request);
+        log.info("======== Create video response: {}", video);
 
         return Response
                 .created(video);

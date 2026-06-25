@@ -1,6 +1,7 @@
 package com.long1dep.youtuberef11.service;
 
 import com.long1dep.youtuberef11.service.dto.VideoDto;
+import com.long1dep.youtuberef11.service.dto.request.CreateVideoRequest;
 import com.long1dep.youtuberef11.service.dto.request.VideoSearchRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.lang.NonNull;
@@ -12,9 +13,10 @@ public interface VideoService {
 
     Page<VideoDto> getVideos(final VideoSearchRequest request);
 
-    VideoDto create(@NonNull final VideoDto dto);
+    VideoDto create(@NonNull final CreateVideoRequest request);
 
     VideoDto update(@NonNull final VideoDto dto);
 
     void delete(@NonNull final List<String> ids);
+
 }

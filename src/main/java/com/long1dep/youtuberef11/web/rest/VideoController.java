@@ -1,11 +1,13 @@
 package com.long1dep.youtuberef11.web.rest;
 
 import com.long1dep.youtuberef11.service.dto.VideoDto;
+import com.long1dep.youtuberef11.service.dto.request.CreateVideoRequest;
 import com.long1dep.youtuberef11.service.dto.request.VideoSearchRequest;
 import com.long1dep.youtuberef11.service.dto.response.PagingResponse;
 import com.long1dep.youtuberef11.service.dto.response.Response;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.lang.NonNull;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -17,9 +19,9 @@ import java.util.List;
 public interface VideoController {
 
     @Secured("ROLE_ADMIN")
-    @PostMapping
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    Response<VideoDto> create(@Valid @RequestBody final VideoDto dto);
+    Response<VideoDto> create(@Valid @ModelAttribute final CreateVideoRequest request);
 
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @PostMapping("/search")

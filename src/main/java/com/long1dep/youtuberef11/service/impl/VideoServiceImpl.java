@@ -2,9 +2,11 @@ package com.long1dep.youtuberef11.service.impl;
 
 import com.long1dep.youtuberef11.entity.VideoEntity;
 import com.long1dep.youtuberef11.entity.enums.VideoStatus;
+import com.long1dep.youtuberef11.integration.minio.MinioChannel;
 import com.long1dep.youtuberef11.repository.VideoRepository;
 import com.long1dep.youtuberef11.service.VideoService;
 import com.long1dep.youtuberef11.service.dto.VideoDto;
+import com.long1dep.youtuberef11.service.dto.request.CreateVideoRequest;
 import com.long1dep.youtuberef11.service.dto.request.VideoSearchRequest;
 import com.long1dep.youtuberef11.service.mapper.VideoMapper;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +24,7 @@ public class VideoServiceImpl implements VideoService {
 
     private final VideoRepository videoRepository;
     private final VideoMapper videoMapper;
+    private final MinioChannel minioChannel;
 
     @Override
     public VideoDto getVideo(@NonNull final String id) {
@@ -37,8 +40,18 @@ public class VideoServiceImpl implements VideoService {
     }
 
     @Override
-    public VideoDto create(@NonNull final VideoDto dto) {
-        final VideoEntity entity = videoMapper.toEntity(dto);
+    public VideoDto create(@NonNull final CreateVideoRequest request) {
+        final VideoEntity entity = new VideoEntity();
+        entity.setId(request.getId());
+        entity.setUrl(request.getUrl());
+        entity.setDescription(request.getDescription());
+        entity.setViews(0L);
+        entity.setStatus(VideoStatus.ACTIVE);
+
+        if (request.getThumbnail() != null && !request.getThumbnail().isEmpty()) {
+            String thumbnailUrl = minioChannel.upload(request.getThumbnail());
+            entity.setThumbnail(thumbnailUrl);
+        }
         return videoMapper.toDto(videoRepository.save(entity));
     }
 
