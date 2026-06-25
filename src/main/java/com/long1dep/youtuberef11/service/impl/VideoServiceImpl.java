@@ -2,6 +2,7 @@ package com.long1dep.youtuberef11.service.impl;
 
 import com.long1dep.youtuberef11.entity.VideoEntity;
 import com.long1dep.youtuberef11.entity.enums.VideoStatus;
+import com.long1dep.youtuberef11.event.producer.VideoProducer;
 import com.long1dep.youtuberef11.integration.minio.MinioChannel;
 import com.long1dep.youtuberef11.repository.VideoRepository;
 import com.long1dep.youtuberef11.security.SecurityUtils;
@@ -33,6 +34,7 @@ public class VideoServiceImpl implements VideoService {
 
     private final RedissonClient redissonClient;
     private final HttpServletRequest request;
+    private final VideoProducer videoProducer;
 
     @Override
     public VideoDto getVideo(@NonNull final String id) {
@@ -60,7 +62,12 @@ public class VideoServiceImpl implements VideoService {
             String thumbnailUrl = minioChannel.upload(request.getThumbnail());
             entity.setThumbnail(thumbnailUrl);
         }
-        return videoMapper.toDto(videoRepository.save(entity));
+
+        final VideoDto createdVideo = videoMapper.toDto(videoRepository.save(entity));
+
+        videoProducer.syncVideos("A new video have up to youtube with content: " + createdVideo.getDescription());
+
+        return createdVideo;
     }
 
     @Override
