@@ -2,6 +2,7 @@ package com.long1dep.youtuberef11.web.rest;
 
 import com.long1dep.youtuberef11.service.dto.VideoDto;
 import com.long1dep.youtuberef11.service.dto.request.CreateVideoRequest;
+import com.long1dep.youtuberef11.service.dto.request.UpdateVideoRequest;
 import com.long1dep.youtuberef11.service.dto.request.VideoSearchRequest;
 import com.long1dep.youtuberef11.service.dto.response.PagingResponse;
 import com.long1dep.youtuberef11.service.dto.response.Response;
@@ -34,9 +35,9 @@ public interface VideoController {
     Response<VideoDto> getVideo(@NonNull @PathVariable(name = "id") final String id);
 
     @Secured("ROLE_ADMIN")
-    @PutMapping
+    @PutMapping(consumes = org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    Response<VideoDto> update(@RequestBody final VideoDto dto);
+    Response<VideoDto> update(@Valid @ModelAttribute final UpdateVideoRequest request);
 
     @Secured("ROLE_ADMIN")
     @DeleteMapping

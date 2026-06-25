@@ -9,6 +9,7 @@ import com.long1dep.youtuberef11.security.SecurityUtils;
 import com.long1dep.youtuberef11.service.VideoService;
 import com.long1dep.youtuberef11.service.dto.VideoDto;
 import com.long1dep.youtuberef11.service.dto.request.CreateVideoRequest;
+import com.long1dep.youtuberef11.service.dto.request.UpdateVideoRequest;
 import com.long1dep.youtuberef11.service.dto.request.VideoSearchRequest;
 import com.long1dep.youtuberef11.service.mapper.VideoMapper;
 import jakarta.servlet.http.HttpServletRequest;
@@ -71,21 +72,26 @@ public class VideoServiceImpl implements VideoService {
     }
 
     @Override
-    public VideoDto update(@NonNull final VideoDto dto) {
-        final String id = dto.getId();
-        if (videoRepository.existsById(id)) {
-            final VideoEntity oldEntity = videoRepository.findById(id).orElseThrow();
-            final String oldThumbnail = oldEntity.getThumbnail();
+    public VideoDto update(@NonNull final UpdateVideoRequest request) {
+        final String id = request.getId();
 
-            final VideoEntity entity = videoMapper.toEntity(dto);
-            final VideoDto updatedVideo = videoMapper.toDto(videoRepository.save(entity));
+        final VideoEntity entity = videoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Cannot find video with id: " + id));
+        final String oldThumbnailUrl = entity.getThumbnail();
 
-            if (oldThumbnail != null && !oldThumbnail.equals(dto.getThumbnail())) {
-                minioChannel.deleteFile(oldThumbnail);
+        entity.setUrl(request.getUrl());
+        entity.setDescription(request.getDescription());
+        entity.setStatus(request.getStatus());
+
+        if (request.getThumbnail() != null && !request.getThumbnail().isEmpty()) {
+            String newThumbnailUrl = minioChannel.upload(request.getThumbnail());
+            entity.setThumbnail(newThumbnailUrl);
+
+            if (oldThumbnailUrl != null) {
+                minioChannel.deleteFile(oldThumbnailUrl);
             }
-            return updatedVideo;
         }
-        throw new RuntimeException("Không tìm thấy video với id là: " + id);
+        return videoMapper.toDto(videoRepository.save(entity));
     }
 
     @Override

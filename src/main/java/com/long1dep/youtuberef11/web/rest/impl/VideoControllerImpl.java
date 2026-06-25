@@ -4,6 +4,7 @@ import com.long1dep.youtuberef11.service.VideoService;
 import com.long1dep.youtuberef11.service.dto.VideoDto;
 import com.long1dep.youtuberef11.service.dto.request.CreateVideoRequest;
 import com.long1dep.youtuberef11.service.dto.request.PagingRequest;
+import com.long1dep.youtuberef11.service.dto.request.UpdateVideoRequest;
 import com.long1dep.youtuberef11.service.dto.request.VideoSearchRequest;
 import com.long1dep.youtuberef11.service.dto.response.PageableData;
 import com.long1dep.youtuberef11.service.dto.response.PagingResponse;
@@ -33,7 +34,7 @@ public class VideoControllerImpl implements VideoController {
     @Override
     public Response<VideoDto> create(@ModelAttribute @NonNull final CreateVideoRequest request) {
         if (!ObjectUtils.isEmpty(request.getId())) {
-            throw new BusinessException(HttpStatus.BAD_REQUEST.getReasonPhrase(), "Url existed");
+            throw new BusinessException(HttpStatus.BAD_REQUEST.getReasonPhrase(), "Id cannot blank when creating video");
         }
         log.info("======== Create video request: {}", request.getUrl());
         final VideoDto video = videoService.create(request);
@@ -72,13 +73,14 @@ public class VideoControllerImpl implements VideoController {
     }
 
     @Override
-    public Response<VideoDto> update(@NonNull final VideoDto dto) {
-        log.info("======== Update video request: {}", dto);
-        final VideoDto video = videoService.update(dto);
-        log.info("======== Update video response: {}", dto);
-
-        return Response
-                .ok(video);
+    public Response<VideoDto> update(@NonNull @ModelAttribute final UpdateVideoRequest request) {
+        if (ObjectUtils.isEmpty(request.getId())) {
+            throw new BusinessException(HttpStatus.BAD_REQUEST.getReasonPhrase(), "Id cannot blank when updating video");
+        }
+        log.info("======== Update video request: {}", request.getUrl());
+        final VideoDto video = videoService.update(request);
+        log.info("======== Update video response: {}", video);
+        return Response.ok(video);
     }
 
     @Override
